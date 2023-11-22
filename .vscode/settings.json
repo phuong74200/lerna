@@ -1,0 +1,13 @@
+{
+  "typescript.preferences.importModuleSpecifier": "non-relative", 
+  "tailwindCSS.rootFontSize": 14,
+  "editor.tabSize": 2,
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "classNames",
+    "ngClass",
+    "wrapperClassName"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
