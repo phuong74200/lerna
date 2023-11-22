@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+echo "[INFO] Try build live environment to test...."
+npx tsc
+npx vite build

@@ -1,0 +1,88 @@
+## Important notes:
+
+> Please avoid using too many floating components, such as Select (with a dropdown) or Tooltip. These components rely on libraries like floatingUI or popperJS, which constantly recalculate the position of the floating element whenever the user scrolls or triggers any observer. This can cause lagging issues if there are many floating components on the screen.
+
+## APIs done
+
+- [ ] /v1/welcome
+- [ ] /v1/new-access-token
+- [x] /v1/login
+- [ ] /v1/login/google
+- [ ] /v1/google/register/institution
+- [x] /v1/register/student
+- [x] /v1/verification/code-confirm/{code}
+- [x] /v1/verification/code-resend
+- [x] /v1/password-forget/account/{email}
+- [x] /v1/password-forget/account/{email}/code-confirm/{code}
+- [x] /v1/password-forget/account/{email}/code-resend
+- [x] /v1/password-forget/account/{email}/new-password
+- [x] /v1/user/{userId}
+- [x] /v1/user/current
+- [x] /v1/user/current/password-update/code-request
+- [x] /v1/user/current/password-update/process
+- [x] /v1/manager/{manager_id}
+- [x] /v1/manager/all
+- [x] /v1/manager/ban/manager_account/{manager_id}
+- [x] /v1/manager/current
+- [x] /v1/manager/manager_account/{manager_id}
+- [x] /v1/manager/manager-account
+- [x] /v1/manager/unban/manager_account/{manager_id}
+- [x] /v1/student/current
+- [x] /v1/manager/ban/student/{user_id}
+- [x] /v1/manager/student/{user_id}
+- [x] /v1/manager/unban/student/{user_id}
+- [x] /v1/student
+- [x] /v1/student/{user_id}
+- [x] /v1/register/ta
+- [x] /v1/register/ta/current
+- [x] /v1/ta/current
+- [x] /v1/manager/ban/ta/{user_id}
+- [x] /v1/manager/ta/{user_id}
+- [x] /v1/manager/ta/registration
+- [x] /v1/manager/ta/registration/{ta_id}
+- [x] /v1/manager/ta/registration/confirm
+- [x] /v1/manager/ta/registration/reject
+- [x] /v1/manager/unban/ta/{user_id}
+- [x] /v1/ta
+- [x] /v1/ta/{user_id}
+- [x] /v1/user/bank-accounts
+- [x] /v1/user/bank-accounts/{bank_account_id}
+- [x] /v1/department
+- [x] /v1/department/{department_id}
+- [x] /v1/discount
+- [x] /v1/discount/{discount_id}
+- [x] /v1/voucher/{voucher_id}
+- [x] /v1/voucher/event-voucher
+- [x] /v1/voucher/event-voucher/{voucher_id}
+- [x] /v1/voucher/promotion-voucher
+- [x] /v1/voucher/promotion-voucher/{voucher_id}
+- [x] /v1/role
+- [x] /v1/role/{role_id}
+- [x] /v1/institution
+- [x] /v1/institution/{institution_id}
+- [x] /v1/institution/{institution_id}/major
+- [x] /v1/institution/major
+- [x] /v1/institution/major/{major_id}
+- [x] /v1/institution/major/{major_id}/subject
+- [x] /v1/institution/major/subject
+- [x] /v1/institution/major/subject/{subject_id}
+- [x] /v1/institution/major/subject/{subject_id}/hide
+- [x] /v1/institution/major/subject/{subject_id}/restore
+- [x] /v1/study-location
+- [x] /v1/study-location/{study_location_id}
+- [x] /v1/payment
+- [x] /v1/payment/{payment_id}
+- [x] /v1/fixed-classroom
+- [x] /v1/fixed-classroom/{class_id}
+- [x] /v1/fixed-classroom/study-register
+- [x] /v1/fixed-classroom/study-register/{class_id}
+- [x] /v1/fixed-classroom/study-register
+- [x] /v1/fixed-classroom
+- [x] /v1/fixed-classroom/{class_id}
+- [x] /v1/fixed-classroom/cancel/{class_id}
+- [x] /v1/fixed-classroom/reopen/{class_id}
+- [x] /v1/fixed-classroom/teaching-register
+- [x] /v1/private-group/{group_id}
+- [x] /v1/private-group
+- [x] /v1/private-group/teaching-register
+- [x] /v1/private-group

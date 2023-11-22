@@ -1,0 +1,535 @@
+Date : 2023-11-21 10:17:53
+Directory : /workspaces/aladin-reb
+Total : 324 files,  -13450 codes, -3063 comments, -1663 blanks, all -18176 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| jsonc              |          1 |         26 |          0 |          1 |         27 |
+| json               |          1 |          6 |          0 |          0 |          6 |
+| Properties         |          1 |         -3 |          0 |         -1 |         -4 |
+| Markdown           |          1 |         -5 |          0 |         -2 |         -7 |
+| JavaScript         |          1 |         -6 |          0 |         -1 |         -7 |
+| HTML               |          1 |        -13 |          0 |         -1 |        -14 |
+| SCSS               |          4 |        -23 |         -4 |        -10 |        -37 |
+| XML                |          8 |        -30 |          0 |         -2 |        -32 |
+| JSON with Comments |          2 |        -46 |        -10 |         -1 |        -57 |
+| JSON               |          5 |     -2,113 |     -1,075 |         -2 |     -3,190 |
+| TypeScript         |        117 |     -2,950 |     -1,452 |       -567 |     -4,969 |
+| TypeScript JSX     |        182 |     -8,293 |       -522 |     -1,077 |     -9,892 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                               | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                  |        324 |    -13,450 |     -3,063 |     -1,663 |    -18,176 |
+| . (Files)                                                                          |          1 |          6 |          0 |          0 |          6 |
+| ..                                                                                 |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../..                                                                              |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode                                                                       |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin                                                                   |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin/linux-x64                                                         |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e                |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:             |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web         |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb |        322 |    -13,482 |     -3,063 |     -1,664 |    -18,209 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb (Files) |         12 |     -2,204 |     -1,086 |        -15 |     -3,305 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/.devcontainer |          2 |        -35 |          0 |         -2 |        -37 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/public |          2 |        -11 |          0 |         -1 |        -12 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/public (Files) |          1 |         -1 |          0 |          0 |         -1 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/public/assets |          1 |        -10 |          0 |         -1 |        -11 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src |        306 |    -11,232 |     -1,977 |     -1,646 |    -14,855 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src (Files) |          5 |        -73 |         -6 |        -25 |       -104 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/_preview |          2 |         -9 |          0 |         -4 |        -13 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/api |          8 |     -1,065 |       -998 |        -42 |     -2,105 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/assets |          6 |        -26 |          0 |         -3 |        -29 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/assets (Files) |          2 |        -17 |          0 |         -3 |        -20 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/assets/landing |          4 |         -9 |          0 |          0 |         -9 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components |         31 |     -1,213 |        -82 |       -211 |     -1,506 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components (Files) |         20 |       -592 |        -66 |        -98 |       -756 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components/checkbox-with-image |          2 |        -94 |          0 |        -14 |       -108 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components/collapse-overflow |          1 |        -53 |          0 |        -10 |        -63 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components/inline-input |          2 |       -112 |          0 |        -21 |       -133 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components/radio-with-image |          5 |       -346 |        -16 |        -65 |       -427 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/components/text-width-icon |          1 |        -16 |          0 |         -3 |        -19 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/configs |         11 |       -309 |        -64 |        -53 |       -426 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/context |          1 |        -32 |          0 |         -7 |        -39 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/domains |          1 |        -13 |          0 |         -5 |        -18 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features |         83 |     -3,042 |       -292 |       -486 |     -3,820 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/analyze |          1 |        -53 |          0 |         -6 |        -59 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/analyze/components |          1 |        -53 |          0 |         -6 |        -59 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/auth |          9 |        -49 |       -120 |        -53 |       -222 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/auth/components |          4 |        -35 |        -36 |        -20 |        -91 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/auth/contexts |          1 |        -14 |          0 |         -8 |        -22 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/auth/hooks |          2 |          0 |        -66 |        -17 |        -83 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/auth/services |          2 |          0 |        -18 |         -8 |        -26 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/class |          3 |       -412 |          0 |        -37 |       -449 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/class/components |          3 |       -412 |          0 |        -37 |       -449 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/course |          1 |        -28 |          0 |         -6 |        -34 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/course/components |          1 |        -28 |          0 |         -6 |        -34 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/dev |          6 |       -187 |        -22 |        -29 |       -238 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/dev/components |          5 |       -182 |        -22 |        -26 |       -230 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/dev/utils |          1 |         -5 |          0 |         -3 |         -8 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/error |          2 |        -32 |          0 |        -11 |        -43 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/error/components |          1 |        -15 |          0 |         -6 |        -21 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/error/utils |          1 |        -17 |          0 |         -5 |        -22 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/images |          1 |        -44 |          0 |         -5 |        -49 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/images/components |          1 |        -44 |          0 |         -5 |        -49 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/landing |          1 |        -47 |          0 |         -7 |        -54 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/landing/components |          1 |        -47 |          0 |         -7 |        -54 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/layout |         19 |       -924 |        -12 |       -146 |     -1,082 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/layout (Files) |          9 |       -239 |         -5 |        -40 |       -284 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/layout/components |         10 |       -685 |         -7 |       -106 |       -798 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/major |          5 |       -143 |          0 |        -39 |       -182 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/major/services |          5 |       -143 |          0 |        -39 |       -182 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/profile |          3 |        -91 |          0 |         -9 |       -100 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/profile/components |          3 |        -91 |          0 |         -9 |       -100 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/rating |          2 |        -34 |         -1 |         -5 |        -40 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/rating/components |          2 |        -34 |         -1 |         -5 |        -40 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/register |         16 |       -677 |       -137 |        -54 |       -868 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/register/components |         16 |       -677 |       -137 |        -54 |       -868 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/revise |          1 |        -29 |          0 |         -6 |        -35 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/revise/components |          1 |        -29 |          0 |         -6 |        -35 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/schedule |          1 |          0 |          0 |         -1 |         -1 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/schedule/components |          1 |          0 |          0 |         -1 |         -1 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/subject |          6 |       -167 |          0 |        -35 |       -202 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/subject/components |          1 |        -31 |          0 |         -5 |        -36 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/subject/services |          5 |       -136 |          0 |        -30 |       -166 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/university |          6 |       -125 |          0 |        -37 |       -162 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/university/components |          2 |        -22 |          0 |        -10 |        -32 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/features/university/services |          4 |       -103 |          0 |        -27 |       -130 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/hooks |         14 |       -305 |        -25 |        -99 |       -429 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules |         24 |       -800 |       -243 |       -219 |     -1,262 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/auth-router |          1 |       -124 |          0 |        -26 |       -150 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/feature-flag-manager |          1 |       -102 |        -12 |        -22 |       -136 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-ripple |          4 |       -133 |          0 |        -28 |       -161 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-ripple/components |          3 |       -103 |          0 |        -19 |       -122 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-ripple/hooks |          1 |        -30 |          0 |         -9 |        -39 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table |          6 |       -193 |        -10 |        -48 |       -251 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table/components |          3 |       -130 |          0 |        -29 |       -159 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table/components/mantine-table |          2 |       -122 |          0 |        -25 |       -147 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table/components/pagination |          1 |         -8 |          0 |         -4 |        -12 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table/hooks |          1 |        -25 |          0 |         -6 |        -31 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table/types |          1 |        -18 |        -10 |         -6 |        -34 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/mantine-table/utils |          1 |        -20 |          0 |         -7 |        -27 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/modal-route |          1 |        -13 |          0 |         -5 |        -18 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/permisson-component |          4 |       -142 |        -29 |        -35 |       -206 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/quick-condition |          2 |        -32 |          0 |         -8 |        -40 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/sync-tailwind-color-scheme |          1 |        -14 |          0 |         -3 |        -17 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/tailwind-open-color |          1 |        -27 |          0 |         -7 |        -34 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/tiptap-custom-image |          2 |          0 |       -192 |        -32 |       -224 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/modules/with-router |          1 |        -20 |          0 |         -5 |        -25 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages |         49 |     -3,031 |       -187 |       -256 |     -3,474 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages (Files) |          2 |        -99 |          0 |         -6 |       -105 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class |          5 |       -377 |        -20 |        -24 |       -421 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class (Files) |          2 |        -25 |          0 |         -5 |        -30 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class/[class-id] |          1 |       -144 |          0 |         -7 |       -151 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class/[class-id]/register |          1 |       -144 |          0 |         -7 |       -151 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class/register |          2 |       -208 |        -20 |        -12 |       -240 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class/register (Files) |          1 |       -168 |        -20 |         -8 |       -196 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/assembled-class/register/payment |          1 |        -40 |          0 |         -4 |        -44 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/class |          4 |       -153 |          0 |        -16 |       -169 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/class (Files) |          1 |        -21 |          0 |         -4 |        -25 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/class/[class-id] |          3 |       -132 |          0 |        -12 |       -144 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/class/[class-id]/register |          3 |       -132 |          0 |        -12 |       -144 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course |          4 |       -140 |        -56 |        -21 |       -217 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course (Files) |          1 |        -17 |          0 |         -3 |        -20 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course/[course-id] |          1 |        -85 |          0 |         -6 |        -91 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course/[course-id]/register |          1 |        -85 |          0 |         -6 |        -91 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course/approved |          1 |        -19 |        -28 |         -6 |        -53 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course/approved/[page] |          1 |        -19 |        -28 |         -6 |        -53 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course/pending |          1 |        -19 |        -28 |         -6 |        -53 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/course/pending/[page] |          1 |        -19 |        -28 |         -6 |        -53 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/error |          3 |        -59 |          0 |        -12 |        -71 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/error (Files) |          1 |         -1 |          0 |         -1 |         -2 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/error/components |          2 |        -58 |          0 |        -11 |        -69 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/error/components/error404 |          2 |        -58 |          0 |        -11 |        -69 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/history |          1 |        -19 |        -29 |         -6 |        -54 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/home |          1 |        -97 |          0 |         -7 |       -104 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/image |          1 |        -21 |          0 |         -4 |        -25 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/image/[id] |          1 |        -21 |          0 |         -4 |        -25 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/lecture |          1 |        -73 |          0 |         -5 |        -78 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/lecture/[id] |          1 |        -73 |          0 |         -5 |        -78 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/lecture/[id]/rating |          1 |        -73 |          0 |         -5 |        -78 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/login |          3 |       -169 |          0 |        -11 |       -180 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/login (Files) |          1 |        -80 |          0 |         -4 |        -84 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/login/forget-password |          1 |        -48 |          0 |         -4 |        -52 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/login/recovery-otp |          1 |        -41 |          0 |         -3 |        -44 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/major |          3 |       -248 |          0 |        -24 |       -272 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/major/[major-id] |          2 |       -207 |          0 |        -17 |       -224 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/major/[major-id] (Files) |          1 |       -157 |          0 |        -10 |       -167 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/major/[major-id]/update |          1 |        -50 |          0 |         -7 |        -57 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/major/create |          1 |        -41 |          0 |         -7 |        -48 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/payment |          1 |        -45 |        -42 |         -7 |        -94 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/payment/history |          1 |        -45 |        -42 |         -7 |        -94 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class |          6 |       -507 |        -40 |        -34 |       -581 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class (Files) |          1 |        -25 |          0 |         -4 |        -29 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class/[class-id] |          1 |        -90 |          0 |         -5 |        -95 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class/[class-id]/register |          1 |        -90 |          0 |         -5 |        -95 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class/modify |          2 |       -188 |        -20 |        -13 |       -221 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class/register |          2 |       -204 |        -20 |        -12 |       -236 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class/register (Files) |          1 |       -164 |        -20 |         -8 |       -192 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/private-class/register/payment |          1 |        -40 |          0 |         -4 |        -44 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/profile |          1 |        -72 |          0 |         -3 |        -75 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/schedule |          1 |       -104 |          0 |         -4 |       -108 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students |          6 |       -287 |          0 |        -23 |       -310 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/class |          1 |        -56 |          0 |         -5 |        -61 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/group |          1 |        -45 |          0 |         -4 |        -49 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/profile |          1 |        -71 |          0 |         -3 |        -74 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/revise |          1 |        -37 |          0 |         -4 |        -41 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/ta-register |          2 |        -78 |          0 |         -7 |        -85 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/ta-register (Files) |          1 |        -25 |          0 |         -4 |        -29 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/students/ta-register/modify |          1 |        -53 |          0 |         -3 |        -56 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/subject |          2 |       -206 |          0 |        -19 |       -225 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/subject/[subject-id] |          1 |        -93 |          0 |         -9 |       -102 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/subject/[subject-id]/update |          1 |        -93 |          0 |         -9 |       -102 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/subject/create |          1 |       -113 |          0 |        -10 |       -123 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/university |          4 |       -355 |          0 |        -30 |       -385 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/university (Files) |          1 |       -113 |          0 |         -7 |       -120 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/university/[institution-id] |          1 |       -146 |          0 |        -10 |       -156 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/pages/university/create |          2 |        -96 |          0 |        -13 |       -109 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/router |         17 |       -715 |          0 |        -67 |       -782 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/router (Files) |          2 |       -207 |          0 |        -18 |       -225 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/router/routes |         15 |       -508 |          0 |        -49 |       -557 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/services |          2 |        -55 |          0 |        -20 |        -75 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/styles |          3 |        -14 |          0 |         -5 |        -19 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/types |         13 |        -70 |        -21 |        -26 |       -117 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/types (Files) |          9 |        -53 |        -21 |        -22 |        -96 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/types/enums |          2 |        -11 |          0 |         -2 |        -13 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/types/models |          2 |         -6 |          0 |         -2 |         -8 |
+| ../../vscode/bin/linux-x64/1a5daa3a0231a0fbba4f14db7ec463cf99d7768e/d:/Web/aladin-reb/src/utils |         36 |       -460 |        -59 |       -118 |       -637 |
+| .devcontainer                                                                      |          1 |         26 |          0 |          1 |         27 |
++------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                           | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /workspaces/aladin-reb/.devcontainer/devcontainer.json                             | jsonc              |         26 |          0 |          1 |         27 |
+| /workspaces/aladin-reb/.prettierrc                                                 | json               |          6 |          0 |          0 |          6 |
+| d:/Web/aladin-reb/.devcontainer/devcontainer.json                                  | JSON with Comments |        -26 |          0 |         -1 |        -27 |
+| d:/Web/aladin-reb/.devcontainer/icon.svg                                           | XML                |         -9 |          0 |         -1 |        -10 |
+| d:/Web/aladin-reb/.env                                                             | Properties         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/.prettierrc                                                      | JSON               |         -6 |          0 |          0 |         -6 |
+| d:/Web/aladin-reb/README.md                                                        | Markdown           |         -5 |          0 |         -2 |         -7 |
+| d:/Web/aladin-reb/index.html                                                       | HTML               |        -13 |          0 |         -1 |        -14 |
+| d:/Web/aladin-reb/package.json                                                     | JSON               |       -105 |          0 |         -1 |       -106 |
+| d:/Web/aladin-reb/postcss.config.js                                                | JavaScript         |         -6 |          0 |         -1 |         -7 |
+| d:/Web/aladin-reb/public/assets/logo.svg                                           | XML                |        -10 |          0 |         -1 |        -11 |
+| d:/Web/aladin-reb/public/vite.svg                                                  | XML                |         -1 |          0 |          0 |         -1 |
+| d:/Web/aladin-reb/src/_preview/component.tsx                                       | TypeScript JSX     |         -6 |          0 |         -3 |         -9 |
+| d:/Web/aladin-reb/src/_preview/page.tsx                                            | TypeScript JSX     |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/api/general-user.ts                                          | TypeScript         |        -19 |          0 |         -5 |        -24 |
+| d:/Web/aladin-reb/src/api/index.ts                                                 | TypeScript         |        -17 |          0 |         -4 |        -21 |
+| d:/Web/aladin-reb/src/api/institution.ts                                           | TypeScript         |        -36 |          0 |         -8 |        -44 |
+| d:/Web/aladin-reb/src/api/login.ts                                                 | TypeScript         |        -11 |          0 |         -3 |        -14 |
+| d:/Web/aladin-reb/src/api/major.ts                                                 | TypeScript         |        -29 |          0 |         -4 |        -33 |
+| d:/Web/aladin-reb/src/api/openapi-fetch.ts                                         | TypeScript         |        -24 |         -1 |         -6 |        -31 |
+| d:/Web/aladin-reb/src/api/subject.ts                                               | TypeScript         |        -29 |          0 |         -6 |        -35 |
+| d:/Web/aladin-reb/src/api/v1.d.ts                                                  | TypeScript         |       -900 |       -997 |         -6 |     -1,903 |
+| d:/Web/aladin-reb/src/app.tsx                                                      | TypeScript JSX     |        -47 |          0 |        -11 |        -58 |
+| d:/Web/aladin-reb/src/assets/index.ts                                              | TypeScript         |        -16 |          0 |         -3 |        -19 |
+| d:/Web/aladin-reb/src/assets/landing/LogoMomo.svg                                  | XML                |         -1 |          0 |          0 |         -1 |
+| d:/Web/aladin-reb/src/assets/landing/LogoZalopay.svg                               | XML                |         -1 |          0 |          0 |         -1 |
+| d:/Web/aladin-reb/src/assets/landing/Momo.svg                                      | XML                |         -6 |          0 |          0 |         -6 |
+| d:/Web/aladin-reb/src/assets/landing/react.svg                                     | XML                |         -1 |          0 |          0 |         -1 |
+| d:/Web/aladin-reb/src/assets/react.svg                                             | XML                |         -1 |          0 |          0 |         -1 |
+| d:/Web/aladin-reb/src/components/checkbox-with-image/index.tsx                     | TypeScript JSX     |        -62 |          0 |         -9 |        -71 |
+| d:/Web/aladin-reb/src/components/checkbox-with-image/styles.ts                     | TypeScript         |        -32 |          0 |         -5 |        -37 |
+| d:/Web/aladin-reb/src/components/collapse-list.tsx                                 | TypeScript JSX     |        -20 |          0 |         -4 |        -24 |
+| d:/Web/aladin-reb/src/components/collapse-overflow/index.tsx                       | TypeScript JSX     |        -53 |          0 |        -10 |        -63 |
+| d:/Web/aladin-reb/src/components/custom-modal.tsx                                  | TypeScript JSX     |        -21 |          0 |         -2 |        -23 |
+| d:/Web/aladin-reb/src/components/custom-multiple-select.tsx                        | TypeScript JSX     |        -71 |          0 |         -5 |        -76 |
+| d:/Web/aladin-reb/src/components/custom-search-box.tsx                             | TypeScript JSX     |        -37 |          0 |         -5 |        -42 |
+| d:/Web/aladin-reb/src/components/custom-select.tsx                                 | TypeScript JSX     |        -44 |          0 |         -7 |        -51 |
+| d:/Web/aladin-reb/src/components/edit-btn.tsx                                      | TypeScript JSX     |        -24 |          0 |         -7 |        -31 |
+| d:/Web/aladin-reb/src/components/empty-image.tsx                                   | TypeScript JSX     |        -11 |          0 |         -2 |        -13 |
+| d:/Web/aladin-reb/src/components/external-link.tsx                                 | TypeScript JSX     |        -13 |          0 |         -4 |        -17 |
+| d:/Web/aladin-reb/src/components/floating-label-input.tsx                          | TypeScript JSX     |        -96 |          0 |        -11 |       -107 |
+| d:/Web/aladin-reb/src/components/hidden-field.tsx                                  | TypeScript JSX     |        -17 |          0 |         -3 |        -20 |
+| d:/Web/aladin-reb/src/components/image-drop.tsx                                    | TypeScript JSX     |          0 |        -66 |         -6 |        -72 |
+| d:/Web/aladin-reb/src/components/inline-input/index.tsx                            | TypeScript JSX     |        -66 |          0 |        -10 |        -76 |
+| d:/Web/aladin-reb/src/components/inline-input/styles.ts                            | TypeScript         |        -46 |          0 |        -11 |        -57 |
+| d:/Web/aladin-reb/src/components/input-icon.tsx                                    | TypeScript JSX     |         -7 |          0 |         -3 |        -10 |
+| d:/Web/aladin-reb/src/components/more-info.tsx                                     | TypeScript JSX     |        -11 |          0 |         -2 |        -13 |
+| d:/Web/aladin-reb/src/components/radio-with-image/context.ts                       | TypeScript         |        -11 |          0 |         -3 |        -14 |
+| d:/Web/aladin-reb/src/components/radio-with-image/group.tsx                        | TypeScript JSX     |        -62 |         -7 |        -17 |        -86 |
+| d:/Web/aladin-reb/src/components/radio-with-image/icon.tsx                         | TypeScript JSX     |        -14 |          0 |         -1 |        -15 |
+| d:/Web/aladin-reb/src/components/radio-with-image/index.tsx                        | TypeScript JSX     |       -127 |         -9 |        -23 |       -159 |
+| d:/Web/aladin-reb/src/components/radio-with-image/styles.ts                        | TypeScript         |       -132 |          0 |        -21 |       -153 |
+| d:/Web/aladin-reb/src/components/rich-text.tsx                                     | TypeScript JSX     |        -47 |          0 |         -8 |        -55 |
+| d:/Web/aladin-reb/src/components/row-holder.tsx                                    | TypeScript JSX     |          0 |          0 |         -1 |         -1 |
+| d:/Web/aladin-reb/src/components/split-input.tsx                                   | TypeScript JSX     |        -40 |          0 |         -5 |        -45 |
+| d:/Web/aladin-reb/src/components/star.tsx                                          | TypeScript JSX     |         -8 |          0 |         -2 |        -10 |
+| d:/Web/aladin-reb/src/components/table-index.tsx                                   | TypeScript JSX     |        -11 |          0 |         -5 |        -16 |
+| d:/Web/aladin-reb/src/components/table-of-content.tsx                              | TypeScript JSX     |        -87 |          0 |        -13 |       -100 |
+| d:/Web/aladin-reb/src/components/text-input-with-custom-error.tsx                  | TypeScript JSX     |        -27 |          0 |         -3 |        -30 |
+| d:/Web/aladin-reb/src/components/text-width-icon/index.tsx                         | TypeScript JSX     |        -16 |          0 |         -3 |        -19 |
+| d:/Web/aladin-reb/src/configs/dayjs.ts                                             | TypeScript         |         -4 |          0 |         -3 |         -7 |
+| d:/Web/aladin-reb/src/configs/env.ts                                               | TypeScript         |         -4 |          0 |         -1 |         -5 |
+| d:/Web/aladin-reb/src/configs/feature-flag.ts                                      | TypeScript         |        -25 |          0 |         -7 |        -32 |
+| d:/Web/aladin-reb/src/configs/icon.ts                                              | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/configs/interceptors.ts                                      | TypeScript         |          0 |        -20 |         -6 |        -26 |
+| d:/Web/aladin-reb/src/configs/mantine-theme.ts                                     | TypeScript         |       -147 |        -39 |         -7 |       -193 |
+| d:/Web/aladin-reb/src/configs/notifications.tsx                                    | TypeScript JSX     |        -38 |          0 |         -5 |        -43 |
+| d:/Web/aladin-reb/src/configs/permisson-route.tsx                                  | TypeScript JSX     |        -16 |         -2 |         -6 |        -24 |
+| d:/Web/aladin-reb/src/configs/react-query.tsx                                      | TypeScript JSX     |        -45 |         -3 |         -6 |        -54 |
+| d:/Web/aladin-reb/src/configs/theme.ts                                             | TypeScript         |         -9 |          0 |         -3 |        -12 |
+| d:/Web/aladin-reb/src/configs/zod.ts                                               | TypeScript         |        -20 |          0 |         -8 |        -28 |
+| d:/Web/aladin-reb/src/context/user.tsx                                             | TypeScript JSX     |        -32 |          0 |         -7 |        -39 |
+| d:/Web/aladin-reb/src/domains/subject.ts                                           | TypeScript         |        -13 |          0 |         -5 |        -18 |
+| d:/Web/aladin-reb/src/features/analyze/components/stacked-bar-chart.tsx            | TypeScript JSX     |        -53 |          0 |         -6 |        -59 |
+| d:/Web/aladin-reb/src/features/auth/components/google-button.tsx                   | TypeScript JSX     |         -6 |          0 |         -3 |         -9 |
+| d:/Web/aladin-reb/src/features/auth/components/google-icon.tsx                     | TypeScript JSX     |        -29 |          0 |         -1 |        -30 |
+| d:/Web/aladin-reb/src/features/auth/components/private-route.tsx                   | TypeScript JSX     |          0 |        -18 |         -8 |        -26 |
+| d:/Web/aladin-reb/src/features/auth/components/redirect.tsx                        | TypeScript JSX     |          0 |        -18 |         -8 |        -26 |
+| d:/Web/aladin-reb/src/features/auth/contexts/auth.tsx                              | TypeScript JSX     |        -14 |          0 |         -8 |        -22 |
+| d:/Web/aladin-reb/src/features/auth/hooks/use-google-login.ts                      | TypeScript         |          0 |        -34 |         -5 |        -39 |
+| d:/Web/aladin-reb/src/features/auth/hooks/use-query-auth.ts                        | TypeScript         |          0 |        -32 |        -12 |        -44 |
+| d:/Web/aladin-reb/src/features/auth/services/firebase.ts                           | TypeScript         |          0 |         -6 |         -4 |        -10 |
+| d:/Web/aladin-reb/src/features/auth/services/google.ts                             | TypeScript         |          0 |        -12 |         -4 |        -16 |
+| d:/Web/aladin-reb/src/features/class/components/class-card-with-table.tsx          | TypeScript JSX     |       -134 |          0 |        -11 |       -145 |
+| d:/Web/aladin-reb/src/features/class/components/class-card.tsx                     | TypeScript JSX     |       -139 |          0 |        -13 |       -152 |
+| d:/Web/aladin-reb/src/features/class/components/ta-private-class-card.tsx          | TypeScript JSX     |       -139 |          0 |        -13 |       -152 |
+| d:/Web/aladin-reb/src/features/course/components/course-card.tsx                   | TypeScript JSX     |        -28 |          0 |         -6 |        -34 |
+| d:/Web/aladin-reb/src/features/dev/components/dev-panel.tsx                        | TypeScript JSX     |        -20 |          0 |         -3 |        -23 |
+| d:/Web/aladin-reb/src/features/dev/components/react-query-affix.tsx                | TypeScript JSX     |         -9 |          0 |         -3 |        -12 |
+| d:/Web/aladin-reb/src/features/dev/components/table-of-feature-flag.tsx            | TypeScript JSX     |        -44 |          0 |         -8 |        -52 |
+| d:/Web/aladin-reb/src/features/dev/components/table-of-role-affix.tsx              | TypeScript JSX     |        -50 |          0 |         -4 |        -54 |
+| d:/Web/aladin-reb/src/features/dev/components/table-of-route-affix.tsx             | TypeScript JSX     |        -59 |        -22 |         -8 |        -89 |
+| d:/Web/aladin-reb/src/features/dev/utils/get-path-name.ts                          | TypeScript         |         -5 |          0 |         -3 |         -8 |
+| d:/Web/aladin-reb/src/features/error/components/error-tooltip.tsx                  | TypeScript JSX     |        -15 |          0 |         -6 |        -21 |
+| d:/Web/aladin-reb/src/features/error/utils/form-constraint-error.ts                | TypeScript         |        -17 |          0 |         -5 |        -22 |
+| d:/Web/aladin-reb/src/features/images/components/single-image-drop.tsx             | TypeScript JSX     |        -44 |          0 |         -5 |        -49 |
+| d:/Web/aladin-reb/src/features/landing/components/landing-carousel.tsx             | TypeScript JSX     |        -47 |          0 |         -7 |        -54 |
+| d:/Web/aladin-reb/src/features/layout/components/header-responsive.tsx             | TypeScript JSX     |       -113 |          0 |        -18 |       -131 |
+| d:/Web/aladin-reb/src/features/layout/components/logo.tsx                          | TypeScript JSX     |        -25 |          0 |         -1 |        -26 |
+| d:/Web/aladin-reb/src/features/layout/components/navbar-link-group.tsx             | TypeScript JSX     |       -135 |         -1 |        -18 |       -154 |
+| d:/Web/aladin-reb/src/features/layout/components/student-header.tsx                | TypeScript JSX     |       -120 |          0 |        -18 |       -138 |
+| d:/Web/aladin-reb/src/features/layout/components/student-tab-bar.tsx               | TypeScript JSX     |        -23 |          0 |         -5 |        -28 |
+| d:/Web/aladin-reb/src/features/layout/components/suspense.tsx                      | TypeScript JSX     |         -4 |          0 |         -2 |         -6 |
+| d:/Web/aladin-reb/src/features/layout/components/ta-header.tsx                     | TypeScript JSX     |       -115 |          0 |        -18 |       -133 |
+| d:/Web/aladin-reb/src/features/layout/components/ta-navbar.tsx                     | TypeScript JSX     |        -85 |         -6 |        -13 |       -104 |
+| d:/Web/aladin-reb/src/features/layout/components/ta-tab-bar.tsx                    | TypeScript JSX     |        -20 |          0 |         -4 |        -24 |
+| d:/Web/aladin-reb/src/features/layout/components/user-button.tsx                   | TypeScript JSX     |        -45 |          0 |         -9 |        -54 |
+| d:/Web/aladin-reb/src/features/layout/dev.tsx                                      | TypeScript JSX     |        -10 |          0 |         -3 |        -13 |
+| d:/Web/aladin-reb/src/features/layout/index.tsx                                    | TypeScript JSX     |         -5 |          0 |         -1 |         -6 |
+| d:/Web/aladin-reb/src/features/layout/modal-route.tsx                              | TypeScript JSX     |        -14 |          0 |         -5 |        -19 |
+| d:/Web/aladin-reb/src/features/layout/public.tsx                                   | TypeScript JSX     |        -61 |          0 |         -5 |        -66 |
+| d:/Web/aladin-reb/src/features/layout/role-switch-route.tsx                        | TypeScript JSX     |        -16 |          0 |         -6 |        -22 |
+| d:/Web/aladin-reb/src/features/layout/sadmin-layout.tsx                            | TypeScript JSX     |        -39 |          0 |         -6 |        -45 |
+| d:/Web/aladin-reb/src/features/layout/student.tsx                                  | TypeScript JSX     |        -23 |          0 |         -5 |        -28 |
+| d:/Web/aladin-reb/src/features/layout/ta-register.tsx                              | TypeScript JSX     |        -35 |          0 |         -3 |        -38 |
+| d:/Web/aladin-reb/src/features/layout/ta.tsx                                       | TypeScript JSX     |        -36 |         -5 |         -6 |        -47 |
+| d:/Web/aladin-reb/src/features/major/services/use-create-major.tsx                 | TypeScript JSX     |        -49 |          0 |        -13 |        -62 |
+| d:/Web/aladin-reb/src/features/major/services/use-get-all-majors-of-institution.ts | TypeScript         |        -30 |          0 |         -5 |        -35 |
+| d:/Web/aladin-reb/src/features/major/services/use-get-major-by-id.ts               | TypeScript         |         -8 |          0 |         -4 |        -12 |
+| d:/Web/aladin-reb/src/features/major/services/use-major.ts                         | TypeScript         |        -27 |          0 |         -7 |        -34 |
+| d:/Web/aladin-reb/src/features/major/services/use-update-major.tsx                 | TypeScript JSX     |        -29 |          0 |        -10 |        -39 |
+| d:/Web/aladin-reb/src/features/profile/components/avatar-modify.tsx                | TypeScript JSX     |        -29 |          0 |         -3 |        -32 |
+| d:/Web/aladin-reb/src/features/profile/components/gender-select.tsx                | TypeScript JSX     |        -18 |          0 |         -3 |        -21 |
+| d:/Web/aladin-reb/src/features/profile/components/university-select.tsx            | TypeScript JSX     |        -44 |          0 |         -3 |        -47 |
+| d:/Web/aladin-reb/src/features/rating/components/rating-row.tsx                    | TypeScript JSX     |        -34 |          0 |         -4 |        -38 |
+| d:/Web/aladin-reb/src/features/rating/components/ta-rating-modal.tsx               | TypeScript JSX     |          0 |         -1 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/features/register/components/class-ta-group.tsx              | TypeScript JSX     |          0 |       -137 |         -6 |       -143 |
+| d:/Web/aladin-reb/src/features/register/components/control-title.tsx               | TypeScript JSX     |         -7 |          0 |         -2 |         -9 |
+| d:/Web/aladin-reb/src/features/register/components/course-step-1.tsx               | TypeScript JSX     |        -72 |          0 |         -6 |        -78 |
+| d:/Web/aladin-reb/src/features/register/components/course-step-2.tsx               | TypeScript JSX     |       -153 |          0 |         -6 |       -159 |
+| d:/Web/aladin-reb/src/features/register/components/course-step-3.tsx               | TypeScript JSX     |        -28 |          0 |         -3 |        -31 |
+| d:/Web/aladin-reb/src/features/register/components/course-step-complete.tsx        | TypeScript JSX     |        -25 |          0 |         -3 |        -28 |
+| d:/Web/aladin-reb/src/features/register/components/date-pick-table.tsx             | TypeScript JSX     |       -133 |          0 |         -2 |       -135 |
+| d:/Web/aladin-reb/src/features/register/components/row.tsx                         | TypeScript JSX     |        -18 |          0 |         -2 |        -20 |
+| d:/Web/aladin-reb/src/features/register/components/ta-conditional.tsx              | TypeScript JSX     |        -10 |          0 |         -2 |        -12 |
+| d:/Web/aladin-reb/src/features/register/components/ta-course-table.tsx             | TypeScript JSX     |        -53 |          0 |         -6 |        -59 |
+| d:/Web/aladin-reb/src/features/register/components/ta-guide.tsx                    | TypeScript JSX     |        -51 |          0 |         -2 |        -53 |
+| d:/Web/aladin-reb/src/features/register/components/ta-step-1.tsx                   | TypeScript JSX     |        -46 |          0 |         -2 |        -48 |
+| d:/Web/aladin-reb/src/features/register/components/ta-step-2.tsx                   | TypeScript JSX     |        -16 |          0 |         -3 |        -19 |
+| d:/Web/aladin-reb/src/features/register/components/ta-step-3.tsx                   | TypeScript JSX     |        -24 |          0 |         -3 |        -27 |
+| d:/Web/aladin-reb/src/features/register/components/ta-step-complete.tsx            | TypeScript JSX     |        -18 |          0 |         -3 |        -21 |
+| d:/Web/aladin-reb/src/features/register/components/ta-step-fail.tsx                | TypeScript JSX     |        -23 |          0 |         -3 |        -26 |
+| d:/Web/aladin-reb/src/features/revise/components/revise-card.tsx                   | TypeScript JSX     |        -29 |          0 |         -6 |        -35 |
+| d:/Web/aladin-reb/src/features/schedule/components/list.tsx                        | TypeScript JSX     |          0 |          0 |         -1 |         -1 |
+| d:/Web/aladin-reb/src/features/subject/components/hide-button.tsx                  | TypeScript JSX     |        -31 |          0 |         -5 |        -36 |
+| d:/Web/aladin-reb/src/features/subject/services/get-all-subject-of-major.ts        | TypeScript         |        -30 |          0 |         -5 |        -35 |
+| d:/Web/aladin-reb/src/features/subject/services/use-create-subject.ts              | TypeScript         |        -15 |          0 |         -4 |        -19 |
+| d:/Web/aladin-reb/src/features/subject/services/use-hide-subject.ts                | TypeScript         |        -22 |          0 |         -4 |        -26 |
+| d:/Web/aladin-reb/src/features/subject/services/use-subject.ts                     | TypeScript         |        -41 |          0 |         -7 |        -48 |
+| d:/Web/aladin-reb/src/features/subject/services/use-update-subject.ts              | TypeScript         |        -28 |          0 |        -10 |        -38 |
+| d:/Web/aladin-reb/src/features/university/components/image-view.tsx                | TypeScript JSX     |        -22 |          0 |         -9 |        -31 |
+| d:/Web/aladin-reb/src/features/university/components/listing.tsx                   | TypeScript JSX     |          0 |          0 |         -1 |         -1 |
+| d:/Web/aladin-reb/src/features/university/services/use-create-institution.tsx      | TypeScript JSX     |        -47 |          0 |        -11 |        -58 |
+| d:/Web/aladin-reb/src/features/university/services/use-get-all-institution.ts      | TypeScript         |        -21 |          0 |         -5 |        -26 |
+| d:/Web/aladin-reb/src/features/university/services/use-get-institution-by-id.ts    | TypeScript         |        -11 |          0 |         -4 |        -15 |
+| d:/Web/aladin-reb/src/features/university/services/useGetInstitution.tsx           | TypeScript JSX     |        -24 |          0 |         -7 |        -31 |
+| d:/Web/aladin-reb/src/hooks/use-async-effect.ts                                    | TypeScript         |        -29 |         -1 |         -7 |        -37 |
+| d:/Web/aladin-reb/src/hooks/use-breadcrumbs.ts                                     | TypeScript         |        -18 |          0 |         -8 |        -26 |
+| d:/Web/aladin-reb/src/hooks/use-button.ts                                          | TypeScript         |        -50 |         -1 |        -12 |        -63 |
+| d:/Web/aladin-reb/src/hooks/use-component-default-props.ts                         | TypeScript         |        -29 |         -1 |         -7 |        -37 |
+| d:/Web/aladin-reb/src/hooks/use-dom-ref.ts                                         | TypeScript         |         -8 |          0 |         -4 |        -12 |
+| d:/Web/aladin-reb/src/hooks/use-editor-image.ts                                    | TypeScript         |          0 |        -14 |         -5 |        -19 |
+| d:/Web/aladin-reb/src/hooks/use-image-drop.ts                                      | TypeScript         |        -39 |          0 |        -10 |        -49 |
+| d:/Web/aladin-reb/src/hooks/use-load-image.ts                                      | TypeScript         |        -12 |          0 |         -4 |        -16 |
+| d:/Web/aladin-reb/src/hooks/use-match-paths.ts                                     | TypeScript         |         -9 |          0 |         -2 |        -11 |
+| d:/Web/aladin-reb/src/hooks/use-modal-route-transition.ts                          | TypeScript         |        -14 |          0 |         -5 |        -19 |
+| d:/Web/aladin-reb/src/hooks/use-query-pagination.tsx                               | TypeScript JSX     |        -30 |         -7 |        -13 |        -50 |
+| d:/Web/aladin-reb/src/hooks/use-redirect.ts                                        | TypeScript         |        -25 |          0 |         -8 |        -33 |
+| d:/Web/aladin-reb/src/hooks/use-step.ts                                            | TypeScript         |        -24 |          0 |         -8 |        -32 |
+| d:/Web/aladin-reb/src/hooks/use-sync-query-params.ts                               | TypeScript         |        -18 |         -1 |         -6 |        -25 |
+| d:/Web/aladin-reb/src/index.scss                                                   | SCSS               |         -9 |         -4 |         -5 |        -18 |
+| d:/Web/aladin-reb/src/main.tsx                                                     | TypeScript JSX     |         -3 |         -1 |         -3 |         -7 |
+| d:/Web/aladin-reb/src/mantine.d.ts                                                 | TypeScript         |         -7 |          0 |         -3 |        -10 |
+| d:/Web/aladin-reb/src/modules/auth-router/index.tsx                                | TypeScript JSX     |       -124 |          0 |        -26 |       -150 |
+| d:/Web/aladin-reb/src/modules/feature-flag-manager/index.tsx                       | TypeScript JSX     |       -102 |        -12 |        -22 |       -136 |
+| d:/Web/aladin-reb/src/modules/mantine-ripple/components/ripple-action-icon.tsx     | TypeScript JSX     |        -25 |          0 |         -6 |        -31 |
+| d:/Web/aladin-reb/src/modules/mantine-ripple/components/ripple-button.tsx          | TypeScript JSX     |        -21 |          0 |         -5 |        -26 |
+| d:/Web/aladin-reb/src/modules/mantine-ripple/components/ripple.tsx                 | TypeScript JSX     |        -57 |          0 |         -8 |        -65 |
+| d:/Web/aladin-reb/src/modules/mantine-ripple/hooks/use-ripple.ts                   | TypeScript         |        -30 |          0 |         -9 |        -39 |
+| d:/Web/aladin-reb/src/modules/mantine-table/components/mantine-table/index.tsx     | TypeScript JSX     |        -62 |          0 |        -11 |        -73 |
+| d:/Web/aladin-reb/src/modules/mantine-table/components/mantine-table/style.ts      | TypeScript         |        -60 |          0 |        -14 |        -74 |
+| d:/Web/aladin-reb/src/modules/mantine-table/components/pagination/index.tsx        | TypeScript JSX     |         -8 |          0 |         -4 |        -12 |
+| d:/Web/aladin-reb/src/modules/mantine-table/hooks/use-table.ts                     | TypeScript         |        -25 |          0 |         -6 |        -31 |
+| d:/Web/aladin-reb/src/modules/mantine-table/types/index.ts                         | TypeScript         |        -18 |        -10 |         -6 |        -34 |
+| d:/Web/aladin-reb/src/modules/mantine-table/utils/render.tsx                       | TypeScript JSX     |        -20 |          0 |         -7 |        -27 |
+| d:/Web/aladin-reb/src/modules/modal-route/index.tsx                                | TypeScript JSX     |        -13 |          0 |         -5 |        -18 |
+| d:/Web/aladin-reb/src/modules/permisson-component/array.tsx                        | TypeScript JSX     |        -43 |         -7 |        -10 |        -60 |
+| d:/Web/aladin-reb/src/modules/permisson-component/index.ts                         | TypeScript         |         -3 |         -9 |         -3 |        -15 |
+| d:/Web/aladin-reb/src/modules/permisson-component/object.tsx                       | TypeScript JSX     |        -40 |          0 |         -9 |        -49 |
+| d:/Web/aladin-reb/src/modules/permisson-component/v2.tsx                           | TypeScript JSX     |        -56 |        -13 |        -13 |        -82 |
+| d:/Web/aladin-reb/src/modules/quick-condition/index.tsx                            | TypeScript JSX     |         -1 |          0 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/modules/quick-condition/quick-condition.tsx                  | TypeScript JSX     |        -31 |          0 |         -7 |        -38 |
+| d:/Web/aladin-reb/src/modules/sync-tailwind-color-scheme/index.tsx                 | TypeScript JSX     |        -14 |          0 |         -3 |        -17 |
+| d:/Web/aladin-reb/src/modules/tailwind-open-color/index.ts                         | TypeScript         |        -27 |          0 |         -7 |        -34 |
+| d:/Web/aladin-reb/src/modules/tiptap-custom-image/index.ts                         | TypeScript         |          0 |       -107 |        -15 |       -122 |
+| d:/Web/aladin-reb/src/modules/tiptap-custom-image/upload_image.ts                  | TypeScript         |          0 |        -85 |        -17 |       -102 |
+| d:/Web/aladin-reb/src/modules/with-router/index.tsx                                | TypeScript JSX     |        -20 |          0 |         -5 |        -25 |
+| d:/Web/aladin-reb/src/pages/assembled-class/[class-id]/register/ta.tsx             | TypeScript JSX     |       -144 |          0 |         -7 |       -151 |
+| d:/Web/aladin-reb/src/pages/assembled-class/index.tsx                              | TypeScript JSX     |          0 |          0 |         -1 |         -1 |
+| d:/Web/aladin-reb/src/pages/assembled-class/register/index.tsx                     | TypeScript JSX     |       -168 |        -20 |         -8 |       -196 |
+| d:/Web/aladin-reb/src/pages/assembled-class/register/payment/index.tsx             | TypeScript JSX     |        -40 |          0 |         -4 |        -44 |
+| d:/Web/aladin-reb/src/pages/assembled-class/ta.tsx                                 | TypeScript JSX     |        -25 |          0 |         -4 |        -29 |
+| d:/Web/aladin-reb/src/pages/class/[class-id]/register/index.tsx                    | TypeScript JSX     |         -2 |          0 |         -1 |         -3 |
+| d:/Web/aladin-reb/src/pages/class/[class-id]/register/student.tsx                  | TypeScript JSX     |        -40 |          0 |         -5 |        -45 |
+| d:/Web/aladin-reb/src/pages/class/[class-id]/register/ta.tsx                       | TypeScript JSX     |        -90 |          0 |         -6 |        -96 |
+| d:/Web/aladin-reb/src/pages/class/ta.tsx                                           | TypeScript JSX     |        -21 |          0 |         -4 |        -25 |
+| d:/Web/aladin-reb/src/pages/course/[course-id]/register/ta.tsx                     | TypeScript JSX     |        -85 |          0 |         -6 |        -91 |
+| d:/Web/aladin-reb/src/pages/course/approved/[page]/index.tsx                       | TypeScript JSX     |        -19 |        -28 |         -6 |        -53 |
+| d:/Web/aladin-reb/src/pages/course/index.tsx                                       | TypeScript JSX     |        -17 |          0 |         -3 |        -20 |
+| d:/Web/aladin-reb/src/pages/course/pending/[page]/index.tsx                        | TypeScript JSX     |        -19 |        -28 |         -6 |        -53 |
+| d:/Web/aladin-reb/src/pages/error/components/error404/index.tsx                    | TypeScript JSX     |        -25 |          0 |         -4 |        -29 |
+| d:/Web/aladin-reb/src/pages/error/components/error404/styles.ts                    | TypeScript         |        -33 |          0 |         -7 |        -40 |
+| d:/Web/aladin-reb/src/pages/error/index.tsx                                        | TypeScript JSX     |         -1 |          0 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/pages/history/ta.tsx                                         | TypeScript JSX     |        -19 |        -29 |         -6 |        -54 |
+| d:/Web/aladin-reb/src/pages/home/index.tsx                                         | TypeScript JSX     |        -97 |          0 |         -7 |       -104 |
+| d:/Web/aladin-reb/src/pages/image/[id]/index.tsx                                   | TypeScript JSX     |        -21 |          0 |         -4 |        -25 |
+| d:/Web/aladin-reb/src/pages/index.ts                                               | TypeScript         |        -41 |          0 |         -2 |        -43 |
+| d:/Web/aladin-reb/src/pages/lecture/[id]/rating/index.tsx                          | TypeScript JSX     |        -73 |          0 |         -5 |        -78 |
+| d:/Web/aladin-reb/src/pages/login/forget-password/index.tsx                        | TypeScript JSX     |        -48 |          0 |         -4 |        -52 |
+| d:/Web/aladin-reb/src/pages/login/index.tsx                                        | TypeScript JSX     |        -80 |          0 |         -4 |        -84 |
+| d:/Web/aladin-reb/src/pages/login/recovery-otp/index.tsx                           | TypeScript JSX     |        -41 |          0 |         -3 |        -44 |
+| d:/Web/aladin-reb/src/pages/major/[major-id]/index.tsx                             | TypeScript JSX     |       -157 |          0 |        -10 |       -167 |
+| d:/Web/aladin-reb/src/pages/major/[major-id]/update/index.tsx                      | TypeScript JSX     |        -50 |          0 |         -7 |        -57 |
+| d:/Web/aladin-reb/src/pages/major/create/index.tsx                                 | TypeScript JSX     |        -41 |          0 |         -7 |        -48 |
+| d:/Web/aladin-reb/src/pages/payment/history/index.tsx                              | TypeScript JSX     |        -45 |        -42 |         -7 |        -94 |
+| d:/Web/aladin-reb/src/pages/private-class/[class-id]/register/ta.tsx               | TypeScript JSX     |        -90 |          0 |         -5 |        -95 |
+| d:/Web/aladin-reb/src/pages/private-class/modify/student.tsx                       | TypeScript JSX     |       -141 |          0 |         -7 |       -148 |
+| d:/Web/aladin-reb/src/pages/private-class/modify/ta.tsx                            | TypeScript JSX     |        -47 |        -20 |         -6 |        -73 |
+| d:/Web/aladin-reb/src/pages/private-class/register/index.tsx                       | TypeScript JSX     |       -164 |        -20 |         -8 |       -192 |
+| d:/Web/aladin-reb/src/pages/private-class/register/payment/index.tsx               | TypeScript JSX     |        -40 |          0 |         -4 |        -44 |
+| d:/Web/aladin-reb/src/pages/private-class/ta.tsx                                   | TypeScript JSX     |        -25 |          0 |         -4 |        -29 |
+| d:/Web/aladin-reb/src/pages/profile/ta-profile.tsx                                 | TypeScript JSX     |        -72 |          0 |         -3 |        -75 |
+| d:/Web/aladin-reb/src/pages/register.tsx                                           | TypeScript JSX     |        -58 |          0 |         -4 |        -62 |
+| d:/Web/aladin-reb/src/pages/schedule/index.tsx                                     | TypeScript JSX     |       -104 |          0 |         -4 |       -108 |
+| d:/Web/aladin-reb/src/pages/students/class/index.tsx                               | TypeScript JSX     |        -56 |          0 |         -5 |        -61 |
+| d:/Web/aladin-reb/src/pages/students/group/index.tsx                               | TypeScript JSX     |        -45 |          0 |         -4 |        -49 |
+| d:/Web/aladin-reb/src/pages/students/profile/index.tsx                             | TypeScript JSX     |        -71 |          0 |         -3 |        -74 |
+| d:/Web/aladin-reb/src/pages/students/revise/index.tsx                              | TypeScript JSX     |        -37 |          0 |         -4 |        -41 |
+| d:/Web/aladin-reb/src/pages/students/ta-register/index.tsx                         | TypeScript JSX     |        -25 |          0 |         -4 |        -29 |
+| d:/Web/aladin-reb/src/pages/students/ta-register/modify/index.tsx                  | TypeScript JSX     |        -53 |          0 |         -3 |        -56 |
+| d:/Web/aladin-reb/src/pages/subject/[subject-id]/update/index.tsx                  | TypeScript JSX     |        -93 |          0 |         -9 |       -102 |
+| d:/Web/aladin-reb/src/pages/subject/create/index.tsx                               | TypeScript JSX     |       -113 |          0 |        -10 |       -123 |
+| d:/Web/aladin-reb/src/pages/university/[institution-id]/index.tsx                  | TypeScript JSX     |       -146 |          0 |        -10 |       -156 |
+| d:/Web/aladin-reb/src/pages/university/create/index.tsx                            | TypeScript JSX     |        -75 |          0 |         -9 |        -84 |
+| d:/Web/aladin-reb/src/pages/university/create/layout.tsx                           | TypeScript JSX     |        -21 |          0 |         -4 |        -25 |
+| d:/Web/aladin-reb/src/pages/university/index.tsx                                   | TypeScript JSX     |       -113 |          0 |         -7 |       -120 |
+| d:/Web/aladin-reb/src/router/index.ts                                              | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/router/router.tsx                                            | TypeScript JSX     |       -206 |          0 |        -17 |       -223 |
+| d:/Web/aladin-reb/src/router/routes/assembled-class.tsx                            | TypeScript JSX     |        -64 |          0 |         -4 |        -68 |
+| d:/Web/aladin-reb/src/router/routes/class.tsx                                      | TypeScript JSX     |        -47 |          0 |         -4 |        -51 |
+| d:/Web/aladin-reb/src/router/routes/course.tsx                                     | TypeScript JSX     |        -47 |          0 |         -4 |        -51 |
+| d:/Web/aladin-reb/src/router/routes/favorite.tsx                                   | TypeScript JSX     |        -16 |          0 |         -3 |        -19 |
+| d:/Web/aladin-reb/src/router/routes/history.tsx                                    | TypeScript JSX     |        -18 |          0 |         -3 |        -21 |
+| d:/Web/aladin-reb/src/router/routes/home.tsx                                       | TypeScript JSX     |         -8 |          0 |         -3 |        -11 |
+| d:/Web/aladin-reb/src/router/routes/lecture.tsx                                    | TypeScript JSX     |        -66 |          0 |         -4 |        -70 |
+| d:/Web/aladin-reb/src/router/routes/payment.tsx                                    | TypeScript JSX     |        -15 |          0 |         -3 |        -18 |
+| d:/Web/aladin-reb/src/router/routes/private-class.tsx                              | TypeScript JSX     |        -77 |          0 |         -4 |        -81 |
+| d:/Web/aladin-reb/src/router/routes/profile.tsx                                    | TypeScript JSX     |        -31 |          0 |         -3 |        -34 |
+| d:/Web/aladin-reb/src/router/routes/public.tsx                                     | TypeScript JSX     |        -42 |          0 |         -3 |        -45 |
+| d:/Web/aladin-reb/src/router/routes/record.tsx                                     | TypeScript JSX     |        -16 |          0 |         -3 |        -19 |
+| d:/Web/aladin-reb/src/router/routes/revise.tsx                                     | TypeScript JSX     |        -14 |          0 |         -2 |        -16 |
+| d:/Web/aladin-reb/src/router/routes/schedule.ts                                    | TypeScript         |        -15 |          0 |         -3 |        -18 |
+| d:/Web/aladin-reb/src/router/routes/university.tsx                                 | TypeScript JSX     |        -32 |          0 |         -3 |        -35 |
+| d:/Web/aladin-reb/src/services/use-get-current-user.ts                             | TypeScript         |        -28 |          0 |         -9 |        -37 |
+| d:/Web/aladin-reb/src/services/use-post-login-user.ts                              | TypeScript         |        -27 |          0 |        -11 |        -38 |
+| d:/Web/aladin-reb/src/styles/font.scss                                             | SCSS               |         -6 |          0 |         -1 |         -7 |
+| d:/Web/aladin-reb/src/styles/geist.scss                                            | SCSS               |         -4 |          0 |         -2 |         -6 |
+| d:/Web/aladin-reb/src/styles/poppins.scss                                          | SCSS               |         -4 |          0 |         -2 |         -6 |
+| d:/Web/aladin-reb/src/types/breakpoint.ts                                          | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/types/constraint-error.ts                                    | TypeScript         |        -10 |          0 |         -3 |        -13 |
+| d:/Web/aladin-reb/src/types/enums/class-type.ts                                    | TypeScript         |         -4 |          0 |         -1 |         -5 |
+| d:/Web/aladin-reb/src/types/enums/role.ts                                          | TypeScript         |         -7 |          0 |         -1 |         -8 |
+| d:/Web/aladin-reb/src/types/index.ts                                               | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/types/mantine-styles.ts                                      | TypeScript         |         -6 |          0 |         -3 |         -9 |
+| d:/Web/aladin-reb/src/types/models/index.tsx                                       | TypeScript JSX     |         -1 |          0 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/types/models/lecture.ts                                      | TypeScript         |         -5 |          0 |         -1 |         -6 |
+| d:/Web/aladin-reb/src/types/non-undefined.ts                                       | TypeScript         |         -1 |          0 |         -1 |         -2 |
+| d:/Web/aladin-reb/src/types/permisson.ts                                           | TypeScript         |        -19 |          0 |         -5 |        -24 |
+| d:/Web/aladin-reb/src/types/react-router-dom.d.ts                                  | TypeScript         |         -4 |          0 |         -2 |         -6 |
+| d:/Web/aladin-reb/src/types/response-error.ts                                      | TypeScript         |         -7 |          0 |         -2 |         -9 |
+| d:/Web/aladin-reb/src/types/route.ts                                               | TypeScript         |          0 |        -21 |         -4 |        -25 |
+| d:/Web/aladin-reb/src/utils/breakpoint-converter.ts                                | TypeScript         |        -23 |         -1 |         -3 |        -27 |
+| d:/Web/aladin-reb/src/utils/convert-file-size.ts                                   | TypeScript         |        -17 |          0 |         -6 |        -23 |
+| d:/Web/aladin-reb/src/utils/converter.ts                                           | TypeScript         |        -31 |         -3 |         -5 |        -39 |
+| d:/Web/aladin-reb/src/utils/crc32.ts                                               | TypeScript         |        -24 |          0 |         -6 |        -30 |
+| d:/Web/aladin-reb/src/utils/create-popup.ts                                        | TypeScript         |        -21 |          0 |         -2 |        -23 |
+| d:/Web/aladin-reb/src/utils/dev-log.ts                                             | TypeScript         |        -21 |         -5 |         -5 |        -31 |
+| d:/Web/aladin-reb/src/utils/empty-fn.ts                                            | TypeScript         |         -2 |         -1 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/utils/entity-generator.ts                                    | TypeScript         |        -50 |          0 |        -11 |        -61 |
+| d:/Web/aladin-reb/src/utils/flatten-routes.ts                                      | TypeScript         |        -24 |          0 |         -6 |        -30 |
+| d:/Web/aladin-reb/src/utils/generate-avatar.ts                                     | TypeScript         |        -13 |          0 |         -3 |        -16 |
+| d:/Web/aladin-reb/src/utils/generate-custom-select-list.ts                         | TypeScript         |        -25 |          0 |         -2 |        -27 |
+| d:/Web/aladin-reb/src/utils/generate-filled-array.ts                               | TypeScript         |         -7 |          0 |         -1 |         -8 |
+| d:/Web/aladin-reb/src/utils/generate-place-holder-image.ts                         | TypeScript         |        -10 |          0 |         -3 |        -13 |
+| d:/Web/aladin-reb/src/utils/generate-query-id.ts                                   | TypeScript         |         -9 |          0 |         -2 |        -11 |
+| d:/Web/aladin-reb/src/utils/get-avatar-short-name.ts                               | TypeScript         |         -7 |          0 |         -1 |         -8 |
+| d:/Web/aladin-reb/src/utils/get-class-time.ts                                      | TypeScript         |        -13 |          0 |         -5 |        -18 |
+| d:/Web/aladin-reb/src/utils/get-discount.ts                                        | TypeScript         |         -6 |          0 |         -2 |         -8 |
+| d:/Web/aladin-reb/src/utils/get-in-range.ts                                        | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/utils/get-mantine-color-from-string.ts                       | TypeScript         |        -10 |          0 |         -4 |        -14 |
+| d:/Web/aladin-reb/src/utils/get-nearest-time-left.ts                               | TypeScript         |         -8 |          0 |         -2 |        -10 |
+| d:/Web/aladin-reb/src/utils/get-nearest-time.ts                                    | TypeScript         |         -8 |          0 |         -2 |        -10 |
+| d:/Web/aladin-reb/src/utils/get-path-deep.ts                                       | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/utils/get-tiptap-extensions.ts                               | TypeScript         |          0 |        -39 |         -6 |        -45 |
+| d:/Web/aladin-reb/src/utils/handle-upload.ts                                       | TypeScript         |          0 |         -5 |         -3 |         -8 |
+| d:/Web/aladin-reb/src/utils/indexing-item.ts                                       | TypeScript         |         -7 |          0 |         -1 |         -8 |
+| d:/Web/aladin-reb/src/utils/is-instance-of.ts                                      | TypeScript         |        -20 |         -1 |        -10 |        -31 |
+| d:/Web/aladin-reb/src/utils/match-any-search.ts                                    | TypeScript         |        -13 |         -1 |         -4 |        -18 |
+| d:/Web/aladin-reb/src/utils/match-string.ts                                        | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/utils/normalize-path.ts                                      | TypeScript         |         -9 |          0 |         -1 |        -10 |
+| d:/Web/aladin-reb/src/utils/parse-dec.ts                                           | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/utils/read-file-as-data-url.ts                               | TypeScript         |        -12 |          0 |         -4 |        -16 |
+| d:/Web/aladin-reb/src/utils/round-currency.ts                                      | TypeScript         |        -13 |          0 |         -3 |        -16 |
+| d:/Web/aladin-reb/src/utils/shadow-merge-array-of-objects.ts                       | TypeScript         |        -13 |         -3 |         -4 |        -20 |
+| d:/Web/aladin-reb/src/utils/sort-object-keys.ts                                    | TypeScript         |        -17 |          0 |         -4 |        -21 |
+| d:/Web/aladin-reb/src/utils/validation.ts                                          | TypeScript         |        -12 |          0 |         -1 |        -13 |
+| d:/Web/aladin-reb/src/utils/wait.ts                                                | TypeScript         |         -3 |          0 |         -1 |         -4 |
+| d:/Web/aladin-reb/src/vite-env.d.ts                                                | TypeScript         |         -7 |         -1 |         -3 |        -11 |
+| d:/Web/aladin-reb/tailwind.config.ts                                               | TypeScript         |        -17 |          0 |         -6 |        -23 |
+| d:/Web/aladin-reb/tsconfig.json                                                    | JSON with Comments |        -20 |        -10 |          0 |        -30 |
+| d:/Web/aladin-reb/tsconfig.node.json                                               | JSON               |        -10 |          0 |         -1 |        -11 |
+| d:/Web/aladin-reb/v1.json                                                          | JSON               |     -1,984 |     -1,075 |          0 |     -3,059 |
+| d:/Web/aladin-reb/vercel.json                                                      | JSON               |         -8 |          0 |          0 |         -8 |
+| d:/Web/aladin-reb/vite.config.ts                                                   | TypeScript         |        -27 |         -1 |         -2 |        -30 |
+| Total                                                                              |                    |    -13,450 |     -3,063 |     -1,663 |    -18,176 |
++------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

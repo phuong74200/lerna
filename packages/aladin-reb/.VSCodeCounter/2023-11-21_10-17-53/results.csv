@@ -1,0 +1,4 @@
+"filename", "language", "json", "jsonc", "comment", "blank", "total"
+"/workspaces/aladin-reb/.devcontainer/devcontainer.json", "jsonc", 0, 26, 0, 1, 27
+"/workspaces/aladin-reb/.prettierrc", "json", 6, 0, 0, 0, 6
+"Total", "-", 6, 26, 0, 1, 33
