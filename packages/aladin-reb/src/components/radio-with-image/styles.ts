@@ -56,10 +56,10 @@ export const useStyles = createStyles(
           error
             ? errorColor
             : checked
-            ? colors.background
-            : theme.colorScheme === "dark"
-            ? theme.colors.dark[4]
-            : theme.colors.gray[4]
+              ? colors.background
+              : theme.colorScheme === "dark"
+                ? theme.colors.dark[4]
+                : theme.colors.gray[4]
         }`,
         backgroundColor: activeColor.background,
         padding: theme.spacing.xs,
@@ -110,8 +110,8 @@ export const useStyles = createStyles(
           error
             ? errorColor
             : theme.colorScheme === "dark"
-            ? theme.colors.dark[4]
-            : theme.colors.gray[4]
+              ? theme.colors.dark[4]
+              : theme.colors.gray[4]
         }`,
         position: "relative",
         appearance: "none",

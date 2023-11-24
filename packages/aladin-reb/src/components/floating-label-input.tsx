@@ -19,8 +19,8 @@ const useStyles = createStyles((theme, { floating }: { floating: boolean }) => (
         ? theme.white
         : theme.black
       : theme.colorScheme === "dark"
-      ? theme.colors.dark[3]
-      : theme.colors.gray[5],
+        ? theme.colors.dark[3]
+        : theme.colors.gray[5],
     transition: "transform 150ms ease, color 150ms ease, font-size 150ms ease",
     transform: floating ? `translate(-4px, ${rem(-16)})` : "none",
     fontSize: floating ? theme.fontSizes.xs : theme.fontSizes.sm,

@@ -18,10 +18,10 @@ module.exports.configs = {
       react: {
         version: "detect",
       },
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
       "import/resolver": {
-        "import/parsers": {
-          "@typescript-eslint/parser": [".ts", ".tsx"],
-        },
         typescript: {
           alwaysTryTypes: true,
           project: "packages/*/tsconfig.json",

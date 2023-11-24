@@ -1,18 +1,28 @@
 {
   "name": "openapi-ts",
   "private": true,
-  "version": "0.0.4",
+  "version": "0.0.13",
   "type": "module",
+  "main": "./src/index.ts",
+  "exports": "./src/index.ts",
   "scripts": {
-    "dev": "vite-node ./src/index.ts"
+    "dev": "vite-node ./src/index.ts",
+    "start": "node --no-warnings --loader ts-node/esm ./src/index.ts",
+    "build": "grunt bump:patch && tsc"
+  },
+  "bin": {
+    "openapi-ts": "./dist/index.js"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
+    "@types/yargs": "^17.0.32",
+    "eslint-plugin-linter": "0.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2",
     "vite": "^5.0.0",
-    "eslint-plugin-linter": "0.0.0"
+    "vite-node": "^0.34.6"
   },
   "dependencies": {
     "openapi-typescript": "^7.0.0-next.4",
-    "vite-node": "^0.34.6"
+    "yargs": "^17.7.2"
   }
 }

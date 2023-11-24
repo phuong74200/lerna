@@ -1,24 +1,50 @@
+#!/usr/bin/env node
+
+/* eslint-disable no-console */
 import fs from "node:fs";
 import openapiTS, { astToString } from "openapi-typescript";
-import ts from "typescript";
+import { default as ts } from "typescript";
+import yargs from "yargs";
 
-const DATE = ts.factory.createIdentifier("Date"); // `Date`
-const NULL = ts.factory.createLiteralTypeNode(ts.factory.createNull()); // `null`
+const { factory } = ts;
 
-const ast = await openapiTS(
-  new URL(
-    "http://aladin-env-v1.ap-southeast-1.elasticbeanstalk.com/api/v3/api-docs",
-    import.meta.url,
-  ),
-  {
-    transform(schemaObject) {
-      if (schemaObject.format === "date-time") {
-        return schemaObject.nullable ? ts.factory.createUnionTypeNode([DATE, NULL]) : DATE;
-      }
-    },
-  },
-);
-const contents = astToString(ast);
+const argv = yargs(process.argv.slice(2))
+  .option("schema", {
+    describe: "Path to the OpenAPI schema",
+    demandOption: true,
+    type: "string",
+  })
+  .option("output", {
+    describe: "Path to the output TypeScript file",
+    demandOption: true,
+    type: "string",
+  })
+  .help().argv;
 
-// (optional) write to file
-fs.writeFileSync("./my-schema.ts", contents);
+const DATE = factory.createTypeReferenceNode("Date", undefined);
+const NULL = factory.createLiteralTypeNode(factory.createNull()); // `null`
+
+const generateTypes = async () => {
+  try {
+    const arg = await argv;
+
+    const ast = await openapiTS(new URL(arg.schema), {
+      transform: (schemaObject) => {
+        if (schemaObject.format === "date-time") {
+          return schemaObject.nullable ? factory.createUnionTypeNode([DATE, NULL]) : DATE;
+        }
+      },
+    });
+    const contents = astToString(ast);
+
+    fs.writeFileSync(arg.output, contents);
+
+    console.log(`Types generated successfully and written to ${arg.output}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+};
+
+generateTypes();

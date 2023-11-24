@@ -10,16 +10,16 @@ export const useStyles = createStyles((theme, { checked }: { checked: boolean })
       checked
         ? theme.fn.variant({ variant: "outline", color: theme.primaryColor }).border
         : theme.colorScheme === "dark"
-        ? theme.colors.dark[8]
-        : theme.colors.gray[3]
+          ? theme.colors.dark[8]
+          : theme.colors.gray[3]
     }`,
     borderRadius: theme.radius.sm,
     padding: theme.spacing.sm,
     backgroundColor: checked
       ? theme.fn.variant({ variant: "light", color: theme.primaryColor }).background
       : theme.colorScheme === "dark"
-      ? theme.colors.dark[8]
-      : theme.white,
+        ? theme.colors.dark[8]
+        : theme.white,
   },
 
   disabled: {
