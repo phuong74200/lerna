@@ -1,7 +1,7 @@
 {
   "name": "openapi-ts",
   "private": true,
-  "version": "0.0.13",
+  "version": "0.1.0",
   "type": "module",
   "main": "./src/index.ts",
   "exports": "./src/index.ts",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/yargs": "^17.0.32",
-    "eslint-plugin-linter": "0.0.0",
+    "eslint-plugin-linter": "^0.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2",
     "vite": "^5.0.0",
