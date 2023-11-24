@@ -24,8 +24,8 @@ const schema: z.ZodType<FormType> = z.object({
   code: z.string().nonempty({ message: "Mã không được để trống" }),
   forClassTypes: z.array(z.string()),
   forInstitutions: z.array(z.string()),
-  validFrom: z.string(),
-  validThru: z.string(),
+  validFrom: z.coerce.date(),
+  validThru: z.coerce.date(),
   value: z.number(),
   valueType: z.enum(["EXACT_MONEY", "PERCENTAGE"]),
   content: z.string(),
@@ -43,8 +43,8 @@ export default function CreateVoucherPage() {
       code: "",
       forClassTypes: [],
       forInstitutions: [],
-      validFrom: "",
-      validThru: "",
+      validFrom: new Date(),
+      validThru: new Date(),
       value: 0,
       valueType: "EXACT_MONEY",
       content: "",
@@ -62,7 +62,7 @@ export default function CreateVoucherPage() {
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Stack>
-        <Group noWrap>
+        <Group noWrap className="items-start">
           <TextInput
             withAsterisk
             label="Mã"

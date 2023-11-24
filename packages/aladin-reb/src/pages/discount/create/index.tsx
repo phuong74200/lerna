@@ -8,13 +8,14 @@ import z from "@/configs/zod";
 import useCreateDiscount from "@/features/discount/services/use-create-discount";
 import useGetAllInstitution from "@/features/university/services/use-get-all-institution";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
+
 type FormType = components["schemas"]["CreateDiscountRequest"];
 
-const schema: z.ZodType = z.object({
+const schema: z.ZodType<FormType> = z.object({
   forClassTypes: z.array(z.string()),
   forInstitutions: z.array(z.string()),
-  validFrom: z.date(),
-  validThru: z.date(),
+  validFrom: z.coerce.date(),
+  validThru: z.coerce.date(),
   value: z.number(),
   valueType: z.enum(["EXACT_MONEY", "PERCENTAGE"]),
   content: z.string(),
@@ -28,8 +29,8 @@ export default function CreateDiscountPage() {
     initialValues: {
       forClassTypes: [],
       forInstitutions: [],
-      validFrom: "",
-      validThru: "",
+      validFrom: new Date(),
+      validThru: new Date(),
       value: 0,
       valueType: "EXACT_MONEY",
       content: "",
