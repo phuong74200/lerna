@@ -2,11 +2,10 @@
 
 /* eslint-disable no-console */
 import fs from "node:fs";
-import openapiTS, { astToString } from "openapi-typescript";
-import { default as ts } from "typescript";
+import openapiTS from "openapi-typescript";
 import yargs from "yargs";
 
-const { factory } = ts;
+// const { factory } = ts;
 
 const argv = yargs(process.argv.slice(2))
   .option("schema", {
@@ -21,8 +20,8 @@ const argv = yargs(process.argv.slice(2))
   })
   .help().argv;
 
-const DATE = factory.createTypeReferenceNode("Date", undefined);
-const NULL = factory.createLiteralTypeNode(factory.createNull()); // `null`
+// const DATE = factory.createTypeReferenceNode("Date", undefined);
+// const NULL = factory.createLiteralTypeNode(factory.createNull()); // `null`
 
 const generateTypes = async () => {
   try {
@@ -30,12 +29,12 @@ const generateTypes = async () => {
 
     const ast = await openapiTS(new URL(arg.schema), {
       transform: (schemaObject) => {
-        if (schemaObject.format === "date-time") {
-          return schemaObject.nullable ? factory.createUnionTypeNode([DATE, NULL]) : DATE;
+        if ("format" in schemaObject && schemaObject.format === "date-time") {
+          return schemaObject.nullable ? "Date | null" : "Date";
         }
       },
     });
-    const contents = astToString(ast);
+    const contents = ast;
 
     fs.writeFileSync(arg.output, contents);
 
