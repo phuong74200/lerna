@@ -139,18 +139,16 @@ export default class AuthRouter<P = unknown> {
 
   get RouterProvider() {
     return () => {
-      return (
-        <RouterProvider
-          router={createBrowserRouter([
-            {
-              path: "/",
-              element: <this.ModalRoutes />,
-              children: this.immRoute,
-            },
-          ])}
-          fallbackElement={<h1>Loading</h1>}
-        />
-      );
+      const r = createBrowserRouter([
+        {
+          path: "/",
+          element: <this.ModalRoutes />,
+          children: this.immRoute,
+        },
+      ]);
+      console.log(r);
+
+      return <RouterProvider router={r} fallbackElement={<h1>Loading</h1>} />;
     };
   }
 }
