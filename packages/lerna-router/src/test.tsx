@@ -10,11 +10,15 @@ import {
 } from "react-router-dom";
 import { nanoid } from "nanoid";
 
-type Request = object;
+type Request = object & { id: string };
 
 export type Handler<T = unknown> = (req: T, next: () => string) => ReactNode;
 
 type RouteMap = Record<string, NonIndexRouteObject>;
+
+type Context = {
+  bgDisabled: boolean;
+};
 
 export class Router {
   pagesMap: RouteMap = {
@@ -39,6 +43,8 @@ export class Router {
   private next = () => {
     return this.nextId;
   };
+
+  private context: Map<string, Context> = new Map();
 
   removeLeadingSlash(url: string) {
     if (url.startsWith("/")) {
@@ -98,10 +104,12 @@ export class Router {
     loader: LoaderFunction | null,
     ...handlers: Handler<T>[]
   ) {
-    const req: T = {} as T;
+    const req: T = {
+      id,
+    } as T;
 
     const Component = () => {
-      for (let i = 0; i < handlers.length; i++) {
+      for (let i = 0; i < handlers.length - 1; i++) {
         const handler = handlers[i];
         const view = handler(req, this.next);
 
@@ -109,6 +117,8 @@ export class Router {
           return view;
         }
       }
+
+      return handlers[handlers.length - 1](req, this.next);
     };
 
     const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
@@ -137,6 +147,10 @@ export class Router {
     this.type(id, this.pagesMap, path, loader, ...handlers);
   }
 
+  get _page() {
+    return this.page;
+  }
+
   modal<T = Request>(
     path: string,
     loader: LoaderFunction | null,
@@ -149,6 +163,7 @@ export class Router {
   get Root() {
     return () => {
       const location = useLocation();
+
       const background = location.state && location.state.background;
 
       const modalRoutes = useRoutes(this.modalRoutes[0].children || []);

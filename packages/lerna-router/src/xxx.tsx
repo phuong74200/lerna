@@ -1,5 +1,11 @@
 import { Suspense } from "react";
-import { Await, defer, Link, useLoaderData, useLocation } from "react-router-dom";
+import {
+  Await,
+  defer,
+  Link,
+  useLoaderData,
+  useLocation,
+} from "react-router-dom";
 import { nanoid } from "nanoid";
 
 import { Handler, Router } from "@/test";
@@ -10,15 +16,11 @@ import "./index.css";
 
 export const app = new Router();
 
-const Handler1: Handler<{
-  name: string;
-}> = (req, next) => {
+const Handler1: Handler = (req, next) => {
   return next();
 };
 
-const Handler2: Handler<{
-  name: string;
-}> = () => {
+const Handler2: Handler = () => {
   const location = useLocation();
 
   return (
@@ -36,6 +38,7 @@ const Handler2: Handler<{
         to="/modal/1"
         state={{
           background: location,
+          id: "/modal/1",
         }}
       >
         modal/1
@@ -44,6 +47,7 @@ const Handler2: Handler<{
         to="/modal/2"
         state={{
           background: location,
+          id: "/modal/1",
         }}
       >
         modal/2
@@ -54,6 +58,8 @@ const Handler2: Handler<{
 
 const Hadler3: Handler = () => {
   const data = useLoaderData() as { packageLocation: string };
+
+  console.log("f3");
 
   return (
     <div
@@ -67,8 +73,13 @@ const Hadler3: Handler = () => {
       }}
     >
       <Suspense fallback={<p>Loading package location...</p>}>
-        <Await resolve={data?.packageLocation} errorElement={<p>Error loading package location!</p>}>
-          {(packageLocation) => <p>handler 1 pkg {JSON.stringify(packageLocation)}</p>}
+        <Await
+          resolve={data?.packageLocation}
+          errorElement={<p>Error loading package location!</p>}
+        >
+          {(packageLocation) => (
+            <p>handler 1 pkg {JSON.stringify(packageLocation)}</p>
+          )}
         </Await>
       </Suspense>
     </div>
@@ -86,15 +97,12 @@ const a = async () => {
   });
 };
 
-app.page("/", a, Handler1, Handler2);
-
-app.page("/admin/1", a, Hadler3);
-app.page("/admin/2", a, Hadler4);
-
+app._page("/", a, Handler1, Handler2);
+app._page("/admin/1", a, Hadler3);
+app._page("/admin/2", a, Hadler4);
 app.modal("/modal/1", a, Hadler3);
 app.modal("/modal/2", a, Hadler4);
-
-app.page("*", null, () => <h1>404</h1>);
+app._page("*", null, () => <h1>404</h1>);
 
 function App() {
   return (
