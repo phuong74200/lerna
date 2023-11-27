@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+```jsx
+const app = new Router();
 
-Currently, two official plugins are available:
+const loader = async ({ id }: LoaderFnArgs) => {
+  const waiting = sleep(1000);
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  /**
+   * context.floated if true the next route will be display as modal route
+   * if not it will display as fullpage route
+   */
+  if (id) {
+    app.context.set(id, {
+      floated: Math.random() > 0.5,
+    });
+  }
 
-## Expanding the ESLint configuration
+  return defer({
+    packageLocation: waiting,
+  });
+};
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+app.page("/", loader, () => <h1>root</h1>);
+app.page("/admin/1", loader, () => <h1>admin/1</h1>);
+app.page("/admin/2", loader, () => <h1>admin/2</h1>);
+app.both("/modal/1", loader, () => <h1>root</h1>);
+app.pane("/modal/2", loader, Hadler4);
+app.page("*", null, () => <h1>404</h1>);
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+export default function App() {
+  return (
+    <main>
+      <app.RouterProvider />
+    </main>
+  );
 }
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

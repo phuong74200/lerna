@@ -1,38 +1,31 @@
-import { ReactNode } from "react";
 import {
   createBrowserRouter,
-  LoaderFunction,
   NonIndexRouteObject,
   Outlet,
   RouterProvider,
+  RouterProviderProps,
   useLocation,
   useRoutes,
 } from "react-router-dom";
 import { nanoid } from "nanoid";
 
-type Request = object & { id: string };
+import { Context, Handler, LoaderFunction, RouteMap } from "@/types";
 
-export type Handler<T = unknown> = (req: T, next: () => string) => ReactNode;
-
-type RouteMap = Record<string, NonIndexRouteObject>;
-
-type Context = {
-  bgDisabled: boolean;
-};
-
-export class Router {
-  pagesMap: RouteMap = {
+export default class Router {
+  private pagesMap: RouteMap = {
     "/": {
       path: "/",
       Component: Outlet,
       children: [],
+      id: nanoid(),
     },
   };
-  modalMap: RouteMap = {
+  private modalMap: RouteMap = {
     "/": {
       path: "/",
       Component: Outlet,
       children: [],
+      id: nanoid(),
     },
   };
 
@@ -46,14 +39,14 @@ export class Router {
 
   private context: Map<string, Context> = new Map();
 
-  removeLeadingSlash(url: string) {
+  private removeLeadingSlash(url: string) {
     if (url.startsWith("/")) {
       return url.substring(1);
     }
     return url;
   }
 
-  resolvePath(path: string) {
+  private resolvePath(path: string) {
     if (!path.startsWith("/")) path = "/" + path;
 
     const pathSegments = path.split("/");
@@ -76,7 +69,7 @@ export class Router {
    *
    * @description ensure that all the path segments are created
    */
-  ensurePath(path: string, target: RouteMap) {
+  private ensurePath(path: string, target: RouteMap) {
     const { pathSegments } = this.resolvePath(path);
 
     for (let i = 0; i < pathSegments.length; i++) {
@@ -90,6 +83,7 @@ export class Router {
           path: segment,
           Component: Outlet,
           children: [],
+          id: nanoid(),
         };
 
         target[parentPath].children?.push(target[currentPath]);
@@ -97,28 +91,24 @@ export class Router {
     }
   }
 
-  type<T = Request>(
+  private type(
     id: string,
     map: RouteMap,
     path: string,
     loader: LoaderFunction | null,
-    ...handlers: Handler<T>[]
+    ...handlers: Handler[]
   ) {
-    const req: T = {
-      id,
-    } as T;
-
     const Component = () => {
       for (let i = 0; i < handlers.length - 1; i++) {
         const handler = handlers[i];
-        const view = handler(req, this.next);
+        const view = handler(this.context, this.next);
 
         if (view !== this.nextId) {
           return view;
         }
       }
 
-      return handlers[handlers.length - 1](req, this.next);
+      return handlers[handlers.length - 1](this.context, this.next);
     };
 
     const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
@@ -130,7 +120,14 @@ export class Router {
       id: id,
     };
 
-    if (loader) map[currentPath].loader = loader;
+    if (loader)
+      map[currentPath].loader = (args) => {
+        return loader({
+          ...args,
+          ...map[currentPath],
+          context: this.context,
+        });
+      };
 
     // make sure that all the parent paths are created in the pagesMap
     this.ensurePath(path, map);
@@ -138,33 +135,50 @@ export class Router {
     map[parentPath].children?.push(map[currentPath]);
   }
 
-  page<T = Request>(
-    path: string,
-    loader: LoaderFunction | null,
-    ...handlers: Handler<T>[]
-  ) {
+  // page will be displayed as fullpage
+  page(path: string, loader: LoaderFunction | null, ...handlers: Handler[]) {
     const id = nanoid();
     this.type(id, this.pagesMap, path, loader, ...handlers);
   }
 
-  get _page() {
-    return this.page;
+  // page will be displayed as both fullpage and modal
+  both(path: string, loader: LoaderFunction | null, ...handlers: Handler[]) {
+    const pid = nanoid();
+    const mid = nanoid();
+    this.type(pid, this.pagesMap, path, loader, ...handlers);
+    this.type(mid, this.modalMap, path, loader, ...handlers);
   }
 
-  modal<T = Request>(
-    path: string,
-    loader: LoaderFunction | null,
-    ...handlers: Handler<T>[]
-  ) {
+  // page will be displayed as modal
+  pane(path: string, loader: LoaderFunction | null, ...handlers: Handler[]) {
     const id = nanoid();
     this.type(id, this.modalMap, path, loader, ...handlers);
   }
 
-  get Root() {
+  get useRouteContext() {
     return () => {
       const location = useLocation();
 
-      const background = location.state && location.state.background;
+      const data =
+        this.modalMap[this.removeLeadingSlash(location.pathname)] ||
+        this.pagesMap[this.removeLeadingSlash(location.pathname)];
+
+      const context = this.context.get(data?.id || "");
+
+      return context;
+    };
+  }
+
+  private get Root() {
+    return () => {
+      const location = useLocation();
+
+      const context = this.useRouteContext();
+
+      const background =
+        location.state &&
+        location.state.background &&
+        !(context?.floated === false);
 
       const modalRoutes = useRoutes(this.modalRoutes[0].children || []);
       const pagesRoutes = useRoutes(
@@ -182,19 +196,25 @@ export class Router {
   }
 
   get RouterProvider() {
+    const modalRoutes = this.modalRoutes[0].children || [];
+    const pagesRoutes = this.pagesRoutes[0].children || [];
+    const routes = [...modalRoutes, ...pagesRoutes];
+
     const router = createBrowserRouter([
       {
         path: "/",
         Component: this.Root,
-        children: (this.modalRoutes[0].children || []).concat(
-          this.pagesRoutes[0].children || [],
-        ),
+        children: routes,
       },
     ]);
 
-    return () => {
+    return (props: Omit<RouterProviderProps, "router">) => {
       return (
-        <RouterProvider router={router} fallbackElement={<h1>Loading</h1>} />
+        <RouterProvider
+          fallbackElement={<h1>Loading</h1>}
+          router={router}
+          {...props}
+        />
       );
     };
   }

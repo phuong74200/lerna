@@ -13,14 +13,24 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
     "types": ["node"],
     "paths": {
       "@/*": ["./src/*"],
-    }
+    },
+
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist/esm"
   },
-  "include": ["./src"],
+  "include": ["./src", "examples"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "examples"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

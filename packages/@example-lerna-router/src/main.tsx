@@ -1,4 +1,5 @@
-import { Suspense } from "react";
+import { StrictMode, Suspense } from "react";
+import { createRoot } from "react-dom/client";
 import {
   Await,
   defer,
@@ -8,13 +9,15 @@ import {
 } from "react-router-dom";
 import { nanoid } from "nanoid";
 
-import { Handler, Router } from "@/test";
-import { sleep } from "@/utils";
+import { Router } from "lerna-router";
 
 import "./App.css";
 import "./index.css";
 
 export const app = new Router();
+export const useRouteContext = app.useRouteContext;
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Handler1: Handler = (req, next) => {
   return next();
@@ -38,7 +41,6 @@ const Handler2: Handler = () => {
         to="/modal/1"
         state={{
           background: location,
-          id: "/modal/1",
         }}
       >
         modal/1
@@ -47,7 +49,6 @@ const Handler2: Handler = () => {
         to="/modal/2"
         state={{
           background: location,
-          id: "/modal/1",
         }}
       >
         modal/2
@@ -58,8 +59,6 @@ const Handler2: Handler = () => {
 
 const Hadler3: Handler = () => {
   const data = useLoaderData() as { packageLocation: string };
-
-  console.log("f3");
 
   return (
     <div
@@ -90,26 +89,27 @@ const Hadler4: Handler = () => {
   return <div>handler 4</div>;
 };
 
-const a = async () => {
+const loader = async ({ id, context }: LoaderFunctionArgs) => {
   const waiting = sleep(1000);
+
+  context.set(id, {
+    floated: Math.random() > 0.5,
+  });
+
   return defer({
     packageLocation: waiting,
   });
 };
 
-app._page("/", a, Handler1, Handler2);
-app._page("/admin/1", a, Hadler3);
-app._page("/admin/2", a, Hadler4);
-app.modal("/modal/1", a, Hadler3);
-app.modal("/modal/2", a, Hadler4);
-app._page("*", null, () => <h1>404</h1>);
+app.page("/", loader, Handler1, Handler2);
+app.page("/admin/1", null, Hadler3);
+app.page("/admin/2", loader, Hadler4);
+app.both("/modal/1", loader, Hadler3);
+app.pane("/modal/2", loader, Hadler4);
+app.page("*", null, () => <h1>404</h1>);
 
-function App() {
-  return (
-    <main>
-      <app.RouterProvider />
-    </main>
-  );
-}
-
-export default App;
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <app.RouterProvider />
+  </StrictMode>,
+);
