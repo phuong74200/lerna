@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: rgb(29 31 33);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,6 +26,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  place-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -65,4 +66,20 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.list-style-none {
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.description {
+  max-width: 240px;
 }

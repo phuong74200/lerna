@@ -153,6 +153,10 @@ export default class Router {
   pane(path: string, loader: LoaderFunction | null, ...handlers: Handler[]) {
     const id = nanoid();
     this.type(id, this.modalMap, path, loader, ...handlers);
+
+    this.context.set(id, {
+      floated: true,
+    });
   }
 
   get useRouteContext() {
@@ -176,9 +180,7 @@ export default class Router {
       const context = this.useRouteContext();
 
       const background =
-        location.state &&
-        location.state.background &&
-        !(context?.floated === false);
+        location.state && location.state.background && context?.floated;
 
       const modalRoutes = useRoutes(this.modalRoutes[0].children || []);
       const pagesRoutes = useRoutes(
