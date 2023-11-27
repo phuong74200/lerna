@@ -1,7 +1,7 @@
 {
   "name": "-example-lerna-router",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lerna-router": "^0.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lerna-router": "^0.0.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

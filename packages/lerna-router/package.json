@@ -1,13 +1,11 @@
 {
   "name": "lerna-router",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.1",
   "type": "module",
-
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
-
   "scripts": {
     "dev": "vite",
     "build": "yarn build:esm && yarn build:cjs",
@@ -30,7 +28,7 @@
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "eslint": "^8.54.0",
-    "eslint-plugin-linter": "^0.1.0",
+    "eslint-plugin-linter": "^0.1.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "typescript": "^5.2.2",

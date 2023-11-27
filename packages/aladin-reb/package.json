@@ -1,7 +1,7 @@
 {
   "name": "aladin-reb",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -45,7 +45,7 @@
     "dayjs": "^1.11.9",
     "embla-carousel-autoplay": "^8.0.0-rc11",
     "embla-carousel-react": "^8.0.0-rc11",
-    "eslint-plugin-linter": "^0.1.0",
+    "eslint-plugin-linter": "^0.1.1",
     "framer-motion": "^10.16.1",
     "jwt-decode": "^3.1.2",
     "mantine-datatable": "^2.9.13",
@@ -86,7 +86,7 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^8.0.0",
     "open-color": "^1.9.1",
-    "openapi-ts": "^0.1.0",
+    "openapi-ts": "^0.1.1",
     "openapi-typescript": "^6.5.5",
     "postcss": "^8.4.27",
     "prettier": "^3.0.1",
