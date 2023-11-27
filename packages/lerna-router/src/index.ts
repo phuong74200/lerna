@@ -1,4 +1,14 @@
 import Router from "@/core";
 
-export * from "@/types";
+export type {
+  Context,
+  DataFunctionValue,
+  Handler,
+  LoaderFunction,
+  LoaderFunctionArgs,
+  Response,
+  RouteMap,
+  RouteObject,
+} from "@/types";
+
 export { Router };

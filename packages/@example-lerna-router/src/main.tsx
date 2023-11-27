@@ -7,11 +7,9 @@ import {
   useLoaderData,
   useLocation,
 } from "react-router-dom";
+import { Handler, LoaderFunctionArgs, Router } from "lerna-router";
 import { nanoid } from "nanoid";
 
-import { Router } from "lerna-router";
-
-import "./App.css";
 import "./index.css";
 
 export const app = new Router();
@@ -19,7 +17,7 @@ export const useRouteContext = app.useRouteContext;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const Handler1: Handler = (req, next) => {
+const Handler1: Handler = (_, next) => {
   return next();
 };
 
