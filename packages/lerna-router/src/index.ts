@@ -1,14 +1,5 @@
-import Router from "@/core";
+import Router from "./core";
 
-export type {
-  Context,
-  DataFunctionValue,
-  Handler,
-  LoaderFunction,
-  LoaderFunctionArgs,
-  Response,
-  RouteMap,
-  RouteObject,
-} from "@/types";
+export * from "./types";
 
 export { Router };
