@@ -7,7 +7,7 @@ import {
   useLoaderData,
   useLocation,
 } from "react-router-dom";
-import { Handler, LoaderFunctionArgs, Router } from "lerna-router";
+import { Router } from "lerna-router";
 import { nanoid } from "nanoid";
 
 import "./index.css";
