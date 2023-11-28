@@ -35,6 +35,9 @@ export default class Router {
 
   private context: Map<string, Context> = new Map();
 
+  /**
+   * @description remove leading slash from url. e.g. /home -> home.
+   */
   private removeLeadingSlash(url: string) {
     if (url.startsWith("/")) {
       return url.substring(1);
@@ -42,6 +45,10 @@ export default class Router {
     return url;
   }
 
+  /**
+   * @description resolve path to parentPath, currentPath, and pathSegments
+   * @description e.g. /home/1/2 -> { parentPath: "/home/1", currentPath: "/home/1/2", pathSegments: ["home", "1", "2"] }
+   */
   private resolvePath(path: string) {
     if (!path.startsWith("/")) path = "/" + path;
 
@@ -63,7 +70,7 @@ export default class Router {
    * @param pathSegments path segments
    * @param target pagesMap or modalMap
    *
-   * @description ensure that all the path segments are created
+   * @description ensure that all the path segments are created to prevent error when creating nested routes
    */
   private ensurePath(path: string, target: RouteMap) {
     const { pathSegments } = this.resolvePath(path);
@@ -87,11 +94,14 @@ export default class Router {
     }
   }
 
+  /**
+   * @description create a key map for the page
+   */
   private type(
     id: string,
     map: RouteMap,
     path: string,
-    loader: LoaderFunction | null,
+    loaders: LoaderFunction[] | null,
     Component: ComponentType,
   ) {
     const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
@@ -103,39 +113,57 @@ export default class Router {
       id: id,
     };
 
-    if (loader)
-      map[currentPath].loader = (args) => {
-        return loader({
+    map[currentPath].loader = async (args) => {
+      for (const loader of loaders || []) {
+        await loader({
           ...args,
           ...map[currentPath],
           context: this.context,
         });
-      };
+      }
+    };
 
-    // make sure that all the parent paths are created in the pagesMap
     this.ensurePath(path, map);
 
     map[parentPath].children?.push(map[currentPath]);
   }
 
-  // page will be displayed as fullpage
-  page(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+  /**
+   * @description full-page: page will be displayed as fullpage
+   */
+  page(
+    path: string,
+    loaders: LoaderFunction[] | null,
+    Component: ComponentType,
+  ) {
     const id = nanoid();
-    this.type(id, this.pagesMap, path, loader, Component);
+    this.type(id, this.pagesMap, path, loaders, Component);
   }
 
-  // page will be displayed as both fullpage and modal
-  both(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+  /**
+   * @description both-type: page will be displayed as both fullpage and modal
+   */
+  both(
+    path: string,
+    loaders: LoaderFunction[] | null,
+    Component: ComponentType,
+  ) {
     const pid = nanoid();
     const mid = nanoid();
-    this.type(pid, this.pagesMap, path, loader, Component);
-    this.type(mid, this.modalMap, path, loader, Component);
+    this.type(pid, this.pagesMap, path, loaders, Component);
+    this.type(mid, this.modalMap, path, loaders, Component);
   }
 
-  // page will be displayed as modal
-  pane(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+  /**
+   * @description pane-page: page will be displayed at bottom of current page
+   */
+  pane(
+    path: string,
+    loaders: LoaderFunction[] | null,
+    Component: ComponentType,
+  ) {
     const id = nanoid();
-    this.type(id, this.modalMap, path, loader, Component);
+    this.type(id, this.modalMap, path, loaders, Component);
 
     this.context.set(id, {
       floated: true,
