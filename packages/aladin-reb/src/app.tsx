@@ -7,7 +7,7 @@ import { customMantineTheme } from "@/configs/mantine-theme";
 import { defaultOptions, mutationCache, queryCache } from "@/configs/react-query";
 import { UserContextProvider } from "@/context/user";
 import SyncTailwindColorScheme from "@/modules/sync-tailwind-color-scheme";
-import { BrowserRouter } from "@/router";
+import { LernaRouterProvider } from "@/router/lerna";
 
 import "@/configs/zod";
 import "@/configs/dayjs";
@@ -40,7 +40,8 @@ function Theme() {
         <ModalsProvider>
           <SyncTailwindColorScheme scheme={scheme} />
           {/* <Notifications /> */}
-          <BrowserRouter.RouterProvider />
+          {/* <BrowserRouter.RouterProvider /> */}
+          <LernaRouterProvider />
         </ModalsProvider>
       </MantineProvider>
     </ColorSchemeProvider>

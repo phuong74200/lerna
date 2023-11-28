@@ -103,6 +103,7 @@ export default class Router {
     path: string,
     loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
+    options?: NonIndexRouteObject,
   ) {
     const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
 
@@ -130,6 +131,11 @@ export default class Router {
       }
 
       return null;
+    };
+
+    map[currentPath] = {
+      ...map[currentPath],
+      ...options,
     };
 
     this.ensurePath(path, map);

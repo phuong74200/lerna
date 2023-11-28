@@ -24,6 +24,7 @@ app.page("/sample-page", null, Page);
 app.pane("/sample-pane", null, Pane);
 app.pane("/sample-load", suspenseLoader, SuspenseSample);
 app.pane("/modal-navigate", null, ModalNavigate);
+app.pane("/cc/:name", null, ModalNavigate);
 
 app.both("/sample-both", bothLoader, Both);
 

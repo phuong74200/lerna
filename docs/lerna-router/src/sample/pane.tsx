@@ -60,6 +60,7 @@ export default function Pane() {
           top: "50%",
           transform: "translate(-50%,-50%)",
           maxHeight: "calc(100vh - 2rem)",
+          overflow: "auto",
         }}
       >
         <SyntaxHighlighter language="tsx" style={atomDark}>

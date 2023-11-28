@@ -67,6 +67,16 @@ export default function Home() {
               Navigte to modal route
             </Link>
           </li>
+          <li>
+            <Link
+              to="/cc/123"
+              state={{
+                background: location,
+              }}
+            >
+              Navigte to modal route .cc
+            </Link>
+          </li>
         </ul>
         <ul className="list-style-none">
           <li>
