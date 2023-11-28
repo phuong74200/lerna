@@ -16,7 +16,7 @@
     "prepare": "yarn build"
   },
   "bin": {
-    "openapi-ts": "./dist/index.js"
+    "openapi-ts": "./dist/esm/index.js"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.32",
