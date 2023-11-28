@@ -101,7 +101,7 @@ export default class Router {
     id: string,
     map: RouteMap,
     path: string,
-    loaders: LoaderFunction[] | null,
+    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
   ) {
     const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
@@ -113,8 +113,14 @@ export default class Router {
       id: id,
     };
 
+    const _loaders = loaders
+      ? Array.isArray(loaders)
+        ? loaders
+        : [loaders]
+      : [];
+
     map[currentPath].loader = async (args) => {
-      for (const loader of loaders || []) {
+      for (const loader of _loaders) {
         await loader({
           ...args,
           ...map[currentPath],
@@ -133,7 +139,7 @@ export default class Router {
    */
   page(
     path: string,
-    loaders: LoaderFunction[] | null,
+    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
   ) {
     const id = nanoid();
@@ -145,7 +151,7 @@ export default class Router {
    */
   both(
     path: string,
-    loaders: LoaderFunction[] | null,
+    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
   ) {
     const pid = nanoid();
@@ -159,7 +165,7 @@ export default class Router {
    */
   pane(
     path: string,
-    loaders: LoaderFunction[] | null,
+    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
   ) {
     const id = nanoid();
