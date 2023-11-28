@@ -4,6 +4,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const codeString = `import { Suspense } from "react";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { Await, defer, useLoaderData } from "react-router-dom";
 
 const sleep = (ms: number) =>
@@ -57,7 +59,12 @@ export function SuspenseSample() {
     </div>
   );
 }
-`;
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <app.RouterProvider />
+  </StrictMode>,
+);`;
 
 const sleep = (ms: number) =>
   new Promise((resolve) =>

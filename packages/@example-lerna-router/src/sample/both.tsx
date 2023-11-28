@@ -5,6 +5,8 @@ import { LoaderFunctionArgs } from "lerna-router";
 import { useRouteContext } from "../route";
 
 const codeString = `import { LoaderFunctionArgs, Router } from "lerna-router";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
 const app = new Router();
 
@@ -53,6 +55,13 @@ export default function Both() {
   );
 }
 
+app.both("/both", bothLoader, () => <Both />);
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <app.RouterProvider />
+  </StrictMode>,
+);
 `;
 
 export const bothLoader = async ({ id, context }: LoaderFunctionArgs) => {

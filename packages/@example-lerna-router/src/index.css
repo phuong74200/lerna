@@ -83,3 +83,23 @@ button:focus-visible {
 .description {
   max-width: 240px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.container {
+  padding-block: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container.article {
+  max-width: 768px;
+}
+
+.container.article.pane {
+  padding-inline: 4rem;
+  background-color: rgb(29 31 33);
+}

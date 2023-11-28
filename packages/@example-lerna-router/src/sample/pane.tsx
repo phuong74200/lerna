@@ -2,6 +2,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const codeString = `import { Router } from "lerna-router";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
 const app = new Router();
 
@@ -30,7 +32,13 @@ app.pane("/sample-pane", null, () => (
         </SyntaxHighlighter>
       </div>
     </div>
-));`;
+));
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <app.RouterProvider />
+  </StrictMode>,
+);`;
 
 export default function Pane() {
   return (
@@ -51,6 +59,7 @@ export default function Pane() {
           left: "50%",
           top: "50%",
           transform: "translate(-50%,-50%)",
+          maxHeight: "calc(100vh - 2rem)",
         }}
       >
         <SyntaxHighlighter language="tsx" style={atomDark}>
