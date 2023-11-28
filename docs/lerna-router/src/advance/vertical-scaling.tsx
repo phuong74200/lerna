@@ -1,5 +1,5 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const codeString = `import { Router } from "lerna-router";
 
@@ -78,17 +78,17 @@ export default function VerticalScaling() {
         to define the route.
       </p>
       <p>For example the following code:</p>
-      <SyntaxHighlighter language="tsx" style={atomDark}>
+      <SyntaxHighlighter language="tsx" style={darcula}>
         {codeString}
       </SyntaxHighlighter>
       <p>Then will be transformed into:</p>
-      <SyntaxHighlighter language="jsx" style={atomDark}>
+      <SyntaxHighlighter language="jsx" style={darcula}>
         {transformedString}
       </SyntaxHighlighter>
       <p>
         So you can easily put it into <code>RouterProvider</code> like this
       </p>
-      <SyntaxHighlighter language="tsx" style={atomDark}>
+      <SyntaxHighlighter language="tsx" style={darcula}>
         {`import { RouterProvider } from "react-router-dom";
 
 <RouterProvider router={createBrowserRouter(router)} />`}
@@ -98,7 +98,7 @@ export default function VerticalScaling() {
         <code>app.useRouteContext</code>
         (Modal route) you should using lerna-router&apos;s alternative <code>RouterProvider</code>
       </p>
-      <SyntaxHighlighter language="tsx" style={atomDark}>
+      <SyntaxHighlighter language="tsx" style={darcula}>
         {`import { Router } from "lerna-router";
 
 const app = new Router();

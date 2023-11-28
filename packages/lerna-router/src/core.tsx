@@ -121,12 +121,15 @@ export default class Router {
 
     map[currentPath].loader = async (args) => {
       for (const loader of _loaders) {
-        await loader({
+        const data = await loader({
           ...args,
           ...map[currentPath],
           context: this.context,
         });
+        if (data) return data;
       }
+
+      return null;
     };
 
     this.ensurePath(path, map);

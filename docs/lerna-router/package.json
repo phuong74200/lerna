@@ -1,5 +1,5 @@
 {
-  "name": "-example-lerna-router",
+  "name": "@docs/lerna-router",
   "private": true,
   "version": "0.1.2",
   "type": "module",
