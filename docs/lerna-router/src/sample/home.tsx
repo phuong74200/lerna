@@ -117,6 +117,24 @@ export default function Home() {
               </Link>
             </li>
           </ul>
+          <ul className="list-style-none">
+            <li>
+              <h3>WRAPPER</h3>
+              <p className="description">
+                Wrapper act as a layout for your route, you can use it to wrap your route
+              </p>
+            </li>
+            <li>
+              <Link
+                to="/wrapper"
+                state={{
+                  background: location,
+                }}
+              >
+                Basic sample
+              </Link>
+            </li>
+          </ul>
         </div>
         <h2 id="advance"># ADVANCE</h2>
         <p className="concept">This part is optional, you can skip it if you want</p>

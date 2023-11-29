@@ -12,6 +12,7 @@ const ModalNavigate = lazy(() => import("./advance/modal-navigate"));
 const ParamModal = lazy(() => import("./sample/param-modal"));
 
 import { suspenseLoader, SuspenseSample } from "./sample/suspense";
+import { Wrapper } from "./sample/wrap";
 
 export const app = new Router();
 
@@ -21,6 +22,9 @@ export const app = new Router();
 
 app.page("/", null, Home);
 app.page("/sample-page", null, Page);
+
+app.wrap("/wrapper", null, Wrapper);
+app.page("/wrapper", null, Page);
 
 /**
  * put the Suspense component wrap the Modal Outlet for better
@@ -56,6 +60,9 @@ app.both("/sample-both", bothLoader, Both);
 app.page("/vertical-scale", null, VerticalScaling);
 
 app.page("*", null, () => <h1>404</h1>);
+
+// eslint-disable-next-line no-console
+console.log(app);
 
 export const RouterProvider = app.RouterProvider;
 export const useRouteContext = app.useRouteContext;

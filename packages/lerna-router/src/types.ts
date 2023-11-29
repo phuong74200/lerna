@@ -6,6 +6,10 @@ import {
 
 export type RouteObject = Omit<NonIndexRouteObject, "id"> & {
   id: string;
+  parent?: {
+    $ref: RouteObject;
+    at: number;
+  };
 };
 
 export type RouteMap = Record<string, RouteObject>;

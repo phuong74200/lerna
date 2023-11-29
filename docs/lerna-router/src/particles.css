@@ -41,7 +41,10 @@
   height: 1em;
   transform: translateY(100%);
   background: #748ffc;
+
+  pointer-events: all;
 }
+
 .square:nth-child(2) {
   height: 1.5em;
   width: 3em;
@@ -50,6 +53,7 @@
   -webkit-animation-duration: 17s;
           animation-duration: 17s;
   -webkit-filter: blur(5px);
+  z-index: -1;
 }
 .square:nth-child(3) {
   height: 2em;
@@ -68,6 +72,7 @@
   -webkit-filter: blur(3px);
   -webkit-animation-duration: 13s;
           animation-duration: 13s;
+          z-index: -1;
 }
 .square:nth-child(5) {
   height: 1.25em;
@@ -77,6 +82,7 @@
   -webkit-filter: blur(2px);
   -webkit-animation-duration: 11s;
           animation-duration: 11s;
+          z-index: -1;
 }
 .square:nth-child(6) {
   height: 2.5em;
@@ -93,6 +99,7 @@
   -webkit-filter: blur(2.5px);
   -webkit-animation-duration: 12s;
           animation-duration: 12s;
+          z-index: -1;
 }
 .square:nth-child(8) {
   height: 1em;
@@ -102,6 +109,7 @@
   -webkit-filter: blur(6px);
   -webkit-animation-duration: 18s;
           animation-duration: 18s;
+          z-index: -1;
 }
 .square:nth-child(9) {
   height: 1.5em;
