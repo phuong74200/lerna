@@ -33,3 +33,8 @@ export type DataFunctionValue = Response | NonNullable<unknown> | null;
 export interface LoaderFunction {
   (args: LoaderFunctionArgs): Promise<DataFunctionValue> | DataFunctionValue;
 }
+
+export type RouteOptions = Omit<
+  NonIndexRouteObject,
+  "path" | "id" | "loader" | "children" | "element" | "Component"
+>;

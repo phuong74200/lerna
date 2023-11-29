@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { nanoid } from "nanoid";
 
-import { Context, LoaderFunction, RouteMap } from "@/types";
+import { Context, LoaderFunction, RouteMap, RouteOptions } from "@/types";
 
 export default class Router {
   private pagesMap: RouteMap = {
@@ -108,6 +108,7 @@ export default class Router {
     path: string,
     loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
+    options?: RouteOptions,
   ) {
     const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
 
@@ -139,6 +140,11 @@ export default class Router {
       return null;
     };
 
+    map[currentPath] = {
+      ...map[currentPath],
+      ...options,
+    };
+
     this.ensurePath(path, map);
 
     map[parentPath].children?.push(map[currentPath]);
@@ -153,9 +159,10 @@ export default class Router {
     path: string,
     loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
+    options?: RouteOptions,
   ) {
     const id = nanoid();
-    return this.type(id, this.pagesMap, path, loaders, Component);
+    return this.type(id, this.pagesMap, path, loaders, Component, options);
   }
 
   /**
@@ -165,12 +172,13 @@ export default class Router {
     path: string,
     loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
+    options?: RouteOptions,
   ) {
     const pid = nanoid();
     const mid = nanoid();
     return {
-      pane: this.type(pid, this.pagesMap, path, loaders, Component),
-      page: this.type(mid, this.modalMap, path, loaders, Component),
+      pane: this.type(pid, this.pagesMap, path, loaders, Component, options),
+      page: this.type(mid, this.modalMap, path, loaders, Component, options),
     };
   }
 
@@ -181,6 +189,7 @@ export default class Router {
     path: string,
     loaders: LoaderFunction[] | LoaderFunction | null | undefined,
     Component: ComponentType,
+    options?: RouteOptions,
   ) {
     const id = nanoid();
 
@@ -188,7 +197,7 @@ export default class Router {
       floated: true,
     });
 
-    return this.type(id, this.modalMap, path, loaders, Component);
+    return this.type(id, this.modalMap, path, loaders, Component, options);
   }
 
   get useRouteContext() {
