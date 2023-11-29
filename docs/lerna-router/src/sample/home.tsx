@@ -67,6 +67,16 @@ export default function Home() {
               Navigte to modal route
             </Link>
           </li>
+          <li>
+            <Link
+              to={`/params/${nanoid()}`}
+              state={{
+                background: location,
+              }}
+            >
+              Modal route with params
+            </Link>
+          </li>
         </ul>
         <ul className="list-style-none">
           <li>

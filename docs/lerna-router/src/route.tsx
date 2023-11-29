@@ -10,6 +10,7 @@ const Both = lazy(() => import("./sample/both"));
 const VerticalScaling = lazy(() => import("./advance/vertical-scaling"));
 
 import ModalNavigate from "./advance/modal-navigate";
+import ParamModal from "./sample/param-modal";
 import { suspenseLoader, SuspenseSample } from "./sample/suspense";
 
 export const app = new Router();
@@ -24,6 +25,8 @@ app.page("/sample-page", null, Page);
 app.pane("/sample-pane", null, Pane);
 app.pane("/sample-load", suspenseLoader, SuspenseSample);
 app.pane("/modal-navigate", null, ModalNavigate);
+
+app.pane("/params/:id", null, ParamModal);
 
 app.both("/sample-both", bothLoader, Both);
 
