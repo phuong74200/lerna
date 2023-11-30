@@ -4,8 +4,14 @@ import {
   NonIndexRouteObject,
 } from "react-router-dom";
 
-export type RouteObject = Omit<NonIndexRouteObject, "id"> & {
+export type RouteObject = Omit<
+  NonIndexRouteObject,
+  "id" | "path" | "children"
+> & {
   id: string;
+  path: string;
+  children: RouteObject[];
+
   parent?: {
     $ref: RouteObject;
     at: number;

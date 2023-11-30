@@ -30,6 +30,14 @@ export default class Router {
       id: nanoid(),
     },
   };
+  private fullMap: RouteMap = {
+    "/": {
+      path: "/",
+      Component: Outlet,
+      children: [],
+      id: nanoid(),
+    },
+  };
   private wrapMap: RouteMap = {};
 
   paths: {
@@ -38,6 +46,7 @@ export default class Router {
 
   pagesRoutes: NonIndexRouteObject[] = [this.pagesMap["/"]];
   modalRoutes: NonIndexRouteObject[] = [this.paneMap["/"]];
+  fullRoutes: NonIndexRouteObject[] = [this.fullMap["/"]];
 
   private context: Map<string, Context> = new Map();
 
@@ -147,6 +156,7 @@ export default class Router {
     };
 
     this.ensurePath(path, map);
+    this.ensurePath(path, this.fullMap);
 
     if (this.wrapMap[currentPath]) {
       map[currentPath].parent = {
@@ -166,6 +176,8 @@ export default class Router {
         map[parentPath].children?.push(map[currentPath]);
       }
     }
+
+    this.fullMap[parentPath].children?.push(map[currentPath]);
 
     return map[currentPath];
   }
