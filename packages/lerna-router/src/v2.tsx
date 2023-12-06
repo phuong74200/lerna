@@ -1,16 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { ComponentType } from "react";
+import { LoaderFunction, Outlet } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 import { Context, RouteMap, RouteObject } from "@/types";
 
-type RouteType = "pane" | "page" | "both";
+type RouteType = "pane" | "page";
 
 type Path = `${RouteType} ${string}`;
 
 type ResolvePath = {
   segments: string[];
   parent: ResolvePath | null;
-  value: string;
+  url: string;
   relative: string;
 };
 
@@ -37,8 +38,17 @@ function resolvePath(path: string): ResolvePath {
   return {
     segments,
     parent,
-    value: stdPath || "/",
+    url: stdPath || "/",
     relative: segments[segments.length - 1],
+  };
+}
+
+function parsePath(path: Path) {
+  const [type, ...segments] = path.split(" ");
+
+  return {
+    type: type as RouteType,
+    segments: resolvePath(segments.join(" ")),
   };
 }
 
@@ -52,48 +62,72 @@ export default class Router {
   private map: Record<RouteType, RouteMap> = {
     pane: {},
     page: {},
-    both: {},
   };
 
   private route: Record<RouteType, RouteObject[]> = {
     pane: [],
     page: [],
-    both: [],
   };
 
   constructor() {
     this.map.page["/"] = createEmptyRoute();
     this.map.pane["/"] = createEmptyRoute();
-    this.map.both["/"] = createEmptyRoute();
 
     this.route.page.push(this.map.page["/"]);
     this.route.pane.push(this.map.pane["/"]);
-    this.route.both.push(this.map.both["/"]);
   }
 
   createRoute(type: RouteType, route: RouteObject) {
-    const { parent, value, relative } = resolvePath(route.path);
+    const { parent, url, relative } = resolvePath(route.path);
 
-    let parentRoute = parent ? this.map[type][parent.value] : null;
-
-    if (!parentRoute && parent?.value)
-      parentRoute = this.createRoute(type, createEmptyRoute(parent.value));
+    console.log(url);
 
     const newRoute: RouteObject = {
       ...route,
       path: relative,
       children: [],
-      id: nanoid(),
     };
 
-    if (parentRoute) {
-      parentRoute.children.push(newRoute);
-    }
+    this.map[type][url] = newRoute;
 
-    this.map[type][value] = newRoute;
+    if (parent?.url) this.push(type, parent.url, newRoute);
 
     return newRoute;
   }
 
-  get(path: Path) {}
+  find(type: RouteType, path: string) {
+    const { url } = resolvePath(path);
+
+    return this.map[type][url];
+  }
+
+  push(type: RouteType, path: string, route: RouteObject) {
+    const { parent } = resolvePath(path);
+
+    console.log("p", parent);
+
+    let resolvedParent = parent ? this.map[type][parent.url] : null;
+
+    while (!resolvedParent && parent?.url) {
+      resolvedParent = this.createRoute(type, createEmptyRoute(parent.url));
+    }
+
+    resolvedParent!.children.push(route);
+  }
+
+  page(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+    const { url } = resolvePath(path);
+
+    const route = this.createRoute("page", {
+      path: url,
+      id: nanoid(),
+      children: [],
+      Component,
+      loader: loader || (() => null),
+    });
+
+    this.route["page"].push(route);
+
+    return route;
+  }
 }
