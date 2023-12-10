@@ -5,12 +5,14 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: rgb(29 31 33);
+  /* background-color: rgb(29 31 33); */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 14px
 }
 
 a {
@@ -96,10 +98,15 @@ button:focus-visible {
 }
 
 .container.article {
-  max-width: 768px;
+  width: 768px;
 }
 
 .container.article.pane {
   padding-inline: 4rem;
   background-color: rgb(29 31 33);
 }
+
+code {
+  color: #646cff;
+}
+

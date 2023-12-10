@@ -1,37 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
 import { Router } from "lerna-router";
 
-import { Error404Page } from "@/pages";
+import { Error404Page, LoginPage } from "@/pages";
 import ImageViewPage from "@/pages/image/[id]";
 
 const app = new Router();
 
-console.log(app);
+export const useRouteContext = app.useRouteContext;
 
-app.page("/home", null, () => {
-  const location = useLocation();
+app.page("/", null, () => <h1>Not found any</h1>);
 
-  return (
-    <Link
-      to="/home/1"
-      state={{
-        background: location,
-      }}
-    >
-      Go to image
-    </Link>
-  );
-});
+app.page("/login", null, LoginPage);
 
-app.pane("/home/:id", null, () => {
-  const c = useRouteContext();
-
-  console.log(c);
-
-  return <ImageViewPage />;
-});
+app.both("/image/:id", null, ImageViewPage);
 
 app.page("*", null, Error404Page);
 
-export const useRouteContext = app.useRouteContext;
+console.log(app);
+
 export const LernaRouterProvider = app.RouterProvider;

@@ -4,8 +4,18 @@ import {
   NonIndexRouteObject,
 } from "react-router-dom";
 
-export type RouteObject = Omit<NonIndexRouteObject, "id"> & {
+export type RouteObject = Omit<
+  NonIndexRouteObject,
+  "id" | "path" | "children"
+> & {
   id: string;
+  path: string;
+  children: RouteObject[];
+
+  parent?: {
+    $ref: RouteObject;
+    at: number;
+  };
 };
 
 export type RouteMap = Record<string, RouteObject>;
@@ -33,3 +43,8 @@ export type DataFunctionValue = Response | NonNullable<unknown> | null;
 export interface LoaderFunction {
   (args: LoaderFunctionArgs): Promise<DataFunctionValue> | DataFunctionValue;
 }
+
+export type RouteOptions = Omit<
+  NonIndexRouteObject,
+  "path" | "id" | "loader" | "children" | "element" | "Component"
+>;

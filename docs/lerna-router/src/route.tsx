@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Router } from "lerna-router";
 
 import { bothLoader } from "./sample/both";
@@ -8,9 +8,11 @@ const Page = lazy(() => import("./sample/page"));
 const Pane = lazy(() => import("./sample/pane"));
 const Both = lazy(() => import("./sample/both"));
 const VerticalScaling = lazy(() => import("./advance/vertical-scaling"));
+const ModalNavigate = lazy(() => import("./advance/modal-navigate"));
+const ParamModal = lazy(() => import("./sample/param-modal"));
 
-import ModalNavigate from "./advance/modal-navigate";
 import { suspenseLoader, SuspenseSample } from "./sample/suspense";
+import { Wrapper } from "./sample/wrap";
 
 export const app = new Router();
 
@@ -21,10 +23,33 @@ export const app = new Router();
 app.page("/", null, Home);
 app.page("/sample-page", null, Page);
 
-app.pane("/sample-pane", null, Pane);
-app.pane("/sample-load", suspenseLoader, SuspenseSample);
-app.pane("/modal-navigate", null, ModalNavigate);
-app.pane("/cc/:name", null, ModalNavigate);
+app.wrap("/wrapper", null, Wrapper);
+app.page("/wrapper", null, Page);
+
+/**
+ * put the Suspense component wrap the Modal Outlet for better
+ * loading and prevent the background from flashing and re-rendering
+ */
+app.pane("/sample-pane", null, () => (
+  <Suspense>
+    <Pane />
+  </Suspense>
+));
+app.pane("/sample-load", suspenseLoader, () => (
+  <Suspense>
+    <SuspenseSample />
+  </Suspense>
+));
+app.pane("/modal-navigate", null, () => (
+  <Suspense>
+    <ModalNavigate />
+  </Suspense>
+));
+app.pane("/params/:id", null, () => (
+  <Suspense>
+    <ParamModal />
+  </Suspense>
+));
 
 app.both("/sample-both", bothLoader, Both);
 
@@ -35,6 +60,9 @@ app.both("/sample-both", bothLoader, Both);
 app.page("/vertical-scale", null, VerticalScaling);
 
 app.page("*", null, () => <h1>404</h1>);
+
+// eslint-disable-next-line no-console
+console.log(app);
 
 export const RouterProvider = app.RouterProvider;
 export const useRouteContext = app.useRouteContext;
