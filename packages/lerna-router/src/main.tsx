@@ -1,7 +1,11 @@
-import { createRoot } from "react-dom/client";
-import { Outlet } from "react-router-dom";
+/**
+ * This is the entry point for the application for testing purposes. Notthing to see here.
+ */
 
-import Router from "@/v2";
+import { createRoot } from "react-dom/client";
+import { Link, Outlet } from "react-router-dom";
+
+import Router from "@/core";
 
 const app = new Router();
 
@@ -13,7 +17,11 @@ const app = new Router();
 // console.log(app);
 
 app.page("/", null, function m1() {
-  return <p>Main1</p>;
+  return (
+    <p>
+      Main1 <Link to="/sa">to</Link>
+    </p>
+  );
 });
 
 app.page("a/b", null, function m1() {

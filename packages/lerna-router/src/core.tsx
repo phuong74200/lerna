@@ -201,8 +201,14 @@ export default class Router {
   }
 
   pane(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+    const route = this.createRoute(RouteType.PANE, path, loader, Component);
+
     this.paths.push({ path });
-    return this.createRoute(RouteType.PANE, path, loader, Component);
+    this.context.set(route.id, {
+      floated: true,
+    });
+
+    return route;
   }
 
   matchPattern(location: Location) {
