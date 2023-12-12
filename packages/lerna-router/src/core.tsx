@@ -1,8 +1,9 @@
 import { ComponentType } from "react";
 import {
   createBrowserRouter,
+  LoaderFunction,
+  Location,
   matchRoutes,
-  NonIndexRouteObject,
   Outlet,
   RouterProvider,
   RouterProviderProps,
@@ -11,329 +12,221 @@ import {
 } from "react-router-dom";
 import { nanoid } from "nanoid";
 
-import { Context, LoaderFunction, RouteMap, RouteOptions } from "@/types";
+import { Context, RouteMap, RouteObject } from "@/types";
+
+export enum RouteType {
+  PAGE = "page",
+  PANE = "pane",
+}
+
+type Route = RouteObject | string;
+
+type ResolvePath = {
+  segments: string[];
+  parent: ResolvePath | null;
+  url: string;
+  relative: string;
+};
+
+function createEmptyRoute(path: string = "/"): RouteObject {
+  return {
+    path: path,
+    Component: Outlet,
+    children: [],
+    id: nanoid(),
+  };
+}
+
+const generateId = (type: RouteType) => type + "_" + nanoid();
+
+function stdRelativePath(path: string) {
+  return path.replace(/^\/+|\/+$/g, "");
+}
+
+function resolvePath(path: string): ResolvePath {
+  const stdPath = stdRelativePath(path);
+  const segments = stdPath.split("/");
+  const parent =
+    path === "" ? null : resolvePath(segments.slice(0, -1).join("/"));
+
+  return {
+    segments,
+    parent,
+    url: stdPath || "/",
+    relative: segments[segments.length - 1],
+  };
+}
 
 export default class Router {
-  private pagesMap: RouteMap = {
-    "/": {
-      path: "/",
-      Component: Outlet,
-      children: [],
-      id: nanoid(),
-    },
+  context: Map<string, Context> = new Map();
+
+  private map: Record<RouteType, RouteMap> = {
+    [RouteType.PAGE]: {},
+    [RouteType.PANE]: {},
   };
-  private paneMap: RouteMap = {
-    "/": {
-      path: "/",
-      Component: Outlet,
-      children: [],
-      id: nanoid(),
-    },
+
+  private route: Record<RouteType, RouteObject[]> = {
+    [RouteType.PAGE]: [],
+    [RouteType.PANE]: [],
   };
-  private fullMap: RouteMap = {
-    "/": {
-      path: "/",
-      Component: Outlet,
-      children: [],
-      id: nanoid(),
-    },
-  };
-  private wrapMap: RouteMap = {};
 
   paths: {
     path: string;
   }[] = [];
 
-  pagesRoutes: NonIndexRouteObject[] = [this.pagesMap["/"]];
-  modalRoutes: NonIndexRouteObject[] = [this.paneMap["/"]];
-  fullRoutes: NonIndexRouteObject[] = [this.fullMap["/"]];
+  constructor() {
+    this.map[RouteType.PAGE]["/"] = createEmptyRoute();
+    this.map[RouteType.PANE]["/"] = createEmptyRoute();
 
-  private context: Map<string, Context> = new Map();
-
-  /**
-   * @description remove leading slash from url. e.g. /home -> home.
-   */
-  private removeLeadingSlash(url: string) {
-    if (url.startsWith("/")) {
-      return url.substring(1);
-    }
-    return url;
+    this.route[RouteType.PAGE].push(this.map.page["/"]);
+    this.route[RouteType.PANE].push(this.map.pane["/"]);
   }
 
-  /**
-   * @description resolve path to parentPath, currentPath, and pathSegments
-   * @description e.g. /home/1/2 -> { parentPath: "/home/1", currentPath: "/home/1/2", pathSegments: ["home", "1", "2"] }
-   */
-  private resolvePath(path: string) {
-    if (!path.startsWith("/")) path = "/" + path;
-
-    const pathSegments = path.split("/");
-
-    const parentPath =
-      this.removeLeadingSlash(pathSegments.slice(0, -1).join("/")) || "/";
-    const currentPath = this.removeLeadingSlash(pathSegments.join("/"));
-
-    return {
-      parentPath,
-      currentPath,
-      pathSegments,
-    };
-  }
-
-  /**
-   *
-   * @param pathSegments path segments
-   * @param target pagesMap or modalMap
-   *
-   * @description ensure that all the path segments are created to prevent error when creating nested routes
-   */
-  private ensurePath(path: string, target: RouteMap) {
-    const { pathSegments } = this.resolvePath(path);
-
-    for (let i = 0; i < pathSegments.length; i++) {
-      const { currentPath, parentPath } = this.resolvePath(
-        pathSegments.slice(0, i + 1).join("/"),
-      );
-      const segment = pathSegments[i];
-
-      if (!target[currentPath]) {
-        target[currentPath] = {
-          path: segment,
-          Component: Outlet,
-          children: [],
-          id: nanoid(),
-        };
-
-        target[parentPath].children?.push(target[currentPath]);
-      }
-    }
-  }
-
-  /**
-   * @description create a key map for the page
-   */
-  private type(
-    id: string,
-    map: RouteMap,
+  createRoute(
+    type: RouteType,
     path: string,
-    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
+    loader: LoaderFunction | null,
     Component: ComponentType,
-    options?: RouteOptions,
   ) {
-    const { currentPath, parentPath, pathSegments } = this.resolvePath(path);
+    const existedRoute = this.find(type, path);
 
-    this.paths.push({ path: currentPath });
+    // if existed make it a wrapper
+    if (existedRoute) {
+      const { relative } = resolvePath(path);
 
-    map[currentPath] = {
-      path: pathSegments[pathSegments.length - 1],
+      const route = createEmptyRoute(relative);
+
+      Object.assign(route, {
+        loader,
+        Component,
+        id: generateId(type),
+      });
+
+      return this.wrap(type, route, existedRoute);
+    }
+
+    const route = this.constructFrame(type, path);
+
+    Object.assign(route, {
+      loader,
       Component,
-      children: [],
-      id: id,
-    };
-
-    const _loaders = loaders
-      ? Array.isArray(loaders)
-        ? loaders
-        : [loaders]
-      : [];
-
-    map[currentPath].loader = async (args) => {
-      for (const loader of _loaders) {
-        const data = await loader({
-          ...args,
-          ...map[currentPath],
-          context: this.context,
-        });
-        if (data) return data;
-      }
-
-      return null;
-    };
-
-    map[currentPath] = {
-      ...map[currentPath],
-      ...options,
-    };
-
-    this.ensurePath(path, map);
-    this.ensurePath(path, this.fullMap);
-
-    if (this.wrapMap[currentPath]) {
-      map[currentPath].parent = {
-        $ref: this.wrapMap[currentPath],
-        at: this.wrapMap[currentPath].children?.length || 0,
-      };
-
-      map[currentPath].path = "";
-
-      this.wrapMap[currentPath].children?.push(map[currentPath]);
-    } else {
-      if (map[currentPath]) {
-        map[currentPath].parent = {
-          $ref: map[currentPath],
-          at: map[currentPath].children?.length || 0,
-        };
-        map[parentPath].children?.push(map[currentPath]);
-      }
-    }
-
-    this.fullMap[parentPath].children?.push(map[currentPath]);
-
-    return map[currentPath];
-  }
-
-  private findRoute(path: string) {
-    const { currentPath } = this.resolvePath(path);
-
-    const pane = this.paneMap[currentPath];
-    const page = this.pagesMap[currentPath];
-
-    return [pane, page].filter(Boolean);
-  }
-
-  wrap(
-    path: string,
-    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
-    Component: ComponentType,
-    options?: RouteOptions,
-  ) {
-    const existed = this.findRoute(path);
-
-    const id = nanoid();
-
-    const { currentPath, pathSegments, parentPath } = this.resolvePath(path);
-
-    this.paths.push({ path: currentPath });
-
-    this.wrapMap[currentPath] = {
-      path: pathSegments[pathSegments.length - 1],
-      Component,
-      children: [],
-      id: id,
-    };
-
-    const _loaders = loaders
-      ? Array.isArray(loaders)
-        ? loaders
-        : [loaders]
-      : [];
-
-    this.wrapMap[currentPath].loader = async (args) => {
-      for (const loader of _loaders) {
-        const data = await loader({
-          ...args,
-          ...this.wrapMap[currentPath],
-          context: this.context,
-        });
-        if (data) return data;
-      }
-
-      return null;
-    };
-
-    this.wrapMap[currentPath] = {
-      ...this.wrapMap[currentPath],
-      ...options,
-    };
-
-    this.ensurePath(path, this.pagesMap);
-    this.ensurePath(path, this.paneMap);
-
-    // this.wrapMap[currentPath].parent = {
-    //   $ref: this.paneMap[currentPath],
-    //   at: this.paneMap[currentPath].children?.length || 0,
-    // };
-    // this.paneMap[parentPath].children?.push(this.wrapMap[currentPath]);
-
-    this.wrapMap[currentPath].parent = {
-      $ref: this.pagesMap[currentPath],
-      at: this.pagesMap[currentPath].children?.length || 0,
-    };
-    this.pagesMap[parentPath].children?.push(this.wrapMap[currentPath]);
-
-    for (const page of existed) {
-      if (page) {
-        page.path = "";
-        this.wrapMap[currentPath].children?.push(page);
-
-        if (page.parent?.$ref.children) {
-          page.parent.$ref.children[page.parent?.at] =
-            this.wrapMap[currentPath];
-        }
-
-        page.parent = {
-          $ref: this.wrapMap[currentPath],
-          at: this.wrapMap[currentPath].children?.length || 0,
-        };
-      }
-    }
-
-    return this.wrapMap[currentPath];
-  }
-
-  /**
-   * @description full-page: page will be displayed as fullpage
-   */
-  page(
-    path: string,
-    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
-    Component: ComponentType,
-    options?: RouteOptions,
-  ) {
-    const id = nanoid();
-    return this.type(id, this.pagesMap, path, loaders, Component, options);
-  }
-
-  /**
-   * @description both-type: page will be displayed as both fullpage and modal
-   */
-  both(
-    path: string,
-    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
-    Component: ComponentType,
-    options?: RouteOptions,
-  ) {
-    const pid = nanoid();
-    const mid = nanoid();
-    return {
-      pane: this.type(pid, this.pagesMap, path, loaders, Component, options),
-      page: this.type(mid, this.paneMap, path, loaders, Component, options),
-    };
-  }
-
-  /**
-   * @description pane-page: page will be displayed at bottom of current page
-   */
-  pane(
-    path: string,
-    loaders: LoaderFunction[] | LoaderFunction | null | undefined,
-    Component: ComponentType,
-    options?: RouteOptions,
-  ) {
-    const id = nanoid();
-
-    this.context.set(id, {
-      floated: true,
+      id: generateId(type),
     });
 
-    return this.type(id, this.paneMap, path, loaders, Component, options);
+    return route;
+  }
+
+  find(type: RouteType, path: string) {
+    const { url } = resolvePath(path);
+
+    return this.map[type][url];
+  }
+
+  constructFrame(type: RouteType, path: string) {
+    const { url, parent, relative } = resolvePath(path);
+
+    if (parent && !this.map[type][parent.url]) {
+      this.constructFrame(type, parent.url);
+    }
+
+    if (!this.map[type][url]) {
+      const route = createEmptyRoute(url);
+      const container = this.map[type][parent!.url];
+
+      route.path = relative;
+
+      this.map[type][url] = route;
+      container.children.push(route);
+
+      route.parent = {
+        at: container.children.length - 1,
+        $ref: container,
+      };
+
+      return route;
+    }
+
+    return this.map[type][url];
+  }
+
+  refAll(type: RouteType, ...targets: Route[]) {
+    return targets.reduce<RouteObject[]>((acc, target) => {
+      if (typeof target === "string") {
+        return acc.concat(this.map[type][target]);
+      }
+
+      return acc.concat(target);
+    }, []);
+  }
+
+  // inherit(type: RouteType, from: Route, to: Route) {
+  //   const [fromRoute, toRoute] = this.refAll(type, from, to);
+
+  //   toRoute.children = [...fromRoute.children];
+  //   toRoute.parent = {
+  //     at: fromRoute.parent!.at,
+  //     $ref: fromRoute.parent!.$ref,
+  //   };
+
+  //   return toRoute;
+  // }
+
+  // replace(type: RouteType, route: Route, replacement: Route) {
+  //   const [routeRef, replacementRef] = this.refAll(type, route, replacement);
+
+  //   const parent = routeRef.parent!.$ref;
+  //   const at = routeRef.parent!.at;
+
+  //   parent.children[at] = replacementRef;
+
+  //   return replacementRef;
+  // }
+
+  wrap(type: RouteType, route: Route, wrapper: Route) {
+    const [routeRef, wrapperRef] = this.refAll(type, route, wrapper);
+
+    Object.assign(routeRef, {
+      children: [...wrapperRef.children],
+      path: "",
+    });
+
+    wrapperRef.children = [routeRef];
+
+    return wrapperRef;
+  }
+
+  page(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+    this.paths.push({ path });
+    return this.createRoute(RouteType.PAGE, path, loader, Component);
+  }
+
+  pane(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+    this.paths.push({ path });
+    return this.createRoute(RouteType.PANE, path, loader, Component);
+  }
+
+  matchPattern(location: Location) {
+    const routes = matchRoutes(this.paths, location);
+    const pathPattern = routes?.[0]?.route?.path;
+
+    if (pathPattern)
+      return (
+        this.map[RouteType.PAGE][pathPattern] ||
+        this.map[RouteType.PANE][pathPattern]
+      );
+
+    return null;
   }
 
   get useRouteContext() {
     return () => {
       const location = useLocation();
 
-      const routes = matchRoutes(this.paths, location);
+      const data = this.matchPattern(location);
 
-      const pathPattern = routes?.[0]?.route?.path;
+      if (data?.id) return this.context.get(data.id || "");
 
-      if (!pathPattern) return null;
-
-      const data = this.paneMap[pathPattern] || this.pagesMap[pathPattern];
-
-      const context = this.context.get(data?.id || "");
-
-      return context;
+      return null;
     };
   }
 
@@ -346,9 +239,11 @@ export default class Router {
       const background =
         location.state && location.state.background && context?.floated;
 
-      const modalRoutes = useRoutes(this.modalRoutes[0].children || []);
+      const modalRoutes = useRoutes(
+        this.route[RouteType.PANE][0].children || [],
+      );
       const pagesRoutes = useRoutes(
-        this.pagesRoutes[0].children || [],
+        this.route[RouteType.PAGE][0].children || [],
         background || location,
       );
 
@@ -362,8 +257,8 @@ export default class Router {
   }
 
   get RouterProvider() {
-    const modalRoutes = this.modalRoutes[0].children || [];
-    const pagesRoutes = this.pagesRoutes[0].children || [];
+    const modalRoutes = this.route[RouteType.PANE][0].children || [];
+    const pagesRoutes = this.route[RouteType.PAGE][0].children || [];
     const routes = [...modalRoutes, ...pagesRoutes];
 
     const router = createBrowserRouter([

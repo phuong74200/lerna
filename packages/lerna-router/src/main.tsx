@@ -1,4 +1,7 @@
-import Router, { RouteType } from "@/v2";
+import { createRoot } from "react-dom/client";
+import { Outlet } from "react-router-dom";
+
+import Router from "@/v2";
 
 const app = new Router();
 
@@ -9,8 +12,28 @@ const app = new Router();
 
 // console.log(app);
 
-app.createRoute(RouteType.PAGE, "a/b", null, () => <p>Main</p>);
+app.page("/", null, function m1() {
+  return <p>Main1</p>;
+});
+
+app.page("a/b", null, function m1() {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+});
+app.page("a/b", null, function m1() {
+  return <h1>Main1 in</h1>;
+});
+
+app.page("a/b/1", null, function m1() {
+  return <p>Main1</p>;
+});
+app.page("a/b/2", null, function m1() {
+  return <p>Main1</p>;
+});
 
 console.log(app);
 
-// createRoot(document.getElementById("root")!).render(<app.RouterProvider />);
+createRoot(document.getElementById("root")!).render(<app.RouterProvider />);

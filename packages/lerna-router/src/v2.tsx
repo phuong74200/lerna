@@ -1,13 +1,25 @@
 import { ComponentType } from "react";
-import { LoaderFunction, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  LoaderFunction,
+  Location,
+  matchRoutes,
+  Outlet,
+  RouterProvider,
+  RouterProviderProps,
+  useLocation,
+  useRoutes,
+} from "react-router-dom";
 import { nanoid } from "nanoid";
 
-import { RouteMap, RouteObject } from "@/types";
+import { Context, RouteMap, RouteObject } from "@/types";
 
 export enum RouteType {
   PAGE = "page",
   PANE = "pane",
 }
+
+type Route = RouteObject | string;
 
 type ResolvePath = {
   segments: string[];
@@ -16,15 +28,16 @@ type ResolvePath = {
   relative: string;
 };
 
-function createEmptyRoute(path: string = "/", override?: Partial<RouteObject>) {
+function createEmptyRoute(path: string = "/"): RouteObject {
   return {
     path: path,
     Component: Outlet,
     children: [],
     id: nanoid(),
-    ...override,
   };
 }
+
+const generateId = (type: RouteType) => type + "_" + nanoid();
 
 function stdRelativePath(path: string) {
   return path.replace(/^\/+|\/+$/g, "");
@@ -45,6 +58,8 @@ function resolvePath(path: string): ResolvePath {
 }
 
 export default class Router {
+  context: Map<string, Context> = new Map();
+
   private map: Record<RouteType, RouteMap> = {
     [RouteType.PAGE]: {},
     [RouteType.PANE]: {},
@@ -73,17 +88,195 @@ export default class Router {
     loader: LoaderFunction | null,
     Component: ComponentType,
   ) {
-    const { url, relative } = resolvePath(path);
+    const existedRoute = this.find(type, path);
 
-    const route = createEmptyRoute(url, {
-      path: relative,
+    // if existed make it a wrapper
+    if (existedRoute) {
+      const { relative } = resolvePath(path);
+
+      const route = createEmptyRoute(relative);
+
+      Object.assign(route, {
+        loader,
+        Component,
+        id: generateId(type),
+      });
+
+      return this.wrap(type, route, existedRoute);
+    }
+
+    const route = this.constructFrame(type, path);
+
+    Object.assign(route, {
+      loader,
       Component,
-      loader: loader || (() => null),
+      id: generateId(type),
     });
 
-    console.log(resolvePath(path));
+    return route;
+  }
 
-    this.map[type][url] = route;
-    this.route[type].push(route);
+  find(type: RouteType, path: string) {
+    const { url } = resolvePath(path);
+
+    return this.map[type][url];
+  }
+
+  constructFrame(type: RouteType, path: string) {
+    const { url, parent, relative } = resolvePath(path);
+
+    if (parent && !this.map[type][parent.url]) {
+      this.constructFrame(type, parent.url);
+    }
+
+    if (!this.map[type][url]) {
+      const route = createEmptyRoute(url);
+      const container = this.map[type][parent!.url];
+
+      route.path = relative;
+
+      this.map[type][url] = route;
+      container.children.push(route);
+
+      route.parent = {
+        at: container.children.length - 1,
+        $ref: container,
+      };
+
+      return route;
+    }
+
+    return this.map[type][url];
+  }
+
+  refAll(type: RouteType, ...targets: Route[]) {
+    return targets.reduce<RouteObject[]>((acc, target) => {
+      if (typeof target === "string") {
+        return acc.concat(this.map[type][target]);
+      }
+
+      return acc.concat(target);
+    }, []);
+  }
+
+  // inherit(type: RouteType, from: Route, to: Route) {
+  //   const [fromRoute, toRoute] = this.refAll(type, from, to);
+
+  //   toRoute.children = [...fromRoute.children];
+  //   toRoute.parent = {
+  //     at: fromRoute.parent!.at,
+  //     $ref: fromRoute.parent!.$ref,
+  //   };
+
+  //   return toRoute;
+  // }
+
+  // replace(type: RouteType, route: Route, replacement: Route) {
+  //   const [routeRef, replacementRef] = this.refAll(type, route, replacement);
+
+  //   const parent = routeRef.parent!.$ref;
+  //   const at = routeRef.parent!.at;
+
+  //   parent.children[at] = replacementRef;
+
+  //   return replacementRef;
+  // }
+
+  wrap(type: RouteType, route: Route, wrapper: Route) {
+    const [routeRef, wrapperRef] = this.refAll(type, route, wrapper);
+
+    Object.assign(routeRef, {
+      children: [...wrapperRef.children],
+      path: "",
+    });
+
+    wrapperRef.children = [routeRef];
+
+    return wrapperRef;
+  }
+
+  page(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+    this.paths.push({ path });
+    return this.createRoute(RouteType.PAGE, path, loader, Component);
+  }
+
+  pane(path: string, loader: LoaderFunction | null, Component: ComponentType) {
+    this.paths.push({ path });
+    return this.createRoute(RouteType.PANE, path, loader, Component);
+  }
+
+  matchPattern(location: Location) {
+    const routes = matchRoutes(this.paths, location);
+    const pathPattern = routes?.[0]?.route?.path;
+
+    if (pathPattern)
+      return (
+        this.map[RouteType.PAGE][pathPattern] ||
+        this.map[RouteType.PANE][pathPattern]
+      );
+
+    return null;
+  }
+
+  get useRouteContext() {
+    return () => {
+      const location = useLocation();
+
+      const data = this.matchPattern(location);
+
+      if (data?.id) return this.context.get(data.id || "");
+
+      return null;
+    };
+  }
+
+  private get Root() {
+    return () => {
+      const location = useLocation();
+
+      const context = this.useRouteContext();
+
+      const background =
+        location.state && location.state.background && context?.floated;
+
+      const modalRoutes = useRoutes(
+        this.route[RouteType.PANE][0].children || [],
+      );
+      const pagesRoutes = useRoutes(
+        this.route[RouteType.PAGE][0].children || [],
+        background || location,
+      );
+
+      return (
+        <>
+          {pagesRoutes}
+          {background && modalRoutes}
+        </>
+      );
+    };
+  }
+
+  get RouterProvider() {
+    const modalRoutes = this.route[RouteType.PANE][0].children || [];
+    const pagesRoutes = this.route[RouteType.PAGE][0].children || [];
+    const routes = [...modalRoutes, ...pagesRoutes];
+
+    const router = createBrowserRouter([
+      {
+        path: "/",
+        Component: this.Root,
+        children: routes,
+      },
+    ]);
+
+    return (props: Omit<RouterProviderProps, "router">) => {
+      return (
+        <RouterProvider
+          fallbackElement={<h1>Loading</h1>}
+          router={router}
+          {...props}
+        />
+      );
+    };
   }
 }
