@@ -294,7 +294,7 @@ export default class Router {
   }
 
   applyMiddleware(nextData: NextData, ctx: Record<string, unknown>) {
-    this.nextQueue.shift()?.call(this);
+    this.nextQueue.shift()?.call(this, this, nextData, ctx);
   }
 
   next(...middlewares: MiddlewareFunction[]) {

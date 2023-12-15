@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ComponentType, ReactNode } from "react";
 import {
   LoaderFunctionArgs as _LoaderFunctionArgs,
   NonIndexRouteObject,
@@ -16,6 +16,8 @@ export type RouteObject = Omit<
     $ref: RouteObject;
     at: number;
   };
+
+  sibling?: RouteObject;
 };
 
 export type RouteMap = Record<string, RouteObject>;
@@ -34,7 +36,7 @@ export type LoaderFunctionArgs = Omit<
   "context"
 > & {
   context: Map<string, Context>;
-  id: string;
+  id: string | undefined;
 };
 
 export interface Response extends NodeJS.fetch._Response {}
@@ -47,4 +49,29 @@ export interface LoaderFunction {
 export type RouteOptions = Omit<
   NonIndexRouteObject,
   "path" | "id" | "loader" | "children" | "element" | "Component"
+>;
+
+export enum RouteType {
+  PAGE = "page",
+  PANE = "pane",
+}
+
+export type Route = RouteObject | string;
+
+export type ResolvePath = {
+  segments: string[];
+  parent: ResolvePath | null;
+  url: string;
+  relative: string;
+};
+
+export type NextData = {
+  path: string;
+  loader: LoaderFunction | null;
+  Component: ComponentType;
+  options?: Partial<RouteObject>;
+};
+
+export type MiddlewareFunction = () => Partial<
+  Omit<RouteObject, "children" | "path" | "id" | "parent">
 >;
