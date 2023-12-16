@@ -66,9 +66,10 @@ createRoot(document.getElementById("root")!).render(
 `;
 
 export const bothLoader = async ({ id, context }: LoaderFunctionArgs) => {
-  context.set(id, {
-    floated: Math.random() > 0.5,
-  });
+  if (id)
+    context.set(id, {
+      floated: Math.random() > 0.5,
+    });
 
   return null;
 };

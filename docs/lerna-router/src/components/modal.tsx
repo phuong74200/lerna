@@ -1,13 +1,27 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ChevronLeft from "./icon-x";
 
 export default function Modal({ children }: PropsWithChildren) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const back = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate(-1);
+      }
+    };
+
+    window.addEventListener("keydown", back);
+
+    return () => {
+      window.removeEventListener("keydown", back);
+    };
+  }, [navigate]);
 
   return (
     <div
@@ -20,8 +34,10 @@ export default function Modal({ children }: PropsWithChildren) {
         backdropFilter: "blur(4px)",
         background: "rgba(0,0,0,0.5)",
       }}
+      onClick={() => navigate(-1)}
     >
       <div
+        onClick={(e) => e.stopPropagation()}
         style={{
           position: "absolute",
           left: "50%",

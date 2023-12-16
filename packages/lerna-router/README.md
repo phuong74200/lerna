@@ -1,3 +1,7 @@
+# Note
+
+The file src/main.tsx is made for testing purpose.
+
 # Example
 
 ```jsx
@@ -24,7 +28,6 @@ const loader = async ({ id }: LoaderFnArgs) => {
 app.page("/", loader, () => <h1>root</h1>);
 app.page("/admin/1", loader, () => <h1>admin/1</h1>);
 app.page("/admin/2", loader, () => <h1>admin/2</h1>);
-app.both("/modal/1", loader, () => <h1>root</h1>);
 app.pane("/modal/2", loader, Hadler4);
 app.page("*", null, () => <h1>404</h1>);
 
