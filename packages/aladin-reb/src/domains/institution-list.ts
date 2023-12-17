@@ -14,6 +14,7 @@ export class InsitutionList {
       value: item.institutionId || "",
       label: item.name || "",
       image: item.image || "",
+      searchString: JSON.stringify(item),
     }));
   }
 
