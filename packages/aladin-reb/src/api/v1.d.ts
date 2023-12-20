@@ -155,6 +155,7 @@ export interface paths {
     post: operations["createInstitution"];
   };
   "/v1/institution/major": {
+    get: operations["getAllMajorsOfMultipleInstitutions"];
     post: operations["createMajor"];
   };
   "/v1/institution/major/subject": {
@@ -242,6 +243,9 @@ export interface paths {
   "/v1/manager/all": {
     get: operations["getAllManagers"];
   };
+  "/v1/institution/{institution_id}/subject": {
+    get: operations["getAllSubjectsOfInstitution"];
+  };
   "/v1/institution/{institution_id}/major": {
     get: operations["getAllMajorsOfInstitution"];
   };
@@ -293,7 +297,9 @@ export interface components {
       /** Format: int32 */
       usedQuantity?: number;
       /** Format: int32 */
-      numberOfStudying?: number;
+      baseNumberOfStudying?: number;
+      /** Format: int32 */
+      totalReceiving?: number;
     };
     VoucherResponse: {
       /** Format: int32 */
@@ -748,17 +754,6 @@ export interface components {
       totalElements?: number;
       list?: components["schemas"]["InstitutionResponse"][];
     };
-    PageResponseMajorMajorResponse: {
-      /** Format: int32 */
-      totalPages?: number;
-      /** Format: int32 */
-      pageNumber?: number;
-      /** Format: int32 */
-      pageSize?: number;
-      /** Format: int64 */
-      totalElements?: number;
-      list?: components["schemas"]["MajorResponse"][];
-    };
     PageResponseSubjectSubjectResponse: {
       /** Format: int32 */
       totalPages?: number;
@@ -769,6 +764,17 @@ export interface components {
       /** Format: int64 */
       totalElements?: number;
       list?: components["schemas"]["SubjectResponse"][];
+    };
+    PageResponseMajorMajorResponse: {
+      /** Format: int32 */
+      totalPages?: number;
+      /** Format: int32 */
+      pageNumber?: number;
+      /** Format: int32 */
+      pageSize?: number;
+      /** Format: int64 */
+      totalElements?: number;
+      list?: components["schemas"]["MajorResponse"][];
     };
     PageResponseDiscountDiscountResponse: {
       /** Format: int32 */
@@ -1444,7 +1450,7 @@ export interface operations {
   getDiscountById: {
     parameters: {
       path: {
-        discount_id: string;
+        discount_id: number;
       };
     };
     responses: {
@@ -1642,6 +1648,27 @@ export interface operations {
       200: {
         content: {
           "*/*": components["schemas"]["InstitutionResponse"];
+        };
+      };
+    };
+  };
+  getAllMajorsOfMultipleInstitutions: {
+    parameters: {
+      query: {
+        institutionIds: string[];
+        /** @description Zero-based page index (0..N) */
+        page?: number;
+        /** @description The size of the page to be returned */
+        size?: number;
+        /** @description Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. */
+        sort?: string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "*/*": components["schemas"]["PageResponseMajorMajorResponse"];
         };
       };
     };
@@ -2077,6 +2104,29 @@ export interface operations {
       200: {
         content: {
           "*/*": components["schemas"]["PageResponseManagerManagerResponse"];
+        };
+      };
+    };
+  };
+  getAllSubjectsOfInstitution: {
+    parameters: {
+      query?: {
+        /** @description Zero-based page index (0..N) */
+        page?: number;
+        /** @description The size of the page to be returned */
+        size?: number;
+        /** @description Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. */
+        sort?: string[];
+      };
+      path: {
+        institution_id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "*/*": components["schemas"]["PageResponseSubjectSubjectResponse"];
         };
       };
     };

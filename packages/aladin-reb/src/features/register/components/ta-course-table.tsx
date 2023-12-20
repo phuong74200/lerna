@@ -1,64 +1,72 @@
-import { Button, Group, Select, Stack, TextInput } from "@mantine/core";
-import { createFormContext } from "@mantine/form";
+import { Button, NumberInput, Stack, TextInput } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
+import { uid } from "uid";
 
-import { components } from "@/api/v1";
+import MajorSelect from "@/common/ui/major-select";
+import SubjectSelect from "@/common/ui/subject-select";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
-import useGetAllMajorsOfInstitution from "@/features/major/services/use-get-all-majors-of-institution";
-import useGetAllSubjectOfMajor from "@/features/subject/services/get-all-subject-of-major";
+import { Column, useFormContext } from "@/features/register/contexts/ta-step-2";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
-import { useGetCurrentUserFromCache } from "@/services/use-get-current-user";
-import logger from "@/utils/dev-log";
-
-type Column = components["schemas"]["RegisterTARequest"]["subjectRegisters"][number] & {
-  major_id: number;
-};
-
-const [FormProvider, useFormContext, useForm] = createFormContext<Column[]>();
 
 const LinkResource = ({ index }: { index: number }) => {
   const form = useFormContext();
-  return <TextInput variant="unstyled" {...form.getInputProps(`${index}.linkResource`)} />;
+  return <TextInput variant="unstyled" {...form.getInputProps(`list.${index}.linkResource`)} />;
 };
 
 const Major = ({ index }: { index: number }) => {
-  const user = useGetCurrentUserFromCache();
-  const majors = useGetAllMajorsOfInstitution({
-    path: { institution_id: user?.state.data?.data.institutionId || "" },
-  });
   const form = useFormContext();
 
-  return (
-    <Select
-      variant="unstyled"
-      data={majors.data?.toSelectList() || []}
-      {...form.getInputProps(`${index}.linkResource`)}
-    />
-  );
+  return <MajorSelect {...form.getInputProps(`list.${index}.major_id`)} />;
 };
 
 const Subject = ({ index }: { index: number }) => {
   const form = useFormContext();
 
-  const subjects = useGetAllSubjectOfMajor({
-    path: { major_id: form.values[index].major_id },
-  });
-
   return (
-    <Select
-      variant="unstyled"
-      disabled={!form.values[index].major_id}
-      data={subjects.data?.list.toSelectList() || []}
-      {...form.getInputProps(`${index}.linkResource`)}
+    <SubjectSelect
+      major_id={form.values.list[index].major_id}
+      disabled={!form.values.list[index].major_id}
+      {...form.getInputProps(`list.${index}.subjectId`)}
     />
   );
 };
 
 const GPA = ({ index }: { index: number }) => {
   const form = useFormContext();
+  return (
+    <NumberInput
+      min={0}
+      max={10}
+      step={0.1}
+      precision={1}
+      classNames={{
+        input: "text-center",
+      }}
+      variant="unstyled"
+      {...form.getInputProps(`list.${index}.gpa`)}
+    />
+  );
+};
 
-  return <TextInput variant="unstyled" {...form.getInputProps(`${index}.gpa`)} />;
+const TrashButton = ({ index }: { index: number }) => {
+  const form = useFormContext();
+
+  return (
+    <RippleActionIcon
+      className="mx-auto"
+      color="blue"
+      variant="filled"
+      onClick={() => {
+        form.setFieldValue(
+          "list",
+          form.values.list.filter((_, i) => i !== index),
+        );
+      }}
+    >
+      <IconTrash size={ACTION_ICON_SIZE} fill="currentColor" />
+    </RippleActionIcon>
+  );
 };
 
 const columns: DataTableColumn<Column>[] = [
@@ -95,57 +103,41 @@ const columns: DataTableColumn<Column>[] = [
     title: "Tác vụ",
     width: "10%",
     textAlignment: "center",
-    render: () => (
-      <>
-        <Group>
-          <RippleActionIcon className="mx-auto" color="blue" variant="filled">
-            <IconTrash size={ACTION_ICON_SIZE} fill="currentColor" />
-          </RippleActionIcon>
-        </Group>
-      </>
-    ),
+    render: (_, index) => <TrashButton index={index} />,
   },
 ];
 
 export default function TACourseTable() {
-  const form = useForm({
-    initialValues: [
+  const form = useFormContext();
+
+  const handleAppend = () => {
+    form.setFieldValue("list", [
+      ...form.values.list,
       {
-        gpa: 1,
+        gpa: 0,
         linkResource: "string",
         subjectId: 0,
         major_id: 0,
+        id: uid(),
       },
-    ],
-  });
-
-  const handleAppend = () => {
-    form.setValues((current) => {
-      logger.log("xxxxxxxxxxxx", current);
-
-      return current;
-    });
+    ]);
   };
-
-  logger.log(form.values);
 
   return (
     <Stack>
-      <FormProvider form={form}>
-        <DataTable
-          minHeight={150}
-          withBorder
-          borderRadius="md"
-          fontSize="md"
-          withColumnBorders
-          striped
-          highlightOnHover
-          records={form.values}
-          verticalSpacing="sm"
-          noRecordsText="Không có dữ liệu"
-          columns={columns}
-        />
-      </FormProvider>
+      <DataTable
+        minHeight={150}
+        withBorder
+        borderRadius="md"
+        fontSize="md"
+        withColumnBorders
+        striped
+        highlightOnHover
+        records={form.values.list}
+        verticalSpacing="sm"
+        noRecordsText="Không có dữ liệu"
+        columns={columns}
+      />
       <Button onClick={handleAppend}>Thêm môn trợ giảng</Button>
     </Stack>
   );

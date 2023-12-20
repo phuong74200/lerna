@@ -13,7 +13,7 @@ export class SubjectList {
     return this.props.map((item) => ({
       searchString: toNonAccentVietnamese(JSON.stringify(item.toRaw())),
       description: item.description,
-      value: item.institutionId || "",
+      value: item.subjectId?.toString() || "",
       label: item.name || "",
     }));
   }

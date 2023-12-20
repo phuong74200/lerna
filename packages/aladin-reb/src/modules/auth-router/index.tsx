@@ -7,8 +7,6 @@ import {
   useRoutes,
 } from "react-router-dom";
 
-import logger from "@/utils/dev-log";
-
 type AdvanceRouteObject<P = unknown> = Omit<NonIndexRouteObject, "children" | "path"> & {
   path: string;
   asModal?: boolean;
@@ -117,14 +115,7 @@ export default class AuthRouter<P = unknown> {
         background || location,
       );
 
-      logger.log("modalRoute", {
-        modalRoute,
-        fullPageRoute: this.collectAuthRoutes(this.immRoute, auth || [], false),
-      });
-
       if (isFetching) return <h1>Loading</h1>;
-
-      logger.log(modalRoute?.props?.match?.route?.replace, background);
 
       if (background && modalRoute?.props?.match?.route?.replace) return modalRoute;
 
@@ -146,7 +137,6 @@ export default class AuthRouter<P = unknown> {
           children: this.immRoute,
         },
       ]);
-      console.log(r);
 
       return <RouterProvider router={r} fallbackElement={<h1>Loading</h1>} />;
     };

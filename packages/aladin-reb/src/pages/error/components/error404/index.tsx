@@ -17,7 +17,7 @@ export default function Error404() {
         </Text>
         <Group position="center">
           <Link to="/login">
-            <Button variant="subtle" size="md">
+            <Button variant="outline" size="lg">
               Take me back to home page
             </Button>
           </Link>

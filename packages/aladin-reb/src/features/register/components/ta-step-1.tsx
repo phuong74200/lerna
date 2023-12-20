@@ -1,40 +1,55 @@
+import { useContext } from "react";
 import { Button, Radio, SimpleGrid, Stack, Text, Textarea, TextInput, Title } from "@mantine/core";
-import { useForm, UseFormReturnType, zodResolver } from "@mantine/form";
+import { TransformedValues, useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 
-import { TaRegisterForm } from "@/features/register/types/ta-register-form";
+import { VN_PHONE_REGEX } from "@/configs/regex";
+import { TAFormContext } from "@/features/register/contexts/ta-form";
 import { useGetCurrentUserFromCache } from "@/services/use-get-current-user";
 
 const schema = z.object({
   linkFacebook: z.string().url(),
   studentCode: z.string().min(1),
-  subjectRegisters: z.array(z.string()),
-  personalImage: z.string().url(),
-  referenceTAPhoneNumber: z.string().min(10).max(11),
+  referenceTAPhoneNumber: z
+    .string()
+    .refine((v) => (v.length === 0 ? true : new RegExp(VN_PHONE_REGEX).test(v)), {
+      message: "Invalid phone number format",
+    }),
   teachingExperience: z.string(),
-  usedToBeTA: z.boolean(),
+  usedToBeTA: z.string(),
 });
 
-type Props = {
-  generalForm: UseFormReturnType<TaRegisterForm>;
-};
-
-export default function TAStep1({ generalForm }: Props) {
+export default function TAStep1() {
   const user = useGetCurrentUserFromCache();
+  const { generalForm, setStep } = useContext(TAFormContext);
 
-  const form = useForm<TaRegisterForm["step1"]>({
+  const form = useForm({
     validate: zodResolver(schema),
     initialValues: {
       linkFacebook: "",
       studentCode: "",
-      personalImage: "",
       referenceTAPhoneNumber: "",
       teachingExperience: "",
-      usedToBeTA: false,
+      usedToBeTA: "no",
+    },
+    transformValues(values) {
+      return {
+        ...values,
+        usedToBeTA: values.usedToBeTA === "yes",
+      };
     },
   });
 
-  const handleSubmit = () => generalForm.setFieldValue("step1", form.values);
+  const handleSubmit = (values: TransformedValues<typeof form>) => {
+    if (form.isValid()) {
+      generalForm.setValues({
+        ...generalForm.values,
+        ...values,
+        referenceTAPhoneNumber: values.referenceTAPhoneNumber || undefined,
+      });
+      setStep(1);
+    }
+  };
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -67,6 +82,7 @@ export default function TAStep1({ generalForm }: Props) {
               placeholder="Số điện thoại"
               disabled
               defaultValue={user?.state.data?.data.phoneNumber}
+              {...form.getInputProps("phoneNumber")}
             />
             <TextInput
               withAsterisk
@@ -85,7 +101,11 @@ export default function TAStep1({ generalForm }: Props) {
             <Title order={3} className="text-blue-600">
               Thông tin khác
             </Title>
-            <TextInput label="Số điện thoại trợ giảng giới thiệu" placeholder="Số điện thoại" />
+            <TextInput
+              label="Số điện thoại trợ giảng giới thiệu"
+              placeholder="Số điện thoại"
+              {...form.getInputProps("referenceTAPhoneNumber")}
+            />
             <Title order={3} className="text-blue-600">
               Khảo sát về dạy học
             </Title>

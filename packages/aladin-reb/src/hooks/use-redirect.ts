@@ -1,19 +1,21 @@
 import { NavigateOptions, useLocation, useNavigate } from "react-router-dom";
 
+import { Path } from "@/router/path";
+
 export default function useRedirect() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const back = () => navigate(-1);
 
-  const redirect = (path?: string, options?: NavigateOptions) => path && navigate(path, options);
+  const redirect = (path?: Path, options?: NavigateOptions) => path && navigate(path, options);
 
   const onRedirect =
     (...args: Parameters<typeof redirect>) =>
     () =>
       redirect(...args);
 
-  const redirectWithState = (path?: string, options?: NavigateOptions) =>
+  const redirectWithState = (path?: Path, options?: NavigateOptions) =>
     path &&
     navigate(path, {
       ...options,

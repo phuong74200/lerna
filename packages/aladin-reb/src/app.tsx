@@ -1,13 +1,15 @@
+import { RouterProvider } from "react-router-dom";
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import Loading from "@/components/loading";
 import { FeatureFlagProvider, FLAGS, useFeatureFlag, useHelper } from "@/configs/feature-flag";
 import { customMantineTheme } from "@/configs/mantine-theme";
 import { defaultOptions, mutationCache, queryCache } from "@/configs/react-query";
 import { UserContextProvider } from "@/context/user";
 import SyncTailwindColorScheme from "@/modules/sync-tailwind-color-scheme";
-import { BrowserRouter } from "@/router";
+import { browserRouter } from "@/router";
 
 import "@/configs/zod";
 import "@/configs/dayjs";
@@ -39,9 +41,7 @@ function Theme() {
       >
         <ModalsProvider>
           <SyncTailwindColorScheme scheme={scheme} />
-          {/* <Notifications /> */}
-          <BrowserRouter.RouterProvider />
-          {/* <LernaRouterProvider /> */}
+          <RouterProvider router={browserRouter} fallbackElement={<Loading />} />
         </ModalsProvider>
       </MantineProvider>
     </ColorSchemeProvider>

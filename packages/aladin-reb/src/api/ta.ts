@@ -37,4 +37,15 @@ export const taKeys = createQueryKeys("ta", {
       return data;
     },
   }),
+
+  register: () => ({
+    queryKey: ["register"],
+    queryFn: async () => {
+      const { error, data } = await client.GET(`/v1/register/ta/current`);
+
+      if (error) throw error;
+
+      return data;
+    },
+  }),
 });

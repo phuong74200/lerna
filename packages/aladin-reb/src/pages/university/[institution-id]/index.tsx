@@ -112,7 +112,7 @@ export default function ViewUniversity() {
               placeholder="Tìm kiếm"
             />
             <RippleButton
-              onClick={onRedirectWithState("/major/create", {
+              onClick={onRedirectWithState("/admin/major/create", {
                 state: {
                   institutionId,
                 },
@@ -138,7 +138,7 @@ export default function ViewUniversity() {
           verticalSpacing="sm"
           noRecordsText="Không có dữ liệu"
           columns={columns}
-          onRowClick={({ majorId }) => redirect(`/major/${majorId}`)}
+          onRowClick={({ majorId }) => redirect(`/admin/major/1`)}
         />
         <Flex justify="space-between" align="center">
           <Text size="sm">

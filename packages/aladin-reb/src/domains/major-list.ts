@@ -1,3 +1,5 @@
+import { uid } from "uid";
+
 import { components } from "@/api/v1";
 import { Major } from "@/domains/major";
 import { toNonAccentVietnamese } from "@/utils/converter";
@@ -13,7 +15,7 @@ export class MajorList {
     return this.props.map((item) => ({
       searchString: toNonAccentVietnamese(JSON.stringify(item.toRaw())),
       description: item.description,
-      value: item.institutionId || "",
+      value: item.majorId?.toString() || uid(),
       label: item.name || "",
     }));
   }

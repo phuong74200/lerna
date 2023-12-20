@@ -11,9 +11,10 @@ import {
   UnstyledButton,
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
-import { IconCalendarStats, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
 import useRedirect from "@/hooks/use-redirect";
+import { Path } from "@/router/path";
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -60,7 +61,7 @@ const useStyles = createStyles((theme) => ({
 
 export interface LinkItem {
   label: string;
-  link: string;
+  link: Path;
 }
 
 export type LinksGroupProps = {
@@ -68,9 +69,9 @@ export type LinksGroupProps = {
   label: string;
   initiallyOpened?: boolean;
   enabled?: boolean;
-} & ({ links: LinkItem[]; link?: never } | { link: string; links?: never });
+} & ({ links: LinkItem[]; link?: never } | { link: Path; links?: never });
 
-const SubItem = ({ link, label }: { label: string; link: string }) => {
+const SubItem = ({ link, label }: { label: string; link: Path }) => {
   const { classes, cx } = useStyles();
   const { onRedirect } = useRedirect();
   const matchLocation = useMatch(link);
@@ -125,29 +126,5 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
       </UnstyledButton>
       {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
-  );
-}
-
-const mockdata = {
-  label: "Releases",
-  icon: IconCalendarStats,
-  links: [
-    { label: "Upcoming releases", link: "/" },
-    { label: "Previous releases", link: "/" },
-    { label: "Releases schedule", link: "/" },
-  ],
-};
-
-export function NavbarLinksGroup() {
-  return (
-    <Box
-      sx={(theme) => ({
-        minHeight: rem(220),
-        padding: theme.spacing.md,
-        backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
-      })}
-    >
-      <LinksGroup {...mockdata} />
-    </Box>
   );
 }

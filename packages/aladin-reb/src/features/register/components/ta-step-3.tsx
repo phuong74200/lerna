@@ -1,12 +1,15 @@
 import { Button, Center, Image, Text } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 
+import useRedirect from "@/hooks/use-redirect";
 import { generatePlaceHolderImage } from "@/utils/generate-place-holder-image";
 
 export default function TAStep3() {
+  const { onRedirect } = useRedirect();
+
   return (
     <>
-      <Center>
+      <Center mt="md">
         <Image src={generatePlaceHolderImage({ width: 340, height: 340 })} width={340} />
       </Center>
       <Text size="lg" mt="lg" align="center">
@@ -17,7 +20,7 @@ export default function TAStep3() {
         </Text>
       </Text>
       <Center mt="lg">
-        <Button variant="light" rightIcon={<IconArrowNarrowRight />}>
+        <Button onClick={onRedirect("revise")} variant="light" rightIcon={<IconArrowNarrowRight />}>
           Xem lại đơn đăng ký
         </Button>
       </Center>

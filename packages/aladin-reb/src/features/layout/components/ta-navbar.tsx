@@ -20,7 +20,7 @@ const mockdata: LinksGroupProps[] = [
     label: "Quản lý trường",
     icon: IconBuildingCommunity,
     initiallyOpened: true,
-    link: "/university",
+    link: "/admin/institution",
   },
   // {
   //   label: "Quản lý lớp",
@@ -39,12 +39,12 @@ const mockdata: LinksGroupProps[] = [
   {
     label: "Quản lý sinh viên",
     icon: IconUsersGroup,
-    link: "/students",
+    link: "/admin/student",
   },
   {
     label: "Quản lý TA",
     icon: IconBooks,
-    link: "/tas",
+    link: "/admin/lecture",
   },
   // {
   //   label: "Quản lý đánh giá",
@@ -59,18 +59,18 @@ const mockdata: LinksGroupProps[] = [
     links: [
       {
         label: "Voucher",
-        link: "/vouchers",
+        link: "/admin/voucher",
       },
       {
         label: "Giảm giá",
-        link: "/discount",
+        link: "/admin/discount",
       },
     ],
   },
   {
     label: "Quản lý mods",
     icon: IconKey,
-    link: "/manager",
+    link: "/admin/mod",
   },
 ];
 
