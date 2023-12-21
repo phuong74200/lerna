@@ -9,9 +9,9 @@ import {
 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { LinksGroup, LinksGroupProps } from "@/features/layout/components/navbar-link-group";
-import { UserButton } from "@/features/layout/components/user-button";
-import { useGetCurrentUserFromCache } from "@/services/use-get-current-user";
+import { LinksGroup, LinksGroupProps } from "@/layout/components/navbar-link-group";
+import { UserButton } from "@/layout/components/user-button";
+import useGetCurrentUser from "@/services/use-get-current-user";
 import generateAvatar from "@/utils/generate-avatar";
 
 const mockdata: LinksGroupProps[] = [
@@ -106,7 +106,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export const NavbarNested = forwardRef<HTMLDivElement, unknown>((_, ref) => {
-  const cacheData = useGetCurrentUserFromCache();
+  const { data } = useGetCurrentUser();
   const queryClient = useQueryClient();
 
   const { classes } = useStyles();
@@ -114,13 +114,6 @@ export const NavbarNested = forwardRef<HTMLDivElement, unknown>((_, ref) => {
 
   return (
     <Navbar height={800} width={{ sm: 300 }} p="md" className={classes.navbar} ref={ref}>
-      {/* <Navbar.Section className={classes.header}>
-        <Group position="apart">
-          <Logo width={rem(120)} />
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
-        </Group>
-      </Navbar.Section> */}
-
       <Navbar.Section grow className={classes.links} component={ScrollArea}>
         <div>{links}</div>
       </Navbar.Section>
@@ -129,12 +122,9 @@ export const NavbarNested = forwardRef<HTMLDivElement, unknown>((_, ref) => {
         <Menu withArrow>
           <Menu.Target>
             <UserButton
-              image={
-                cacheData?.state.data?.data.avatar ||
-                generateAvatar(cacheData?.state.data?.data.userId)
-              }
-              name={cacheData?.state.data?.data.fullName || ""}
-              email={cacheData?.state.data?.data.email || ""}
+              image={data?.data?.avatar || generateAvatar(data?.data?.userId)}
+              name={data?.data?.fullName || ""}
+              email={data?.data?.email || ""}
             />
           </Menu.Target>
           <Menu.Item

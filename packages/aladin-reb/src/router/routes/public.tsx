@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from "react-router-dom";
 
 import { on, RouteSwitch } from "@/configs/permisson-route";
-import { PublicLayout } from "@/features/layout";
+import { PublicLayout } from "@/layout";
 import { ForgetPasswordPage, LoginPage, RecoveryOTPage, RegisterPage } from "@/pages";
 
 export const publicRoutes: RouteObject[] = [

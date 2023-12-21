@@ -1,3 +1,4 @@
+import { generatePath } from "react-router-dom";
 import {
   Container,
   Flex,
@@ -61,14 +62,20 @@ const columns: DataTableColumn<Institution>[] = [
     width: "10%",
     textAlignment: "center",
     render: ({ institutionId }) => (
-      <NavigateButton color="blue" mx="auto" to={`update/${institutionId}`}>
+      <NavigateButton
+        color="blue"
+        mx="auto"
+        to={generatePath("/admin/institution/update/:institutionId", {
+          institutionId: `${institutionId}`,
+        })}
+      >
         <IconPencil size={ACTION_ICON_SIZE} fill="currentColor" />
       </NavigateButton>
     ),
   },
 ];
 
-export default function ListUniversity() {
+export default function ListUniversityPage() {
   const theme = useMantineTheme();
   const { redirect, onRedirectWithState } = useRedirect();
 

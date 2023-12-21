@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import { AppShell, AppShellProps, Box } from "@mantine/core";
 import { useResizeObserver } from "@mantine/hooks";
 
-import { SuperAdminHeader } from "@/features/layout/components/student-header";
-import { NavbarNested } from "@/features/layout/components/ta-navbar";
+import { SuperAdminHeader } from "@/layout/components/student-header";
+import { NavbarNested } from "@/layout/components/ta-navbar";
 import { MantineStyles } from "@/types/mantine-styles";
 
 const links = [

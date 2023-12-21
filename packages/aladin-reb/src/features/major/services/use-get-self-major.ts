@@ -1,11 +1,11 @@
 import useGetAllMajorsOfInstitution from "@/features/major/services/use-get-all-majors-of-institution";
-import { useGetCurrentUserFromCache } from "@/services/use-get-current-user";
+import useGetCurrentUser from "@/services/use-get-current-user";
 
 export default function useGetSelfMajor() {
-  const user = useGetCurrentUserFromCache();
+  const { data } = useGetCurrentUser();
 
   const majors = useGetAllMajorsOfInstitution({
-    path: { institution_id: user?.state.data?.data.institutionId || "" },
+    path: { institution_id: data?.data?.institutionId || "" },
   });
 
   return majors;

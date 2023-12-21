@@ -1,4 +1,4 @@
-import { DefaultOptions, MutationCache, QueryCache } from "@tanstack/react-query";
+import { DefaultOptions, MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
 
 import isInstanceOfResponseError from "@/utils/is-instance-of";
 
@@ -24,3 +24,9 @@ export const defaultOptions: DefaultOptions = {
     retry: false,
   },
 };
+
+export const queryClient = new QueryClient({
+  defaultOptions,
+  queryCache,
+  mutationCache,
+});

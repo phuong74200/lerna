@@ -26,7 +26,8 @@ export default function RecoveryPage() {
 
   const handleSubmit = async () => {
     await mutation.mutateAsync(form.values);
-    redirectWithState("otp", {
+
+    redirectWithState("/recovery/otp", {
       state: {
         email: form.values.email,
       },

@@ -4,6 +4,13 @@ interface C {
 
 export const PATH = {
   "/login": {},
+  "/register": {
+    verify: {},
+  },
+  "/recovery": {
+    reset: {},
+    otp: {},
+  },
   "/admin": {
     institution: {
       create: {},
@@ -54,5 +61,3 @@ type PathKeys<T> = T extends C
   : never;
 
 export type Path = "/" | "*" | PathKeys<typeof PATH>;
-
-const b: Path = "";

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLoaderData } from "react-router-dom";
 import { AppShell, AppShellProps, Box, Flex } from "@mantine/core";
 
 import {
@@ -7,8 +7,10 @@ import {
   ASSET_GIRL_TABLET_2,
   ASSET_MALE_LAPTOP,
 } from "@/assets";
+import NavigateWithState from "@/components/navigate-with-state";
 import LandingCarousel from "@/features/landing/components/landing-carousel";
-import { HeaderResponsive } from "@/features/layout/components/header-responsive";
+import { HeaderResponsive } from "@/layout/components/header-responsive";
+import { currentUserLoader } from "@/loaders/current-user";
 import { MantineStyles } from "@/types/mantine-styles";
 
 const links = [
@@ -39,7 +41,15 @@ const style: MantineStyles<AppShellProps> = (theme) => ({
   },
 });
 
-export default function Public() {
+export default function PublicLayout() {
+  const userData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof currentUserLoader>>>;
+
+  if (userData && userData.permissions?.includes("Super_Admin_Interact"))
+    return <Navigate to="/admin" replace={true} />;
+
+  if (userData?.status === "VERIFICATION_REQUIRED")
+    return <NavigateWithState to="/register/verify" />;
+
   return (
     <AppShell padding="md" styles={style} header={<HeaderResponsive links={links} />}>
       <Flex p="lg" className="mih-0 flex-1 justify-between md:justify-center">

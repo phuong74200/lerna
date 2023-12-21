@@ -1,16 +1,15 @@
-import { UseFormReturnType } from "@mantine/form";
-import { useLocalStorage } from "@mantine/hooks";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
-import { queryKeys } from "@/api";
 import { client } from "@/api/openapi-fetch";
 import { components } from "@/api/v1";
+import useRedirect from "@/hooks/use-redirect";
+import useToken from "@/hooks/use-token";
 
 type LoginRequest = components["schemas"]["LoginRequest"];
 
-export default function usePostLoginUser(form: UseFormReturnType<LoginRequest>) {
-  const queryClient = useQueryClient();
-  const [_, setToken] = useLocalStorage({ key: "token" });
+export default function usePostLoginUser() {
+  const [, setToken] = useToken();
+  const { redirect } = useRedirect();
 
   const mutation = useMutation({
     mutationFn: async (body: LoginRequest) => {
@@ -20,18 +19,13 @@ export default function usePostLoginUser(form: UseFormReturnType<LoginRequest>) 
 
       return response;
     },
-    onSuccess: async (data) => {
-      const queryKey = queryKeys.generalUser.user("current").queryKey;
+    onSuccess: async ({ data }) => {
+      if (data?.accessToken) setToken(data.accessToken);
 
-      await queryClient.cancelQueries({ queryKey });
-
-      setToken(data.data?.accessToken || "");
-
-      queryClient.setQueryData(queryKey, { data: data.data?.userResponse });
+      if (data?.userResponse?.roleId === "SUPER_AD") return redirect("/admin", { replace: true });
+      if (data?.userResponse?.roleId === "STU") return redirect("/usr", { replace: true });
     },
   });
 
-  const submit = () => mutation.mutate(form.values);
-
-  return { ...mutation, submit };
+  return { ...mutation };
 }

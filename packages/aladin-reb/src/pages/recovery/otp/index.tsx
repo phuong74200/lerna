@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { Anchor, Box, Image, Paper, PinInput, Stack, Text, Title } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { TransformedValues, useForm } from "@mantine/form";
 import { Notifications } from "@mantine/notifications";
 
 import { ASSET_CHECK_MARK } from "@/assets";
@@ -11,12 +11,10 @@ import useForgetPasswordVerify from "@/features/auth/services/use-forget-passwor
 import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
-import Error404 from "@/pages/error/components/error404";
-import emptyFn from "@/utils/empty-fn";
 
 export default function RecoveryOTPPage() {
   const { open } = useModalRouteTrasition();
-  const { redirect } = useRedirect();
+  const { redirect, onRedirect } = useRedirect();
 
   const ref = useRef<HTMLFormElement>(null);
   const {
@@ -27,14 +25,19 @@ export default function RecoveryOTPPage() {
     initialValues: {
       code: "",
     },
+    transformValues(values) {
+      return {
+        code: values.code || "00000",
+      };
+    },
   });
 
   const resend = useForgetPasswordResend();
   const verify = useForgetPasswordVerify();
 
   const handleResend = () => resend.mutate({ email });
-  const handleVerify = async () => {
-    const data = await verify.mutateAsync({ email, code: form.values.code });
+  const handleVerify = async (values: TransformedValues<typeof form>) => {
+    const data = await verify.mutateAsync({ email, code: values.code });
     form.setFieldValue("code", "");
     redirect("/recovery/reset", {
       state: {
@@ -44,16 +47,10 @@ export default function RecoveryOTPPage() {
     });
   };
 
-  if (!email) return <Error404 />;
+  if (!email) return <Navigate to="/login" />;
 
   return (
-    <CustomModal
-      opened={open}
-      onClose={emptyFn}
-      withCloseButton={false}
-      title="Nhập mã khôi phục"
-      size="400px"
-    >
+    <CustomModal opened={open} onClose={onRedirect("/")} title="Nhập mã khôi phục" size="400px">
       <Notifications
         target={ref.current || undefined}
         className="absolute"

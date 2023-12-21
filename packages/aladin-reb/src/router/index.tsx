@@ -1,47 +1,45 @@
 import { lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import {
-  createBrowserRouter,
-  Navigate,
-  NonIndexRouteObject,
-  useLocation,
-  useRoutes,
-} from "react-router-dom";
-import { QueryClient } from "@tanstack/react-query";
+import { createBrowserRouter, NonIndexRouteObject, useLocation, useRoutes } from "react-router-dom";
 import { TreeBuilder } from "route-builder";
 import { uid } from "uid";
 
-import { PublicLayout, StudentLayout } from "@/features/layout";
-import SAdminLayout from "@/features/layout/admin-layout/sadmin-layout";
+import { queryClient } from "@/configs/react-query";
 import { currentUserLoader } from "@/loaders/current-user";
-import {
-  CreateMajorPage,
-  Error404Page,
-  ListUniversityPage,
-  LoginPage,
-  ViewUniversityPage,
-} from "@/pages";
-import ListDiscountPage from "@/pages/discount";
-import CreateDiscountPage from "@/pages/discount/create";
-import CreateDiscountLayout from "@/pages/discount/create/layout";
-import GeneralError from "@/pages/error/components/general-error";
-import ViewMajor from "@/pages/major/[major-id]";
-import MajorUpdatePage from "@/pages/major/[major-id]/update";
-import ListManagerPage from "@/pages/manager";
-import CreateManagerPage from "@/pages/manager/create";
-import StudentListPage from "@/pages/students";
-import BanStudentPage from "@/pages/students/ban/[user-id]";
-import TAListPage from "@/pages/ta";
+import { Root } from "@/pages/root";
 import CreateUniversityLayout from "@/pages/university/create/layout";
-import UpdateUniversityPage from "@/pages/university/update/[institution-id]";
-import ListVoucherPage from "@/pages/vouchers";
-import CreateVoucherPage from "@/pages/vouchers/create";
+import UpdateUniversityLayout from "@/pages/university/update/[institution-id]/layout";
 import CreateVoucherLayout from "@/pages/vouchers/create/layout";
 import { Path } from "@/router/path";
 
-const CreateUniversityPage = lazy(async () => import("@/pages/university/create"));
+const StudentLayout = lazy(() => import("@/layout/student"));
+const PublicLayout = lazy(() => import("@/layout/public"));
+const AdminLayout = lazy(() => import("@/layout/admin-layout"));
 
-const queryClient = new QueryClient();
+const ListDiscountPage = lazy(() => import("@/pages/discount"));
+const CreateDiscountPage = lazy(() => import("@/pages/discount/create"));
+const CreateDiscountLayout = lazy(() => import("@/pages/discount/create/layout"));
+const GeneralError = lazy(() => import("@/pages/error/components/general-error"));
+const LoginPage = lazy(() => import("@/pages/login"));
+const ViewMajor = lazy(() => import("@/pages/major/[major-id]"));
+const MajorUpdatePage = lazy(() => import("@/pages/major/[major-id]/update"));
+const CreateMajorPage = lazy(() => import("@/pages/major/create"));
+const ListManagerPage = lazy(() => import("@/pages/manager"));
+const CreateManagerPage = lazy(() => import("@/pages/manager/create"));
+const RecoveryPage = lazy(() => import("@/pages/recovery"));
+const RecoveryOTPPage = lazy(() => import("@/pages/recovery/otp"));
+const ResetPasswordPage = lazy(() => import("@/pages/recovery/reset"));
+const RegisterPage = lazy(() => import("@/pages/register"));
+const RegisterOTPPage = lazy(() => import("@/pages/register/otp"));
+const StudentListPage = lazy(() => import("@/pages/students"));
+const BanStudentPage = lazy(() => import("@/pages/students/ban/[user-id]"));
+const TAListPage = lazy(() => import("@/pages/ta"));
+const ListUniversityPage = lazy(() => import("@/pages/university"));
+const ViewUniversityPage = lazy(() => import("@/pages/university/[institution-id]"));
+const UpdateUniversityPage = lazy(() => import("@/pages/university/update/[institution-id]"));
+const ListVoucherPage = lazy(() => import("@/pages/vouchers"));
+const CreateVoucherPage = lazy(() => import("@/pages/vouchers/create"));
+const CreateUniversityPage = lazy(async () => import("@/pages/university/create"));
 
 export type RouteObjectWithFixedPath = Omit<NonIndexRouteObject, "path" | "children"> & {
   path: Path;
@@ -51,12 +49,14 @@ export type RouteObjectWithFixedPath = Omit<NonIndexRouteObject, "path" | "child
 
 export const routes: RouteObjectWithFixedPath[] = [
   {
-    path: "/login",
-    element: <Navigate to="/login" />,
+    path: "/",
+    loader: currentUserLoader(queryClient),
+    Component: Root,
   },
 
   {
     path: "/login",
+    loader: currentUserLoader(queryClient),
     Component: PublicLayout,
     children: [
       {
@@ -68,9 +68,48 @@ export const routes: RouteObjectWithFixedPath[] = [
   },
 
   {
+    path: "/register",
+    loader: currentUserLoader(queryClient),
+    Component: PublicLayout,
+    children: [
+      {
+        path: "/register",
+        Component: RegisterPage,
+      },
+      {
+        path: "/register/verify",
+        loader: currentUserLoader(queryClient),
+        Component: RegisterOTPPage,
+        modal: true,
+      },
+    ],
+  },
+
+  {
+    path: "/recovery",
+    Component: PublicLayout,
+    loader: currentUserLoader(queryClient),
+    children: [
+      {
+        path: "/recovery",
+        Component: RecoveryPage,
+      },
+      {
+        path: "/recovery/reset",
+        Component: ResetPasswordPage,
+      },
+      {
+        path: "/recovery/otp",
+        Component: RecoveryOTPPage,
+        modal: true,
+      },
+    ],
+  },
+
+  {
     path: "/admin",
     loader: currentUserLoader(queryClient),
-    Component: SAdminLayout,
+    Component: AdminLayout,
     children: [
       /* University */
       {
@@ -90,7 +129,14 @@ export const routes: RouteObjectWithFixedPath[] = [
       },
       {
         path: "/admin/institution/update/:institutionId",
-        Component: UpdateUniversityPage,
+        modal: true,
+        Component: UpdateUniversityLayout,
+        children: [
+          {
+            path: "/admin/institution/update/:institutionId",
+            Component: UpdateUniversityPage,
+          },
+        ],
       },
       {
         path: "/admin/institution/:institutionId",
@@ -105,6 +151,7 @@ export const routes: RouteObjectWithFixedPath[] = [
       {
         path: "/admin/voucher/create",
         Component: CreateVoucherLayout,
+        modal: true,
         children: [
           {
             path: "/admin/voucher/create",
@@ -187,7 +234,7 @@ export const routes: RouteObjectWithFixedPath[] = [
 
   {
     path: "*",
-    Component: Error404Page,
+    Component: GeneralError,
   },
 ];
 

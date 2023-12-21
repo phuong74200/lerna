@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 
-import { StudentLayout } from "@/features/layout";
-import RoleSwitchRoute from "@/features/layout/role-switch-route";
+import { StudentLayout } from "@/layout";
+import RoleSwitchRoute from "@/layout/role-switch-route";
 import { StudentClassPage } from "@/pages";
 
 export const recordRoutes: RouteObject[] = [

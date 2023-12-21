@@ -1,7 +1,7 @@
 import { Container, SimpleGrid } from "@mantine/core";
 
 import TAPrivateClassCard from "@/features/class/components/ta-private-class-card";
-import TATabBar from "@/features/layout/components/ta-tab-bar";
+import TATabBar from "@/layout/components/ta-tab-bar";
 import { generateCourse } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 

@@ -1,16 +1,20 @@
 import { QueryClient } from "@tanstack/react-query";
 
 import { queryKeys } from "@/api";
+import { getToken } from "@/utils/auth-token";
 
 export const currentUserLoader = (queryClient: QueryClient) => async () => {
-  const query = queryKeys.generalUser.user("current");
-  // ⬇️ return data or fetch it
+  if (!getToken()) return null;
 
-  return await queryClient.fetchQuery(query);
+  try {
+    const query = queryKeys.generalUser.user("current");
+
+    const { data, error } = await queryClient.fetchQuery(query);
+
+    if (data) return data;
+
+    return error;
+  } catch {
+    return null;
+  }
 };
-
-type E = `yyy` | `yyy/${string}`;
-
-const n: E = "yyy/1";
-
-console.log(n);

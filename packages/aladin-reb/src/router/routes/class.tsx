@@ -1,8 +1,8 @@
 import { RouteObject } from "react-router-dom";
 
 import { on, RouteSwitch } from "@/configs/permisson-route";
-import { StudentLayout, TALayout } from "@/features/layout";
-import RoleSwitchRoute from "@/features/layout/role-switch-route";
+import { StudentLayout, TALayout } from "@/layout";
+import RoleSwitchRoute from "@/layout/role-switch-route";
 import { RegisterTAClassPage, StudentClassPage, StudentClassRegisterPage } from "@/pages";
 import TAClass from "@/pages/class/ta";
 

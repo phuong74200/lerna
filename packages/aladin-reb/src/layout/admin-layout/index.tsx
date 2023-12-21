@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import { AppShell, AppShellProps } from "@mantine/core";
 import { useResizeObserver } from "@mantine/hooks";
 
-import { SuperAdminHeader } from "@/features/layout/components/student-header";
-import { NavbarNested } from "@/features/layout/components/ta-navbar";
+import AdminLayoutSkeleton from "@/layout/admin-layout/skeleton";
+import { SuperAdminHeader } from "@/layout/components/student-header";
+import { NavbarNested } from "@/layout/components/ta-navbar";
 import { currentUserLoader } from "@/loaders/current-user";
 import GeneralError from "@/pages/error/components/general-error";
 import { MantineStyles } from "@/types/mantine-styles";
@@ -29,12 +31,12 @@ const style: MantineStyles<AppShellProps> = (theme) => ({
   },
 });
 
-export default function SAdminLayout() {
+export default function AdminLayout() {
   const [ref] = useResizeObserver();
 
   const userData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof currentUserLoader>>>;
 
-  if (userData?.data?.permissions?.includes("Super_Admin_Interact"))
+  if (userData?.permissions?.includes("Super_Admin_Interact"))
     return (
       <AppShell
         padding="md"
@@ -43,7 +45,9 @@ export default function SAdminLayout() {
         header={<SuperAdminHeader links={links} />}
         navbar={<NavbarNested ref={ref} />}
       >
-        <Outlet />
+        <Suspense fallback={<AdminLayoutSkeleton />}>
+          <Outlet />
+        </Suspense>
       </AppShell>
     );
 

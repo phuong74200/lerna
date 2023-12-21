@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { VN_PHONE_REGEX } from "@/configs/regex";
 import { TAFormContext } from "@/features/register/contexts/ta-form";
-import { useGetCurrentUserFromCache } from "@/services/use-get-current-user";
+import useGetCurrentUser from "@/services/use-get-current-user";
 
 const schema = z.object({
   linkFacebook: z.string().url(),
@@ -20,7 +20,7 @@ const schema = z.object({
 });
 
 export default function TAStep1() {
-  const user = useGetCurrentUserFromCache();
+  const { data } = useGetCurrentUser();
   const { generalForm, setStep } = useContext(TAFormContext);
 
   const form = useForm({
@@ -67,13 +67,13 @@ export default function TAStep1() {
               label="Họ và tên"
               placeholder="Họ và tên"
               disabled
-              defaultValue={user?.state.data?.data.fullName}
+              defaultValue={data?.data?.fullName}
             />
             <TextInput
               withAsterisk
               label="Email"
               placeholder="Email"
-              defaultValue={user?.state.data?.data.email}
+              defaultValue={data?.data?.email}
               disabled
             />
             <TextInput
@@ -81,7 +81,7 @@ export default function TAStep1() {
               label="Số điện thoại"
               placeholder="Số điện thoại"
               disabled
-              defaultValue={user?.state.data?.data.phoneNumber}
+              defaultValue={data?.data?.phoneNumber}
               {...form.getInputProps("phoneNumber")}
             />
             <TextInput

@@ -8,7 +8,7 @@ import useCreateMajor, { CreateMajorRequest } from "@/features/major/services/us
 import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
-export default function Create() {
+export default function CreateMajorPage() {
   const location = useLocation<{
     institutionId: string;
   }>();

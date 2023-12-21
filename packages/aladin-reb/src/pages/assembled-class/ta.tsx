@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Container, SimpleGrid } from "@mantine/core";
 
 import ClassCardWithTable from "@/features/class/components/class-card-with-table";
-import TATabBar from "@/features/layout/components/ta-tab-bar";
+import TATabBar from "@/layout/components/ta-tab-bar";
 import { generateCourse } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 

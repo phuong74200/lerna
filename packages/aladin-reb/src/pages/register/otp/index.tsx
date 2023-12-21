@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Navigate, useLoaderData } from "react-router-dom";
 import { Anchor, Box, Image, Paper, PinInput, Stack, Text, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { Notifications } from "@mantine/notifications";
@@ -8,24 +9,40 @@ import CustomModal from "@/components/custom-modal";
 import useResendOTP from "@/features/register/services/use-resend-otp";
 import useVerifyOTP from "@/features/register/services/use-verify-otp";
 import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
+import useRedirect from "@/hooks/use-redirect";
+import { currentUserLoader } from "@/loaders/current-user";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
-import emptyFn from "@/utils/empty-fn";
+import { clsToken } from "@/utils/auth-token";
 
 export default function RegisterOTPPage() {
+  const userData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof currentUserLoader>>>;
   const { open } = useModalRouteTrasition();
   const ref = useRef<HTMLFormElement>(null);
+  const { redirect } = useRedirect();
 
   const form = useForm({
     initialValues: {
       code: "",
+    },
+    transformValues(values) {
+      return {
+        code: values.code || "00000",
+      };
     },
   });
 
   const { mutate, isLoading } = useResendOTP();
   const { mutate: verify, isLoading: isLoadingVerify } = useVerifyOTP();
 
+  const closeFn = () => {
+    clsToken();
+    redirect("/login");
+  };
+
+  if (userData?.status !== "VERIFICATION_REQUIRED") return <Navigate to="/login" />;
+
   return (
-    <CustomModal opened={open} onClose={emptyFn} title="Xác thực tài khoản" size="400px">
+    <CustomModal opened={open} onClose={closeFn} title="Xác thực tài khoản" size="400px">
       <Notifications
         target={ref.current || undefined}
         className="absolute"

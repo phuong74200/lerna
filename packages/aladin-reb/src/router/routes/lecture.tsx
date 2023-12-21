@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 
-import { StudentLayout, TALayout, TARegisterLayout } from "@/features/layout";
-import RoleSwitchRoute from "@/features/layout/role-switch-route";
+import { StudentLayout, TALayout, TARegisterLayout } from "@/layout";
+import RoleSwitchRoute from "@/layout/role-switch-route";
 import { Error404Page, LectureRatingPage, TARegisterModifyPage, TARegisterPage } from "@/pages";
 import { Role } from "@/types/enums/role";
 

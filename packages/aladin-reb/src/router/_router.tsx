@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { DevLayout, PublicLayout, StudentLayout, TARegisterLayout } from "@/features/layout";
-import SAdminLayout from "@/features/layout/admin-layout/sadmin-layout";
+import { DevLayout, PublicLayout, StudentLayout, TARegisterLayout } from "@/layout";
+import SAdminLayout from "@/layout/admin-layout/sadmin-layout";
 import AuthRouter from "@/modules/auth-router";
 import {
   CreateMajorPage,
@@ -27,7 +27,7 @@ import CreateManagerPage from "@/pages/manager/create";
 import RecoveryPage from "@/pages/recovery";
 import RecoveryOTPPage from "@/pages/recovery/otp";
 import ResetPasswordPage from "@/pages/recovery/reset";
-import Register from "@/pages/register";
+import RegisterPage from "@/pages/register";
 import RegisterOTPPage from "@/pages/register/otp";
 import StudentListPage from "@/pages/students";
 import BanStudentPage from "@/pages/students/ban/[user-id]";
@@ -140,7 +140,7 @@ export const BrowserRouter = new AuthRouter<Permission>(
             },
             {
               path: "",
-              Component: Register,
+              Component: RegisterPage,
             },
           ],
         },

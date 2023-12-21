@@ -3,7 +3,7 @@ import { Button, Center, Container, Paper, SimpleGrid, Title } from "@mantine/co
 import { IconArrowRight } from "@tabler/icons-react";
 
 import ClassCard from "@/features/class/components/class-card";
-import StudentTabBar from "@/features/layout/components/student-tab-bar";
+import StudentTabBar from "@/layout/components/student-tab-bar";
 import { generateCourse } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 

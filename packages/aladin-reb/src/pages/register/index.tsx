@@ -55,7 +55,7 @@ const schema: z.ZodType = z
     },
   );
 
-export default function Register() {
+export default function RegisterPage() {
   const theme = useMantineTheme();
 
   const form = useForm<Form>({
@@ -71,10 +71,8 @@ export default function Register() {
 
   const { isLoading, mutate } = useRegisterStudent();
 
-  const submit = () => mutate(form.values);
-
   return (
-    <form onSubmit={form.onSubmit(submit)}>
+    <form onSubmit={form.onSubmit((v) => mutate(v))}>
       <Paper p="lg" shadow="lg" className="bg-gray-50 w-[450px]">
         <Stack spacing="lg">
           <Stack spacing="0" ml="lg">

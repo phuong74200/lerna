@@ -1,4 +1,4 @@
-import { StudentLayout } from "@/features/layout";
+import { StudentLayout } from "@/layout";
 import { StudentRevisePage } from "@/pages";
 
 export const reviseRoutes = [

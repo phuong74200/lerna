@@ -3,10 +3,11 @@ import { ActionIconProps } from "@mantine/core";
 
 import useRedirect from "@/hooks/use-redirect";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
+import { Path } from "@/router/path";
 
 type Props = ActionIconProps &
   HTMLAttributes<Element> & {
-    to?: string | undefined;
+    to?: Path;
     children: ReactNode;
     label?: string;
   };

@@ -1,4 +1,4 @@
-import Suspense from "@/features/layout/components/suspense";
+import Suspense from "@/layout/components/suspense";
 import { PermissionComponent } from "@/modules/permisson-component";
 import { Error404Page } from "@/pages";
 import useGetCurrentUser from "@/services/use-get-current-user";

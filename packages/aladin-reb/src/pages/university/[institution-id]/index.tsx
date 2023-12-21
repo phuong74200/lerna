@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { generatePath, useParams } from "react-router-dom";
 import {
   ActionIcon,
   Container,
@@ -48,7 +48,7 @@ const columns: DataTableColumn<components["schemas"]["MajorResponse"]>[] = [
   },
 ];
 
-export default function ViewUniversity() {
+export default function ViewUniversityPage() {
   const theme = useMantineTheme();
 
   const { onRedirectWithState, redirect } = useRedirect();
@@ -138,7 +138,13 @@ export default function ViewUniversity() {
           verticalSpacing="sm"
           noRecordsText="Không có dữ liệu"
           columns={columns}
-          onRowClick={({ majorId }) => redirect(`/admin/major/1`)}
+          onRowClick={({ majorId }) =>
+            redirect(
+              generatePath("/admin/major/:majorId", {
+                majorId: `${majorId}`,
+              }),
+            )
+          }
         />
         <Flex justify="space-between" align="center">
           <Text size="sm">

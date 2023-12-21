@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { AppShell, AppShellProps } from "@mantine/core";
 
-import { HeaderResponsive } from "@/features/layout/components/header-responsive";
+import { HeaderResponsive } from "@/layout/components/header-responsive";
 import { MantineStyles } from "@/types/mantine-styles";
 
 const links = [
@@ -18,7 +18,7 @@ const style: MantineStyles<AppShellProps> = (theme) => ({
   },
 });
 
-export default function Student() {
+export default function StudentLayout() {
   return (
     <AppShell padding="md" styles={style} header={<HeaderResponsive links={links} />}>
       <Outlet />

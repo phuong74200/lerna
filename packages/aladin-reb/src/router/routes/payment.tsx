@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 
-import { StudentLayout } from "@/features/layout";
+import { StudentLayout } from "@/layout";
 import { PaymentHistoryPage } from "@/pages";
 
 export const paymentRoutes: RouteObject[] = [

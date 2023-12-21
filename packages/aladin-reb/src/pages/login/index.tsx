@@ -20,7 +20,7 @@ import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 import usePostLoginUser from "@/services/use-post-login-user";
 
-export default function Login() {
+export default function LoginPage() {
   const theme = useMantineTheme();
   const form = useForm<components["schemas"]["LoginRequest"]>({
     initialValues: {
@@ -29,16 +29,11 @@ export default function Login() {
       idToken: "",
     },
   });
-  const { submit, isLoading } = usePostLoginUser(form);
+  const { mutate, isLoading } = usePostLoginUser();
   const { onRedirect } = useRedirect();
 
   return (
-    <Paper
-      p="lg"
-      shadow="lg"
-      radius="2.25rem" // calc(1rem + 1.25rem)
-      className="bg-gray-50 w-[450px] sm:w-full"
-    >
+    <Paper p="lg" shadow="lg" radius="2.25rem" className="bg-gray-50 w-[450px] sm:w-full">
       <Stack spacing="lg">
         <Stack spacing="xs" ml="lg">
           <Title order={1} className="text-blue-700">
@@ -47,7 +42,7 @@ export default function Login() {
           <Text>Đăng nhập và bắt đầu học ngay hôm nay</Text>
         </Stack>
         <Paper p="lg" shadow="lg">
-          <form onSubmit={form.onSubmit(submit)}>
+          <form onSubmit={form.onSubmit((v) => mutate(v))}>
             <Stack spacing="md">
               <TextInput
                 label="Email"
@@ -70,13 +65,7 @@ export default function Login() {
                   Quên mật khẩu
                 </Anchor>
               </Group>
-              <RippleButton
-                loading={isLoading}
-                type="submit"
-                variant="filled"
-                fullWidth
-                onClick={submit}
-              >
+              <RippleButton loading={isLoading} type="submit" variant="filled" fullWidth>
                 Đăng nhập
               </RippleButton>
               <Divider label="Hoặc" labelPosition="center" />
