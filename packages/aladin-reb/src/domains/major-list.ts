@@ -1,19 +1,26 @@
 import { uid } from "uid";
 
 import { components } from "@/api/v1";
-import { Major } from "@/domains/major";
 import { toNonAccentVietnamese } from "@/utils/converter";
 
 export class MajorList {
-  props: Major[] = [];
+  props: components["schemas"]["PageResponseMajorMajorResponse"];
 
-  constructor(props: components["schemas"]["MajorResponse"][]) {
-    this.props = props.map((item) => new Major(item));
+  constructor(props: components["schemas"]["PageResponseMajorMajorResponse"]) {
+    this.props = props;
+
+    this.props.list = this.props.list || [];
+  }
+
+  get totalElements() {
+    return this.props.totalElements;
   }
 
   toSelectList() {
-    return this.props.map((item) => ({
-      searchString: toNonAccentVietnamese(JSON.stringify(item.toRaw())),
+    const list = this.props.list || [];
+
+    return list.map((item) => ({
+      searchString: toNonAccentVietnamese(JSON.stringify(item)),
       description: item.description,
       value: item.majorId?.toString() || uid(),
       label: item.name || "",
@@ -21,6 +28,6 @@ export class MajorList {
   }
 
   toArray() {
-    return this.props;
+    return this.props.list || [];
   }
 }

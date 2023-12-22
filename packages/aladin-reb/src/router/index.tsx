@@ -6,6 +6,8 @@ import { uid } from "uid";
 
 import { queryClient } from "@/configs/react-query";
 import { currentUserLoader } from "@/loaders/current-user";
+import CreateDiscountLayout from "@/pages/discount/create/layout";
+import MajorUpdateLayout from "@/pages/major/[major-id]/update/layout";
 import { Root } from "@/pages/root";
 import CreateUniversityLayout from "@/pages/university/create/layout";
 import UpdateUniversityLayout from "@/pages/university/update/[institution-id]/layout";
@@ -18,7 +20,6 @@ const AdminLayout = lazy(() => import("@/layout/admin-layout"));
 
 const ListDiscountPage = lazy(() => import("@/pages/discount"));
 const CreateDiscountPage = lazy(() => import("@/pages/discount/create"));
-const CreateDiscountLayout = lazy(() => import("@/pages/discount/create/layout"));
 const GeneralError = lazy(() => import("@/pages/error/components/general-error"));
 const LoginPage = lazy(() => import("@/pages/login"));
 const ViewMajor = lazy(() => import("@/pages/major/[major-id]"));
@@ -184,6 +185,7 @@ export const routes: RouteObjectWithFixedPath[] = [
       {
         path: "/admin/discount/create",
         Component: CreateDiscountLayout,
+        modal: true,
         children: [
           {
             path: "/admin/discount/create",
@@ -207,6 +209,17 @@ export const routes: RouteObjectWithFixedPath[] = [
         path: "/admin/major",
         children: [
           {
+            path: "/admin/major/:majorId/update",
+            Component: MajorUpdateLayout,
+            modal: true,
+            children: [
+              {
+                path: "/admin/major/:majorId/update",
+                Component: MajorUpdatePage,
+              },
+            ],
+          },
+          {
             path: "/admin/major/create",
             Component: CreateMajorPage,
             modal: true,
@@ -214,11 +227,6 @@ export const routes: RouteObjectWithFixedPath[] = [
           {
             path: "/admin/major/:majorId",
             Component: ViewMajor,
-          },
-          {
-            path: "/admin/major/:majorId/update",
-            Component: MajorUpdatePage,
-            modal: true,
           },
         ],
       },

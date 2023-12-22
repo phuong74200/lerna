@@ -5,9 +5,10 @@ import { IconPencil } from "@tabler/icons-react";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
 import useRedirect from "@/hooks/use-redirect";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
+import { Path } from "@/router/path";
 
 type Props = {
-  to?: string | undefined;
+  to?: Path | undefined;
 };
 
 export default function EditBtn({ to }: Props) {

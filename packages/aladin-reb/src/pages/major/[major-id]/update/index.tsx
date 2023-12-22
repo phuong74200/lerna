@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-import { Group, Paper, Stack } from "@mantine/core";
+import { Group, Stack } from "@mantine/core";
 
-import CustomModal from "@/components/custom-modal";
 import TextInputWithCustomError from "@/components/text-input-with-custom-error";
 import useMajor from "@/features/major/services/use-major";
 import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
@@ -13,7 +12,7 @@ export default function MajorUpdatePage() {
     majorId: string;
   }>();
 
-  const { open, goBack } = useModalRouteTrasition();
+  const { goBack } = useModalRouteTrasition();
 
   const {
     mutate: { mutation },
@@ -27,32 +26,30 @@ export default function MajorUpdatePage() {
   };
 
   return (
-    <CustomModal opened={open} onClose={goBack} title="Sửa khoa/nghành" size="30%">
-      <Paper p="md" shadow="sm">
-        <Stack>
-          <TextInputWithCustomError
-            label="Tên khoa/ngành"
-            placeholder="Software Engineer"
-            {...form.getInputProps("name")}
-          />
-          <TextInputWithCustomError
-            label="Mô tả"
-            placeholder="Software Engineer"
-            {...form.getInputProps("description")}
-          />
-        </Stack>
-        <Group mt="md" position="right">
-          <RippleButton
-            fullWidth
-            variant="filled"
-            onClick={handleSubmitted}
-            disabled={query.isFetching}
-            loading={mutation.isLoading}
-          >
-            Lưu chỉnh sửa
-          </RippleButton>
-        </Group>
-      </Paper>
-    </CustomModal>
+    <>
+      <Stack>
+        <TextInputWithCustomError
+          label="Tên khoa/ngành"
+          placeholder="Software Engineer"
+          {...form.getInputProps("name")}
+        />
+        <TextInputWithCustomError
+          label="Mô tả"
+          placeholder="Software Engineer"
+          {...form.getInputProps("description")}
+        />
+      </Stack>
+      <Group mt="md" position="right">
+        <RippleButton
+          fullWidth
+          variant="filled"
+          onClick={handleSubmitted}
+          disabled={query.isFetching}
+          loading={mutation.isLoading}
+        >
+          Lưu chỉnh sửa
+        </RippleButton>
+      </Group>
+    </>
   );
 }

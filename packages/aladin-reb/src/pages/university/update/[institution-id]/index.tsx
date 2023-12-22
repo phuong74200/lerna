@@ -11,7 +11,7 @@ export default function UpdateUniversityPage() {
     institutionId: string;
   }>();
 
-  const { open, goBack } = useModalRouteTrasition();
+  const { goBack } = useModalRouteTrasition();
 
   const { form, submit, update } = useUpdateInsitutionForm(institutionId || "");
 

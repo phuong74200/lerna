@@ -20,7 +20,11 @@ export default function usePostLoginUser() {
       return response;
     },
     onSuccess: async ({ data }) => {
-      if (data?.accessToken) setToken(data.accessToken);
+      if (data?.accessToken && data?.refreshToken)
+        setToken({
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken || null,
+        });
 
       if (data?.userResponse?.roleId === "SUPER_AD") return redirect("/admin", { replace: true });
       if (data?.userResponse?.roleId === "STU") return redirect("/usr", { replace: true });

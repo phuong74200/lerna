@@ -21,7 +21,9 @@ export default function useGetAllMajorsOfInstitution(
         page: pagination.active - 1,
       },
     }),
-    select: (data) => new MajorList(data.data?.list || []),
+    select: ({ data }) => {
+      if (data) return new MajorList(data);
+    },
   });
 
   return {

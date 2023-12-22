@@ -23,7 +23,10 @@ export default function useRegisterStudent() {
     onSuccess: (data) => {
       if (!data?.returnObject?.accessToken) return;
 
-      setToken(data.returnObject.accessToken);
+      setToken({
+        accessToken: data.returnObject.accessToken,
+        refreshToken: null,
+      });
       redirectWithState("/register/verify");
     },
   });

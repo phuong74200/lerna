@@ -1,3 +1,4 @@
+import { generatePath } from "react-router-dom";
 import {
   Anchor,
   Avatar,
@@ -73,7 +74,13 @@ export default function StudentDetail({ user_id }: Props) {
         <Paper p="md">
           <Label>Tên trường</Label>
           <Data>
-            <Anchor onClick={onRedirect(`/university/${student.data?.institutionId}`)}>
+            <Anchor
+              onClick={onRedirect(
+                generatePath("/admin/institution/:institutionId", {
+                  institutionId: `${student.data?.institutionId}`,
+                }),
+              )}
+            >
               {student?.data?.institutionName}
             </Anchor>
           </Data>

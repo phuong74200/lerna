@@ -44,7 +44,13 @@ const columns: DataTableColumn<components["schemas"]["MajorResponse"]>[] = [
     title: "Tác vụ",
     width: "10%",
     textAlignment: "center",
-    render: ({ majorId }) => <EditBtn to={`/major/${majorId}/update`} />,
+    render: ({ majorId }) => (
+      <EditBtn
+        to={generatePath("/admin/major/:majorId/update", {
+          majorId: `${majorId}`,
+        })}
+      />
+    ),
   },
 ];
 
@@ -153,7 +159,11 @@ export default function ViewUniversityPage() {
             </b>{" "}
             của {50 * 15}
           </Text>
-          <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
+          <Pagination
+            total={major?.totalElements || 0}
+            onChange={pagination.setPage}
+            value={pagination.active}
+          />
         </Flex>
       </Stack>
     </Container>

@@ -4,8 +4,8 @@ import { IconArrowRight } from "@tabler/icons-react";
 
 import { client } from "@/api/openapi-fetch";
 import ClassCard from "@/features/class/components/class-card";
-import StudentTabBar from "@/layout/components/student-tab-bar";
 import useAsyncEffect from "@/hooks/use-async-effect";
+import StudentTabBar from "@/layout/components/student-tab-bar";
 import { generateCourse } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 

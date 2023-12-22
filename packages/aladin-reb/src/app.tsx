@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
@@ -44,13 +45,15 @@ function Theme() {
 
 function App() {
   return (
-    <UserContextProvider>
-      <FeatureFlagProvider>
-        <QueryClientProvider client={queryClient}>
-          <Theme />
-        </QueryClientProvider>
-      </FeatureFlagProvider>
-    </UserContextProvider>
+    <Suspense fallback={<Loading />}>
+      <UserContextProvider>
+        <FeatureFlagProvider>
+          <QueryClientProvider client={queryClient}>
+            <Theme />
+          </QueryClientProvider>
+        </FeatureFlagProvider>
+      </UserContextProvider>
+    </Suspense>
   );
 }
 

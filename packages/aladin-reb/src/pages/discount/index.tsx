@@ -54,7 +54,7 @@ export default function ListDiscountPage() {
             placeholder="Tìm kiếm"
           />
           <RippleButton
-            onClick={onRedirectWithState("create")}
+            onClick={onRedirectWithState("/admin/discount/create")}
             leftIcon={<IconPlus size={theme.fontSizes.md} />}
           >
             Tạo discount
