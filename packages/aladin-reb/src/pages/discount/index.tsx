@@ -10,10 +10,10 @@ import {
 import { IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
-import TableIndex from "@/components/table-index";
+import useRedirect from "@/common/hooks/use-redirect";
+import TableIndex from "@/common/ui/table-index";
 import { Discount } from "@/domains/discount";
 import useGetAllDiscount from "@/features/discount/services/use-get-all-discount";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const DISCOUNT_PAGE_SIZE = 20;

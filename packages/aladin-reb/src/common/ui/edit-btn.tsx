@@ -2,8 +2,8 @@ import { MouseEvent } from "react";
 import { Tooltip } from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 
+import useRedirect from "@/common/hooks/use-redirect";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
-import useRedirect from "@/hooks/use-redirect";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
 import { Path } from "@/router/path";
 

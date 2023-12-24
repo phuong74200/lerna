@@ -18,12 +18,12 @@ import { IconDots, IconEdit, IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
 import { components } from "@/api/v1";
-import EditBtn from "@/components/edit-btn";
-import EmptyImage from "@/components/empty-image";
-import TableIndex from "@/components/table-index";
+import useRedirect from "@/common/hooks/use-redirect";
+import EditBtn from "@/common/ui/edit-btn";
+import EmptyImage from "@/common/ui/empty-image";
+import TableIndex from "@/common/ui/table-index";
 import useGetAllMajorsOfInstitution from "@/features/major/services/use-get-all-majors-of-institution";
 import useGetInstitutionById from "@/features/university/services/use-get-institution-by-id";
-import useRedirect from "@/hooks/use-redirect";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 

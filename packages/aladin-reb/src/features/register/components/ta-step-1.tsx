@@ -3,9 +3,9 @@ import { Button, Radio, SimpleGrid, Stack, Text, Textarea, TextInput, Title } fr
 import { TransformedValues, useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
 
+import useGetCurrentUser from "@/common/services/use-get-current-user";
 import { VN_PHONE_REGEX } from "@/configs/regex";
 import { TAFormContext } from "@/features/register/contexts/ta-form";
-import useGetCurrentUser from "@/services/use-get-current-user";
 
 const schema = z.object({
   linkFacebook: z.string().url(),

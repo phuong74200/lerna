@@ -3,8 +3,8 @@ import { useForm, zodResolver } from "@mantine/form";
 import { IconAt } from "@tabler/icons-react";
 import { z } from "zod";
 
+import useRedirect from "@/common/hooks/use-redirect";
 import useForgetPassword from "@/features/auth/services/use-forget-password";
-import useRedirect from "@/hooks/use-redirect";
 
 const schema = z.object({
   email: z.string().email("Email không hợp lệ"),

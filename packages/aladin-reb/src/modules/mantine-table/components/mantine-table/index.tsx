@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { DefaultProps, MantineColor, MantineSize, Selectors, Variants } from "@mantine/core";
 
-import { useComponentDefaultProps } from "@/hooks/use-component-default-props";
+import { useComponentDefaultProps } from "@/common/hooks/use-component-default-props";
 import {
   AdvanceTableStylesParams,
   useStyles,

@@ -15,12 +15,12 @@ import {
 } from "@mantine/core";
 import { IconCalendarEvent } from "@tabler/icons-react";
 
+import useRedirect from "@/common/hooks/use-redirect";
 // import { MRT_ColumnDef, MRT_Table } from "mantine-react-table";
-import MoreInfo from "@/components/more-info";
-import TextWithIcon from "@/components/text-width-icon";
+import MoreInfo from "@/common/ui/more-info";
+import TextWithIcon from "@/common/ui/text-width-icon";
 import DatePickTable from "@/features/register/components/date-pick-table";
 import { Row } from "@/features/register/components/row";
-import useRedirect from "@/hooks/use-redirect";
 import { toVND } from "@/utils/converter";
 import { generateCourse, generatePerson } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";

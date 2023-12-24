@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { queryKeys } from "@/api";
+import useQueryPagination from "@/common/hooks/use-query-pagination";
 import { TeachingAssistantList } from "@/domains/ta-list";
-import useQueryPagination from "@/hooks/use-query-pagination";
 
 export default function useGetAllTA(size = 10) {
   const { pagination, range } = useQueryPagination({

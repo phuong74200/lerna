@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { Group, Paper, Stack, Text, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import CustomModal from "@/components/custom-modal";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import CustomModal from "@/common/ui/custom-modal";
 import useBanStudent from "@/features/students/services/use-ban-student";
 import useGetStudentById from "@/features/students/services/use-get-student-by-id";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 export default function DeleteStudentPage() {

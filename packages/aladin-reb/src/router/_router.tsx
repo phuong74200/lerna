@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
+import useGetCurrentUser from "@/common/services/use-get-current-user";
 import { DevLayout, PublicLayout, StudentLayout, TARegisterLayout } from "@/layout";
 import SAdminLayout from "@/layout/admin-layout/sadmin-layout";
 import AuthRouter from "@/modules/auth-router";
@@ -41,7 +42,6 @@ import UpdateUniversityPage from "@/pages/university/update/[institution-id]";
 import ListVoucherPage from "@/pages/vouchers";
 import CreateVoucherPage from "@/pages/vouchers/create";
 import CreateVoucherLayout from "@/pages/vouchers/create/layout";
-import useGetCurrentUser from "@/services/use-get-current-user";
 import { Permission } from "@/types/permisson";
 
 const Preview = lazy(async () => import("@/_preview/page"));

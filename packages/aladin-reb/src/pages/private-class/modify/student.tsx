@@ -14,9 +14,9 @@ import {
   Title,
 } from "@mantine/core";
 
-import MoreInfo from "@/components/more-info";
+import useRedirect from "@/common/hooks/use-redirect";
+import MoreInfo from "@/common/ui/more-info";
 import { Row } from "@/features/register/components/row";
-import useRedirect from "@/hooks/use-redirect";
 import { toVND } from "@/utils/converter";
 import { generateCourse, generatePerson } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";

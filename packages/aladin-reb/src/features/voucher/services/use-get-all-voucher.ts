@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { queryKeys } from "@/api";
+import useQueryPagination from "@/common/hooks/use-query-pagination";
 import { VoucherList } from "@/domains/voucher-list";
-import useQueryPagination from "@/hooks/use-query-pagination";
 
 export default function useGetAllVoucher(size = 10) {
   const { pagination, range } = useQueryPagination({

@@ -16,8 +16,8 @@ import { IconBookmark, IconClock, IconSchool } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import Overflow from "rc-overflow";
 
-import TextWithIcon from "@/components/text-width-icon";
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
+import TextWithIcon from "@/common/ui/text-width-icon";
 import { toVND } from "@/utils/converter";
 import { CourseModel } from "@/utils/entity-generator";
 import getClassTime from "@/utils/get-class-time";

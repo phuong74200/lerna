@@ -8,11 +8,11 @@ import {
 } from "@mantine/core";
 import { useId } from "@mantine/hooks";
 
-import { InlineInput, InlineInputStylesNames } from "@/components/inline-input";
-import { useRadioGroupContext } from "@/components/radio-with-image/context";
-import { RadioGroup } from "@/components/radio-with-image/group";
-import { RadioWithImageStylesParams, useStyles } from "@/components/radio-with-image/styles";
-import { useComponentDefaultProps } from "@/hooks/use-component-default-props";
+import { useComponentDefaultProps } from "@/common/hooks/use-component-default-props";
+import { InlineInput, InlineInputStylesNames } from "@/common/ui/inline-input";
+import { useRadioGroupContext } from "@/common/ui/radio-with-image/context";
+import { RadioGroup } from "@/common/ui/radio-with-image/group";
+import { RadioWithImageStylesParams, useStyles } from "@/common/ui/radio-with-image/styles";
 
 import { RadioIcon } from "./icon";
 

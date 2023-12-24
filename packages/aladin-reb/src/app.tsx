@@ -4,7 +4,7 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider } from "@mantine/core
 import { ModalsProvider } from "@mantine/modals";
 import { QueryClientProvider } from "@tanstack/react-query";
 
-import Loading from "@/components/loading";
+import Loading from "@/common/ui/loading";
 import { FeatureFlagProvider, FLAGS, useFeatureFlag, useHelper } from "@/configs/feature-flag";
 import { customMantineTheme } from "@/configs/mantine-theme";
 import { queryClient } from "@/configs/react-query";
@@ -36,7 +36,7 @@ function Theme() {
       >
         <ModalsProvider>
           <SyncTailwindColorScheme scheme={scheme} />
-          <RouterProvider router={browserRouter} fallbackElement={<Loading />} />
+          <RouterProvider router={browserRouter} fallbackElement={<Loading />}></RouterProvider>
         </ModalsProvider>
       </MantineProvider>
     </ColorSchemeProvider>

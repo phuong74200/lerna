@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Center, Loader, Paper } from "@mantine/core";
 
-import CustomModal from "@/components/custom-modal";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import CustomModal from "@/common/ui/custom-modal";
 
 export default function MajorUpdateLayout() {
   const { open, goBack } = useModalRouteTrasition();

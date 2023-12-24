@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import { capitalCase } from "change-case";
 
-import { TableOfContentLink } from "@/components/table-of-content";
+import { TableOfContentLink } from "@/common/ui/table-of-content";
 
 export const flattenRoutes = (routes: RouteObject[]) => {
   const seenPaths = new Set<string>();

@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import { Box, Stack, Text, Title } from "@mantine/core";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 
-import RadioWithImage from "@/components/radio-with-image";
-import useImageDrop from "@/hooks/use-image-drop";
+import useImageDrop from "@/common/hooks/use-image-drop";
+import RadioWithImage from "@/common/ui/radio-with-image";
 import convertFileSize from "@/utils/convert-file-size";
 import emptyFn from "@/utils/empty-fn";
 

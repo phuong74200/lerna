@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { Chip, Group, Modal, ScrollArea, Stack, Text } from "@mantine/core";
 
-import Star from "@/components/star";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import Star from "@/common/ui/star";
 import RatingRow from "@/features/rating/components/rating-row";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import { generatePerson } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 

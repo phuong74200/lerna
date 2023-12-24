@@ -15,8 +15,8 @@ import {
 } from "@mantine/core";
 import dayjs from "dayjs";
 
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
-import useStep from "@/hooks/use-step";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import useStep from "@/common/hooks/use-step";
 import { MantineStyles } from "@/types";
 import generateFilledArray from "@/utils/generate-filled-array";
 import { generatePlaceHolderImage } from "@/utils/generate-place-holder-image";

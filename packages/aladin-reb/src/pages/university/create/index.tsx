@@ -2,7 +2,7 @@ import { Box, Group, Stack, Text, Textarea } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 
 import { components } from "@/api/v1";
-import TextInputWithCustomError from "@/components/text-input-with-custom-error";
+import TextInputWithCustomError from "@/common/ui/text-input-with-custom-error";
 import z from "@/configs/zod";
 import SingleImageDrop from "@/features/images/components/single-image-drop";
 import useCreateInstitution from "@/features/university/services/use-create-institution";

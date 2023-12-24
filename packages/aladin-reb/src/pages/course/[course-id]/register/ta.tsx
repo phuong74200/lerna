@@ -13,8 +13,8 @@ import {
   Title,
 } from "@mantine/core";
 
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
-import useStep from "@/hooks/use-step";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import useStep from "@/common/hooks/use-step";
 import { MantineStyles } from "@/types";
 import { generatePlaceHolderImage } from "@/utils/generate-place-holder-image";
 

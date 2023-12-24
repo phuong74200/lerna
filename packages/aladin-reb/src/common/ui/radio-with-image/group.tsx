@@ -3,7 +3,7 @@ import { Input, InputWrapperBaseProps, InputWrapperStylesNames } from "@mantine/
 import { useId, useUncontrolled } from "@mantine/hooks";
 import { DefaultProps, MantineSize } from "@mantine/styles";
 
-import { useComponentDefaultProps } from "@/hooks/use-component-default-props";
+import { useComponentDefaultProps } from "@/common/hooks/use-component-default-props";
 
 import { RadioGroupProvider } from "./context";
 

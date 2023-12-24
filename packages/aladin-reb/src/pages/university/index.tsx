@@ -12,14 +12,14 @@ import {
 import { IconPencil, IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
-import EmptyImage from "@/components/empty-image";
-import NavigateButton from "@/components/navigate-btn";
-import TableIndex from "@/components/table-index";
+import useRedirect from "@/common/hooks/use-redirect";
+import EmptyImage from "@/common/ui/empty-image";
+import NavigateButton from "@/common/ui/navigate-btn";
+import TableIndex from "@/common/ui/table-index";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
 import { Institution } from "@/domains/insitution";
 import ImageView from "@/features/university/components/image-view";
 import useGetAllInstitution from "@/features/university/services/use-get-all-institution";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const INSITUTION_PAGE_SIZE = 20;

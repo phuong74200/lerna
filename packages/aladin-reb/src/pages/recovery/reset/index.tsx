@@ -4,9 +4,9 @@ import { useForm, zodResolver } from "@mantine/form";
 import { IconLock } from "@tabler/icons-react";
 import { z } from "zod";
 
+import useRedirect from "@/common/hooks/use-redirect";
 import { PasswordStrength } from "@/features/auth/components/password-strength";
 import useReNewPassword from "@/features/auth/services/use-renew-password";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const requirements = [

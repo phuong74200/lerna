@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Box, Group, Paper, Stack, Text, Textarea } from "@mantine/core";
 
-import CustomModal from "@/components/custom-modal";
-import TextInputWithCustomError from "@/components/text-input-with-custom-error";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import CustomModal from "@/common/ui/custom-modal";
+import TextInputWithCustomError from "@/common/ui/text-input-with-custom-error";
 import SingleImageDrop from "@/features/images/components/single-image-drop";
 import useSubject from "@/features/subject/services/use-subject";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 import parseDec from "@/utils/parse-dec";
 

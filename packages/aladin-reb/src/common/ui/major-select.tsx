@@ -1,7 +1,7 @@
 import { Select, SelectProps } from "@mantine/core";
 
+import useGetCurrentUser from "@/common/services/use-get-current-user";
 import useGetAllMajorsOfInstitution from "@/features/major/services/use-get-all-majors-of-institution";
-import useGetCurrentUser from "@/services/use-get-current-user";
 
 const MajorSelect = (props: Omit<SelectProps, "data">) => {
   const { data } = useGetCurrentUser();

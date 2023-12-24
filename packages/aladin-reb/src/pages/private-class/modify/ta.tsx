@@ -1,9 +1,9 @@
 import { Button, Container, Group, Paper, Stack, Text, Title } from "@mantine/core";
 import { IconCalendarEvent } from "@tabler/icons-react";
 
+import useRedirect from "@/common/hooks/use-redirect";
 // import { MRT_ColumnDef, MRT_Table } from "mantine-react-table";
-import TextWithIcon from "@/components/text-width-icon";
-import useRedirect from "@/hooks/use-redirect";
+import TextWithIcon from "@/common/ui/text-width-icon";
 
 // const data: CourseModel[] = generateFilledArray(1, (_, index) => ({
 //   index: index.toString(),

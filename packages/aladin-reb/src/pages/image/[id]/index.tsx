@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Image, Modal } from "@mantine/core";
 
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
 
 export default function ImageViewPage() {
   const { open, goBack } = useModalRouteTrasition();

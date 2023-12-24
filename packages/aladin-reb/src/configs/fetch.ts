@@ -16,7 +16,7 @@ fetchInstance.onRequest(async (request) => {
 });
 
 // exchange refresh token to access token
-fetchInstance.onResponse(async (response, request) => {
+fetchInstance.onResponse(async (response) => {
   const refreshToken = getToken().refreshToken;
 
   if (response.status === 401 && refreshToken) {
@@ -36,23 +36,10 @@ fetchInstance.onResponse(async (response, request) => {
       localStorage.setItem(
         "token",
         JSON.stringify({
-          accessToken: json.returnObject.accessToken,
-          refreshToken: json.returnObject.refreshToken,
+          accessToken: json.accessToken,
+          refreshToken: json.refreshToken,
         }),
       );
-
-      const data = (
-        await fetch(request.url, {
-          ...request.options,
-          headers: {
-            Authorization: `Bearer ${json.returnObject.accessToken}`,
-            "content-type": "application/json",
-            ...request.options.headers,
-          },
-        })
-      ).json();
-
-      return data;
     } catch (e) {
       clsToken();
 

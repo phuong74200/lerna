@@ -15,10 +15,10 @@ import { useForm } from "@mantine/form";
 import { IconAt, IconLock } from "@tabler/icons-react";
 
 import { components } from "@/api/v1";
+import useRedirect from "@/common/hooks/use-redirect";
+import usePostLoginUser from "@/common/services/use-post-login-user";
 import { GoogleButton } from "@/features/auth/components/google-button";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
-import usePostLoginUser from "@/services/use-post-login-user";
 
 export default function LoginPage() {
   const theme = useMantineTheme();

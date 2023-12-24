@@ -1,4 +1,4 @@
-import CustomSelect, { CustomSelectProps } from "@/components/custom-select";
+import CustomSelect, { CustomSelectProps } from "@/common/ui/custom-select";
 import { FeatureFlag, FLAGS } from "@/configs/feature-flag";
 import useGetAllInstitution from "@/features/university/services/use-get-all-institution";
 

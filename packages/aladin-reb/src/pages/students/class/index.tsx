@@ -3,8 +3,8 @@ import { Button, Center, Container, Paper, SimpleGrid, Title } from "@mantine/co
 import { IconArrowRight } from "@tabler/icons-react";
 
 import { client } from "@/api/openapi-fetch";
+import useAsyncEffect from "@/common/hooks/use-async-effect";
 import ClassCard from "@/features/class/components/class-card";
-import useAsyncEffect from "@/hooks/use-async-effect";
 import StudentTabBar from "@/layout/components/student-tab-bar";
 import { generateCourse } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";

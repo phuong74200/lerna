@@ -5,11 +5,11 @@ import { TransformedValues, useForm } from "@mantine/form";
 import { Notifications } from "@mantine/notifications";
 
 import { ASSET_CHECK_MARK } from "@/assets";
-import CustomModal from "@/components/custom-modal";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import useRedirect from "@/common/hooks/use-redirect";
+import CustomModal from "@/common/ui/custom-modal";
 import useForgetPasswordResend from "@/features/auth/services/use-forget-password-resend";
 import useForgetPasswordVerify from "@/features/auth/services/use-forget-password-verify";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 export default function RecoveryOTPPage() {

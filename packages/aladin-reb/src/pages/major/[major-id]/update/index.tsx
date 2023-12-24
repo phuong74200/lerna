@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Group, Stack } from "@mantine/core";
 
-import TextInputWithCustomError from "@/components/text-input-with-custom-error";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import TextInputWithCustomError from "@/common/ui/text-input-with-custom-error";
 import useMajor from "@/features/major/services/use-major";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 import parseDec from "@/utils/parse-dec";
 

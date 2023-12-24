@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
+import useGetCurrentUser from "@/common/services/use-get-current-user";
 import Error404 from "@/pages/error/components/error404";
-import useGetCurrentUser from "@/services/use-get-current-user";
 import { Role } from "@/types/enums/role";
 
 interface Props {

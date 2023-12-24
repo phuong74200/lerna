@@ -16,13 +16,13 @@ import { IconDots, IconEdit, IconPencil, IconPlus, IconSearch } from "@tabler/ic
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
 import { components } from "@/api/v1";
-import ExternalLink from "@/components/external-link";
-import NavigateButton from "@/components/navigate-btn";
-import TableIndex from "@/components/table-index";
+import useRedirect from "@/common/hooks/use-redirect";
+import ExternalLink from "@/common/ui/external-link";
+import NavigateButton from "@/common/ui/navigate-btn";
+import TableIndex from "@/common/ui/table-index";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
 import HideButton from "@/features/subject/components/hide-button";
 import useGetAllSubjectOfMajor from "@/features/subject/services/get-all-subject-of-major";
-import useRedirect from "@/hooks/use-redirect";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 import parseDec from "@/utils/parse-dec";

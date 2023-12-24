@@ -4,11 +4,11 @@ import { IconLock } from "@tabler/icons-react";
 import { z } from "zod";
 
 import { components } from "@/api/v1";
-import CustomModal from "@/components/custom-modal";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import CustomModal from "@/common/ui/custom-modal";
 import { PasswordStrength } from "@/features/auth/components/password-strength";
 import useGetAllDepartment from "@/features/department/services/use-get-all-department";
 import useCreateManager from "@/features/manager/services/use-create-manager";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const requirements = [

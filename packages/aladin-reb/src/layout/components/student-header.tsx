@@ -13,8 +13,8 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-import useBreadcrumbs from "@/hooks/use-breadcrumbs";
-import useRedirect from "@/hooks/use-redirect";
+import useBreadcrumbs from "@/common/hooks/use-breadcrumbs";
+import useRedirect from "@/common/hooks/use-redirect";
 
 const HEADER_HEIGHT = rem(60);
 

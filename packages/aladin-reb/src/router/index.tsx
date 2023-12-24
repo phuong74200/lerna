@@ -5,6 +5,9 @@ import { TreeBuilder } from "route-builder";
 import { uid } from "uid";
 
 import { queryClient } from "@/configs/react-query";
+import AdminLayout from "@/layout/admin-layout";
+import PublicLayout from "@/layout/public";
+import StudentLayout from "@/layout/student";
 import { currentUserLoader } from "@/loaders/current-user";
 import CreateDiscountLayout from "@/pages/discount/create/layout";
 import MajorUpdateLayout from "@/pages/major/[major-id]/update/layout";
@@ -13,10 +16,7 @@ import CreateUniversityLayout from "@/pages/university/create/layout";
 import UpdateUniversityLayout from "@/pages/university/update/[institution-id]/layout";
 import CreateVoucherLayout from "@/pages/vouchers/create/layout";
 import { Path } from "@/router/path";
-
-const StudentLayout = lazy(() => import("@/layout/student"));
-const PublicLayout = lazy(() => import("@/layout/public"));
-const AdminLayout = lazy(() => import("@/layout/admin-layout"));
+import { getToken } from "@/utils/auth-token";
 
 const ListDiscountPage = lazy(() => import("@/pages/discount"));
 const CreateDiscountPage = lazy(() => import("@/pages/discount/create"));
@@ -110,6 +110,7 @@ export const routes: RouteObjectWithFixedPath[] = [
   {
     path: "/admin",
     loader: currentUserLoader(queryClient),
+    shouldRevalidate: () => getToken().empty,
     Component: AdminLayout,
     children: [
       /* University */

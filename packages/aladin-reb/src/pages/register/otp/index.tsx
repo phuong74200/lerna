@@ -5,11 +5,11 @@ import { useForm } from "@mantine/form";
 import { Notifications } from "@mantine/notifications";
 
 import { ASSET_CHECK_MARK } from "@/assets";
-import CustomModal from "@/components/custom-modal";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import useRedirect from "@/common/hooks/use-redirect";
+import CustomModal from "@/common/ui/custom-modal";
 import useResendOTP from "@/features/register/services/use-resend-otp";
 import useVerifyOTP from "@/features/register/services/use-verify-otp";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
-import useRedirect from "@/hooks/use-redirect";
 import { currentUserLoader } from "@/loaders/current-user";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 import { clsToken } from "@/utils/auth-token";

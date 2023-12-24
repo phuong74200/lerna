@@ -15,9 +15,9 @@ import {
 import { IconBookmark, IconCheck, IconSchool } from "@tabler/icons-react";
 import dayjs from "dayjs";
 
-import MoreInfo from "@/components/more-info";
-import TextWithIcon from "@/components/text-width-icon";
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
+import MoreInfo from "@/common/ui/more-info";
+import TextWithIcon from "@/common/ui/text-width-icon";
 import { toVND } from "@/utils/converter";
 import { CourseModel } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";

@@ -1,11 +1,11 @@
 import { Modal, Stepper } from "@mantine/core";
 
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import useStep from "@/common/hooks/use-step";
 import CourseStep1 from "@/features/register/components/course-step-1";
 import CourseStep2 from "@/features/register/components/course-step-2";
 import CourseStep3 from "@/features/register/components/course-step-3";
 import CourseStepComplete from "@/features/register/components/course-step-complete";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
-import useStep from "@/hooks/use-step";
 
 export default function ProgressGroupRegisterPayment() {
   const { open, goBack } = useModalRouteTrasition();

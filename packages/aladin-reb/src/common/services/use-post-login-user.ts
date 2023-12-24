@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { client } from "@/api/openapi-fetch";
 import { components } from "@/api/v1";
-import useRedirect from "@/hooks/use-redirect";
-import useToken from "@/hooks/use-token";
+import useRedirect from "@/common/hooks/use-redirect";
+import useToken from "@/common/hooks/use-token";
 
 type LoginRequest = components["schemas"]["LoginRequest"];
 

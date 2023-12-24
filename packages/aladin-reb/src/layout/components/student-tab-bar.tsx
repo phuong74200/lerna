@@ -2,7 +2,7 @@ import { memo } from "react";
 import { useLocation } from "react-router-dom";
 import { Center, SegmentedControl } from "@mantine/core";
 
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
 
 const StudentTabBar = () => {
   const redirect = useRedirect();

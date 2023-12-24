@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 import { Anchor, AnchorProps } from "@mantine/core";
 
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
 
 interface Props {
   src: string | undefined;

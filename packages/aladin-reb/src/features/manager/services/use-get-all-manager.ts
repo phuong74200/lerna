@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { queryKeys } from "@/api";
+import useQueryPagination from "@/common/hooks/use-query-pagination";
 import { ManagerList } from "@/domains/manager-list";
-import useQueryPagination from "@/hooks/use-query-pagination";
 
 export default function useGetAllManager(size = 10) {
   const { pagination, range } = useQueryPagination({

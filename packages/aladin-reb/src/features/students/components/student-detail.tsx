@@ -12,8 +12,8 @@ import {
   Text,
 } from "@mantine/core";
 
+import useRedirect from "@/common/hooks/use-redirect";
 import useGetStudentById from "@/features/students/services/use-get-student-by-id";
-import useRedirect from "@/hooks/use-redirect";
 
 type Props = {
   user_id: string;

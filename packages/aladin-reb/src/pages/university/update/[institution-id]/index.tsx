@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { Box, Group, Stack, Text, Textarea, TextInput } from "@mantine/core";
 
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
 import SingleImageDrop from "@/features/images/components/single-image-drop";
 import useUpdateInsitutionForm from "@/features/university/hooks/use-update-insitution-form";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 export default function UpdateUniversityPage() {

@@ -9,9 +9,9 @@ import {
 } from "@tabler/icons-react";
 import { useQueryClient } from "@tanstack/react-query";
 
+import useGetCurrentUser from "@/common/services/use-get-current-user";
 import { LinksGroup, LinksGroupProps } from "@/layout/components/navbar-link-group";
 import { UserButton } from "@/layout/components/user-button";
-import useGetCurrentUser from "@/services/use-get-current-user";
 import generateAvatar from "@/utils/generate-avatar";
 
 const mockdata: LinksGroupProps[] = [

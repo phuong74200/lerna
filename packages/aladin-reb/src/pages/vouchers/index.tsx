@@ -10,12 +10,12 @@ import {
 import { IconPencil, IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
-import NavigateButton from "@/components/navigate-btn";
-import TableIndex from "@/components/table-index";
+import useRedirect from "@/common/hooks/use-redirect";
+import NavigateButton from "@/common/ui/navigate-btn";
+import TableIndex from "@/common/ui/table-index";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
 import { Voucher } from "@/domains/voucher";
 import useGetAllVoucher from "@/features/voucher/services/use-get-all-voucher";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const VOUCHER_PAGE_SIZE = 20;

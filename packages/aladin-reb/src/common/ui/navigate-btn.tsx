@@ -1,7 +1,7 @@
 import { HTMLAttributes, MouseEvent, ReactNode } from "react";
 import { ActionIconProps } from "@mantine/core";
 
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
 import { Path } from "@/router/path";
 

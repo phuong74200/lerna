@@ -14,7 +14,7 @@ import {
 import { IconDots, IconEdit, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
-import TableIndex from "@/components/table-index";
+import TableIndex from "@/common/ui/table-index";
 import { Student } from "@/domains/student";
 import StudentDetail from "@/features/students/components/student-detail";
 import useGetAllTA from "@/features/ta/services/use-get-all-ta";

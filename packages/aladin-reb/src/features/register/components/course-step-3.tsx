@@ -1,6 +1,6 @@
 import { Button, Center, Group, Image, Stack, Title } from "@mantine/core";
 
-import { UseStepType } from "@/hooks/use-step";
+import { UseStepType } from "@/common/hooks/use-step";
 import { generatePlaceHolderImage } from "@/utils/generate-place-holder-image";
 
 export default function CourseStep3(props: UseStepType) {

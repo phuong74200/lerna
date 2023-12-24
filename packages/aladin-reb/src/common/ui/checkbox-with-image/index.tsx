@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { Image, Text, UnstyledButton } from "@mantine/core";
 import { useUncontrolled } from "@mantine/hooks";
 
-import { useStyles } from "@/components/checkbox-with-image/styles";
+import { useStyles } from "@/common/ui/checkbox-with-image/styles";
 
 interface Props {
   checked?: boolean;

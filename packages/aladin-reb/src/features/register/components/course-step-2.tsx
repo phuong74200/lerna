@@ -13,8 +13,8 @@ import {
 } from "@mantine/core";
 import { IconChalkboard, IconZoomMoney } from "@tabler/icons-react";
 
-import MoreInfo from "@/components/more-info";
-import RadioWithImage from "@/components/radio-with-image";
+import MoreInfo from "@/common/ui/more-info";
+import RadioWithImage from "@/common/ui/radio-with-image";
 import { ControlTitle } from "@/features/register/components/control-title";
 import { Row } from "@/features/register/components/row";
 import { MantineStyles } from "@/types";

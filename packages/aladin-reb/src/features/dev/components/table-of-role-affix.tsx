@@ -1,7 +1,7 @@
 import { ActionIcon, Popover, SimpleGrid } from "@mantine/core";
 import { IconUserCircle } from "@tabler/icons-react";
 
-import RadioWithImage from "@/components/radio-with-image";
+import RadioWithImage from "@/common/ui/radio-with-image";
 import { FeatureFlag, FLAGS } from "@/configs/feature-flag";
 import { useAuthContext } from "@/features/auth/contexts/auth";
 import { Role } from "@/types/enums/role";

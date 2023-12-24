@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { client } from "@/api/openapi-fetch";
 import { operations } from "@/api/v1";
+import useRedirect from "@/common/hooks/use-redirect";
 import { notification } from "@/configs/notifications";
-import useRedirect from "@/hooks/use-redirect";
 import isInstanceOfResponseError from "@/utils/is-instance-of";
 
 export default function useVerifyOTP() {

@@ -13,7 +13,7 @@ import {
 import { useToggle } from "@mantine/hooks";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
 import { Path } from "@/router/path";
 
 const useStyles = createStyles((theme) => ({

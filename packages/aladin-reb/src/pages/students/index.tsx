@@ -15,8 +15,8 @@ import {
 import { IconBan, IconDots, IconEdit, IconSearch, IconTrash } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
-import NavigateButton from "@/components/navigate-btn";
-import TableIndex from "@/components/table-index";
+import NavigateButton from "@/common/ui/navigate-btn";
+import TableIndex from "@/common/ui/table-index";
 import { FeatureFlag, FLAGS } from "@/configs/feature-flag";
 import { ACTION_ICON_SIZE } from "@/configs/icon";
 import { Student } from "@/domains/student";

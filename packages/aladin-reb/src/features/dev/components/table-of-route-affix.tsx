@@ -3,10 +3,10 @@ import { Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 
-import CollapseList, { CollapseListProps } from "@/components/collapse-list";
+import useRedirect from "@/common/hooks/use-redirect";
+import CollapseList, { CollapseListProps } from "@/common/ui/collapse-list";
 import { FeatureFlag, FLAGS } from "@/configs/feature-flag";
 import getPathName from "@/features/dev/utils/get-path-name";
-import useRedirect from "@/hooks/use-redirect";
 // import { getTree } from "@/router";
 
 interface CustomCollapseListProps extends Partial<CollapseListProps> {

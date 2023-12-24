@@ -7,7 +7,7 @@ import {
   ASSET_GIRL_TABLET_2,
   ASSET_MALE_LAPTOP,
 } from "@/assets";
-import NavigateWithState from "@/components/navigate-with-state";
+import NavigateWithState from "@/common/ui/navigate-with-state";
 import LandingCarousel from "@/features/landing/components/landing-carousel";
 import { HeaderResponsive } from "@/layout/components/header-responsive";
 import { currentUserLoader } from "@/loaders/current-user";

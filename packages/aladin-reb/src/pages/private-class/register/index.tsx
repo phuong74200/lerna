@@ -14,10 +14,10 @@ import {
 } from "@mantine/core";
 import { IconCalendarEvent, IconPlus } from "@tabler/icons-react";
 
+import useRedirect from "@/common/hooks/use-redirect";
 // import { MRT_ColumnDef, MRT_Table } from "mantine-react-table";
-import TextWithIcon from "@/components/text-width-icon";
+import TextWithIcon from "@/common/ui/text-width-icon";
 import useGetSelfMajor from "@/features/major/services/use-get-self-major";
-import useRedirect from "@/hooks/use-redirect";
 import { generatePerson } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 

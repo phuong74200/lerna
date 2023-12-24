@@ -1,6 +1,6 @@
 import { Button, Card, Group, Image, Stack, Text, Title } from "@mantine/core";
 
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
 import { generateCourse } from "@/utils/entity-generator";
 
 const course = generateCourse();

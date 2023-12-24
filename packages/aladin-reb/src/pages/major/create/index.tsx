@@ -2,10 +2,10 @@ import { useLocation } from "react-router-dom";
 import { Group, Paper, Stack } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import CustomModal from "@/components/custom-modal";
-import TextInputWithCustomError from "@/components/text-input-with-custom-error";
+import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import CustomModal from "@/common/ui/custom-modal";
+import TextInputWithCustomError from "@/common/ui/text-input-with-custom-error";
 import useCreateMajor, { CreateMajorRequest } from "@/features/major/services/use-create-major";
-import useModalRouteTrasition from "@/hooks/use-modal-route-transition";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 export default function CreateMajorPage() {

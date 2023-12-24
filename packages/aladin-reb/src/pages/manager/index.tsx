@@ -10,10 +10,10 @@ import {
 import { IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
-import TableIndex from "@/components/table-index";
+import useRedirect from "@/common/hooks/use-redirect";
+import TableIndex from "@/common/ui/table-index";
 import { Manager } from "@/domains/manager";
 import useGetAllManager from "@/features/manager/services/use-get-all-manager";
-import useRedirect from "@/hooks/use-redirect";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const MANAGER_PAGE_SIZE = 20;

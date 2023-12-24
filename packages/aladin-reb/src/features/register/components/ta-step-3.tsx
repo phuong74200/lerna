@@ -1,7 +1,7 @@
 import { Button, Center, Image, Text } from "@mantine/core";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 
-import useRedirect from "@/hooks/use-redirect";
+import useRedirect from "@/common/hooks/use-redirect";
 import { generatePlaceHolderImage } from "@/utils/generate-place-holder-image";
 
 export default function TAStep3() {
