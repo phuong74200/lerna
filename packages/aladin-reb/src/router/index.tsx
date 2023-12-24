@@ -110,7 +110,7 @@ export const routes: RouteObjectWithFixedPath[] = [
   {
     path: "/admin",
     loader: currentUserLoader(queryClient),
-    shouldRevalidate: () => getToken().empty,
+    shouldRevalidate: () => !getToken().accessToken || !getToken().accessToken,
     Component: AdminLayout,
     children: [
       /* University */

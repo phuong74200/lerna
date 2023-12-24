@@ -46,4 +46,8 @@ fetchInstance.onResponse(async (response) => {
       throw e;
     }
   }
+
+  if (response.status === 401 && !refreshToken) {
+    clsToken();
+  }
 });
