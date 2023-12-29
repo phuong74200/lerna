@@ -1,6 +1,9 @@
-import { components } from "@/api/v1";
+import { uid } from "uid";
 
-export class Major {
+import { components } from "@/api/v1";
+import { Domain } from "@/interfaces/domain";
+
+export class Major implements Domain<components["schemas"]["MajorResponse"]> {
   props: components["schemas"]["MajorResponse"];
 
   constructor(props: components["schemas"]["MajorResponse"]) {
@@ -9,6 +12,10 @@ export class Major {
 
   get majorId() {
     return this.props.majorId;
+  }
+
+  get id() {
+    return this.props.majorId || uid();
   }
 
   get institutionId() {

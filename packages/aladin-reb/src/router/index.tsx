@@ -20,6 +20,8 @@ import DeleteStudentPage from "@/pages/students/delete/[user-id]";
 import DeleteStudentModalLayout from "@/pages/students/delete/[user-id]/layout";
 import UpdateSubjectPage from "@/pages/subject/[subject-id]/update";
 import SubjectUpdateLayout from "@/pages/subject/[subject-id]/update/layout";
+import CreateSubjectPage from "@/pages/subject/create";
+import CreateSubjectLayout from "@/pages/subject/create/loader";
 import TaRegister from "@/pages/ta/register";
 import { taReigsterLoader } from "@/pages/ta/register/loader";
 import AdminViewTARegistrationPage from "@/pages/ta/registration/[ta-id]";
@@ -335,6 +337,17 @@ export const routes: RouteObjectWithFixedPath[] = [
           {
             path: "/admin/subject/:subjectId/update",
             Component: UpdateSubjectPage,
+          },
+        ],
+      },
+      {
+        path: "/admin/subject/create",
+        Component: CreateSubjectLayout,
+        modal: true,
+        children: [
+          {
+            path: "/admin/subject/create",
+            Component: CreateSubjectPage,
           },
         ],
       },

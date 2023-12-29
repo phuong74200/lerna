@@ -1,37 +1,14 @@
-import { uid } from "uid";
-
 import { components } from "@/api/v1";
-import { toNonAccentVietnamese } from "@/utils/converter";
+import { Major } from "@/domains/major";
+import { DomainList } from "@/interfaces/domain-list";
 
-export class MajorList {
-  props: components["schemas"]["PageResponseMajorMajorResponse"];
-
+export class MajorList extends DomainList<Major> {
   constructor(props: components["schemas"]["PageResponseMajorMajorResponse"]) {
-    this.props = props;
+    const transformed = {
+      ...props,
+      list: (props.list || []).map((item) => new Major(item)),
+    };
 
-    this.props.list = this.props.list || [];
-  }
-
-  get totalElements() {
-    return this.props.totalElements;
-  }
-
-  get totalPages() {
-    return this.props.totalPages;
-  }
-
-  toSelectList() {
-    const list = this.props.list || [];
-
-    return list.map((item) => ({
-      searchString: toNonAccentVietnamese(JSON.stringify(item)),
-      description: item.description,
-      value: item.majorId?.toString() || uid(),
-      label: item.name || "",
-    }));
-  }
-
-  toArray() {
-    return this.props.list || [];
+    super(transformed);
   }
 }

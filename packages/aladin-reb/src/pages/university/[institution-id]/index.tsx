@@ -14,14 +14,14 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { IconDots, IconEdit, IconPlus, IconSearch } from "@tabler/icons-react";
-import { DataTable, DataTableColumn } from "mantine-datatable";
-import { uid } from "uid";
+import { DataTableColumn } from "mantine-datatable";
 
-import { components } from "@/api/v1";
 import useRedirect from "@/common/hooks/use-redirect";
 import EditBtn from "@/common/ui/edit-btn";
 import EmptyImage from "@/common/ui/empty-image";
+import PaginateTable from "@/common/ui/paginate-table";
 import TableIndex from "@/common/ui/table-index";
+import { Major } from "@/domains/major";
 import useGetAllMajorsOfInstitution from "@/features/major/services/use-get-all-majors-of-institution";
 import useGetInstitutionById from "@/features/university/services/use-get-institution-by-id";
 import RippleActionIcon from "@/modules/mantine-ripple/components/ripple-action-icon";
@@ -29,7 +29,7 @@ import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
 
 const MAJOR_PAGINATION_SIZE = 20;
 
-const columns: DataTableColumn<components["schemas"]["MajorResponse"]>[] = [
+const columns: DataTableColumn<Major>[] = [
   {
     accessor: "index",
     title: "STT",
@@ -93,80 +93,70 @@ export default function ViewUniversityPage() {
           </Menu.Dropdown>
         </Menu>
       </div>
-      <Stack className="flex-1">
-        <Flex className="w-full justify-between align-middle">
-          <Group align="start">
-            <Image
-              width={128}
-              height={128}
-              src={institution?.data?.image}
-              radius="md"
-              withPlaceholder
-              placeholder={<EmptyImage />}
-            />
-            <div>
-              <Title>{institution?.data?.name}</Title>
-              <Text color="dimmed" w={448}>
-                {institution?.data?.description || <i>Không có mô tả</i>}
-              </Text>
-            </div>
-          </Group>
-          <Flex gap="sm" align="end">
-            <TextInput
-              variant="filled"
-              icon={<IconSearch size={theme.fontSizes.md} />}
-              placeholder="Tìm kiếm"
-            />
-            <RippleButton
-              onClick={onRedirectWithState("/admin/major/create", {
-                state: {
-                  institutionId,
-                },
-              })}
-              leftIcon={<IconPlus size={theme.fontSizes.md} />}
-            >
-              Thêm khoa
-            </RippleButton>
-            <RippleActionIcon variant="filled" color="blue">
-              <IconDots size={theme.fontSizes.lg} />
-            </RippleActionIcon>
-          </Flex>
-        </Flex>
-        <DataTable
-          withBorder
-          borderRadius="md"
-          fontSize="md"
-          withColumnBorders
-          striped
-          highlightOnHover
-          records={major?.toArray() || []}
-          fetching={isFetching}
-          verticalSpacing="sm"
-          noRecordsText="Không có dữ liệu"
-          columns={columns}
-          idAccessor={(record) => record.majorId ?? uid()}
-          onRowClick={({ majorId }) =>
-            redirect(
-              generatePath("/admin/major/:majorId", {
-                majorId: `${majorId}`,
-              }),
-            )
-          }
-        />
-        <Flex justify="space-between" align="center">
-          <Text size="sm">
-            <b>
-              {range[0]} đến {range[1]}
-            </b>{" "}
-            của {major?.totalElements}
-          </Text>
-          <Pagination
-            total={major?.totalPages || 0}
-            onChange={pagination.setPage}
-            value={pagination.active}
+      <Flex className="w-full justify-between align-middle">
+        <Group align="start">
+          <Image
+            width={128}
+            height={128}
+            src={institution?.data?.image}
+            radius="md"
+            withPlaceholder
+            placeholder={<EmptyImage />}
           />
+          <div>
+            <Title>{institution?.data?.name}</Title>
+            <Text color="dimmed" w={448}>
+              {institution?.data?.description || <i>Không có mô tả</i>}
+            </Text>
+          </div>
+        </Group>
+        <Flex gap="sm" align="end">
+          <TextInput
+            variant="filled"
+            icon={<IconSearch size={theme.fontSizes.md} />}
+            placeholder="Tìm kiếm"
+          />
+          <RippleButton
+            onClick={onRedirectWithState("/admin/major/create", {
+              state: {
+                institutionId,
+              },
+            })}
+            leftIcon={<IconPlus size={theme.fontSizes.md} />}
+          >
+            Thêm khoa
+          </RippleButton>
+          <RippleActionIcon variant="filled" color="blue">
+            <IconDots size={theme.fontSizes.lg} />
+          </RippleActionIcon>
         </Flex>
-      </Stack>
+      </Flex>
+      <PaginateTable
+        list={major}
+        records={major?.list || []}
+        fetching={isFetching}
+        columns={columns}
+        onRowClick={({ majorId }) =>
+          redirect(
+            generatePath("/admin/major/:majorId", {
+              majorId: `${majorId}`,
+            }),
+          )
+        }
+      />
+      <Flex justify="space-between" align="center">
+        <Text size="sm">
+          <b>
+            {range[0]} đến {range[1]}
+          </b>{" "}
+          của {major?.totalElements}
+        </Text>
+        <Pagination
+          total={major?.totalPages || 0}
+          onChange={pagination.setPage}
+          value={pagination.active}
+        />
+      </Flex>
     </Stack>
   );
 }
