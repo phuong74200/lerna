@@ -1,9 +1,11 @@
 export interface Domain<T extends object = object> {
   props: T;
 
-  id: string;
+  id: string | number;
 
-  name: string;
+  name: string | undefined;
 
   toRaw(): T;
+
+  description?: string;
 }

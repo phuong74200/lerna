@@ -48,4 +48,40 @@ export const taKeys = createQueryKeys("ta", {
       return data;
     },
   }),
+
+  registrations: (page: number, size: number, sort?: string[]) => ({
+    queryKey: [page, size],
+    queryFn: async () => {
+      const { data, error } = await client.GET(`/v1/manager/ta/registration`, {
+        params: {
+          query: {
+            page,
+            size,
+            sort,
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      return data;
+    },
+  }),
+
+  registration: (ta_id: string) => ({
+    queryKey: [ta_id],
+    queryFn: async () => {
+      const { data, error } = await client.GET(`/v1/manager/ta/registration/{ta_id}`, {
+        params: {
+          path: {
+            ta_id,
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      return data;
+    },
+  }),
 });

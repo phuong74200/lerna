@@ -1,6 +1,5 @@
 import {
   ActionIcon,
-  Container,
   Flex,
   Menu,
   MultiSelect,
@@ -55,7 +54,7 @@ export default function TAListPage() {
   const institutions = useGetAllInstitution();
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
+    <Stack className="flex h-0 w-full flex-1">
       <div className="absolute right-2 top-2">
         <Menu width={200} shadow="md">
           <Menu.Target>
@@ -117,6 +116,6 @@ export default function TAListPage() {
           <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
         </Flex>
       </Stack>
-    </Container>
+    </Stack>
   );
 }

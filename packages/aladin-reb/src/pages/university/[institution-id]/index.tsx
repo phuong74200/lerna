@@ -1,7 +1,6 @@
 import { generatePath, useParams } from "react-router-dom";
 import {
   ActionIcon,
-  Container,
   Flex,
   Group,
   Image,
@@ -16,6 +15,7 @@ import {
 } from "@mantine/core";
 import { IconDots, IconEdit, IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
+import { uid } from "uid";
 
 import { components } from "@/api/v1";
 import useRedirect from "@/common/hooks/use-redirect";
@@ -79,7 +79,7 @@ export default function ViewUniversityPage() {
   });
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
+    <Stack className="flex h-0 w-full flex-1">
       <div className="absolute right-2 top-2">
         <Menu width={200} shadow="md">
           <Menu.Target>
@@ -144,6 +144,7 @@ export default function ViewUniversityPage() {
           verticalSpacing="sm"
           noRecordsText="Không có dữ liệu"
           columns={columns}
+          idAccessor={(record) => record.majorId ?? uid()}
           onRowClick={({ majorId }) =>
             redirect(
               generatePath("/admin/major/:majorId", {
@@ -157,15 +158,15 @@ export default function ViewUniversityPage() {
             <b>
               {range[0]} đến {range[1]}
             </b>{" "}
-            của {50 * 15}
+            của {major?.totalElements}
           </Text>
           <Pagination
-            total={major?.totalElements || 0}
+            total={major?.totalPages || 0}
             onChange={pagination.setPage}
             value={pagination.active}
           />
         </Flex>
       </Stack>
-    </Container>
+    </Stack>
   );
 }

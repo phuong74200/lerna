@@ -115,7 +115,7 @@ export default function RegisterAssembledClassPage() {
               />
               <Group position="right" mt="1rem">
                 <Button variant="outline">Huỷ đăng ký</Button>
-                <Button onClick={onRedirectWithState("payment")}>Thanh toán</Button>
+                <Button onClick={onRedirectWithState("/")}>Thanh toán</Button>
               </Group>
             </Stack>
           </Paper>

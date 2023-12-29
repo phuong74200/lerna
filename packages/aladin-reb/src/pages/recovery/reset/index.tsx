@@ -98,12 +98,7 @@ export default function ResetPasswordPage() {
                   type="password"
                   {...form.getInputProps("confirmNewPassword")}
                 />
-                <RippleButton
-                  type="submit"
-                  loading={renew.isLoading}
-                  fullWidth
-                  wrapperClassName="mx-auto w-full"
-                >
+                <RippleButton type="submit" loading={renew.isLoading} fullWidth>
                   Xác nhận
                 </RippleButton>
               </Stack>

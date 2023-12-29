@@ -16,6 +16,10 @@ export class MajorList {
     return this.props.totalElements;
   }
 
+  get totalPages() {
+    return this.props.totalPages;
+  }
+
   toSelectList() {
     const list = this.props.list || [];
 

@@ -14,7 +14,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 
 import useBreadcrumbs from "@/common/hooks/use-breadcrumbs";
-import useRedirect from "@/common/hooks/use-redirect";
+import emptyFn from "@/utils/empty-fn";
 
 const HEADER_HEIGHT = rem(60);
 
@@ -91,7 +91,6 @@ export function SuperAdminHeader({ links }: HeaderResponsiveProps) {
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const paths = useBreadcrumbs();
-  const { onRedirect } = useRedirect();
 
   const items = links.map((link) => (
     <a
@@ -113,7 +112,7 @@ export function SuperAdminHeader({ links }: HeaderResponsiveProps) {
       <Container className={classes.header} fluid>
         <Breadcrumbs>
           {paths.map((item, index) => (
-            <Anchor onClick={onRedirect(item.path)} key={index}>
+            <Anchor onClick={emptyFn} key={index}>
               {item.name}
             </Anchor>
           ))}

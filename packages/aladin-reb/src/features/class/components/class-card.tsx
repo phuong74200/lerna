@@ -19,6 +19,7 @@ import Overflow from "rc-overflow";
 import useRedirect from "@/common/hooks/use-redirect";
 import TextWithIcon from "@/common/ui/text-width-icon";
 import { toVND } from "@/utils/converter";
+import logger from "@/utils/dev-log";
 import { CourseModel } from "@/utils/entity-generator";
 import getClassTime from "@/utils/get-class-time";
 import { getDiscountedPrice } from "@/utils/get-discount";
@@ -63,6 +64,8 @@ export default function ClassCard({
 }: Props) {
   const { onRedirectWithState } = useRedirect();
 
+  logger.log(id, "fix this file please");
+
   return (
     <Card shadow="md" padding="lg" className="flex h-full flex-col">
       <Card.Section className="relative overflow-hidden">
@@ -97,10 +100,7 @@ export default function ClassCard({
           </TextWithIcon>
         ))}
 
-        <TextWithIcon
-          onClick={onRedirectWithState(`/lecture/${lecture.id}/rating`)}
-          leftIcon={<IconSchool size="1.125rem" />}
-        >
+        <TextWithIcon onClick={onRedirectWithState(`/`)} leftIcon={<IconSchool size="1.125rem" />}>
           {lecture.name}
           <Text span>
             {" "}
@@ -134,7 +134,7 @@ export default function ClassCard({
           >
             <IconBookmark size="1.125rem" />
           </ActionIcon>
-          <Button color="blue" fullWidth onClick={onRedirectWithState(`${id}/register`)}>
+          <Button color="blue" fullWidth onClick={onRedirectWithState(`/`)}>
             Đăng ký
           </Button>
         </Group>

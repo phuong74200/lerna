@@ -3,6 +3,9 @@ interface C {
 }
 
 export const PATH = {
+  "/image": {
+    ":imageId": {},
+  },
   "/login": {},
   "/register": {
     verify: {},
@@ -11,23 +14,28 @@ export const PATH = {
     reset: {},
     otp: {},
   },
+  "/payment": {},
   "/admin": {
     institution: {
       create: {},
+      ":institutionId": {},
       update: {
         ":institutionId": {},
       },
-      ":institutionId": {},
-    },
-    voucher: {
-      create: {},
     },
     student: {
       ban: {
         ":userId": {},
       },
+      delete: {
+        ":userId": {},
+      },
     },
-    lecture: {},
+    lecture: {
+      registration: {
+        ":taId": {},
+      },
+    },
     discount: {
       create: {},
     },
@@ -46,17 +54,27 @@ export const PATH = {
         update: {},
       },
     },
-  },
-  "/usr": {},
-};
 
-type ParamKey = `:${string}`;
+    role: {},
+
+    voucher: {
+      create: {},
+      update: {
+        ":voucherId": {},
+      },
+    },
+  },
+  "/student": {
+    ta: {
+      register: {},
+      revise: {},
+    },
+  },
+};
 
 type PathKeys<T> = T extends C
   ? {
-      [K in keyof T]:
-        | K
-        | `${K & string}/${PathKeys<T[K]> extends ParamKey ? string : PathKeys<T[K]>}`;
+      [K in keyof T]: K | `${K & string}/${PathKeys<T[K]>}`;
     }[keyof T]
   : never;
 

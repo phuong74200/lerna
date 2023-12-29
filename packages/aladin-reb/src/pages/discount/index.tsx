@@ -1,12 +1,4 @@
-import {
-  Container,
-  Flex,
-  Pagination,
-  Stack,
-  Text,
-  TextInput,
-  useMantineTheme,
-} from "@mantine/core";
+import { Flex, Pagination, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
 import { IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
@@ -45,45 +37,43 @@ export default function ListDiscountPage() {
   const { data, pagination, isFetching, range } = useGetAllDiscount(DISCOUNT_PAGE_SIZE);
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
-      <Stack className="flex-1">
-        <Flex justify="space-between" align="center">
-          <TextInput
-            variant="filled"
-            icon={<IconSearch size={theme.fontSizes.md} />}
-            placeholder="Tìm kiếm"
-          />
-          <RippleButton
-            onClick={onRedirectWithState("/admin/discount/create")}
-            leftIcon={<IconPlus size={theme.fontSizes.md} />}
-          >
-            Tạo discount
-          </RippleButton>
-        </Flex>
-        <DataTable
-          withBorder
-          borderRadius="md"
-          fontSize="md"
-          withColumnBorders
-          striped
-          highlightOnHover
-          records={data?.list.toArray() || []}
-          fetching={isFetching}
-          verticalSpacing="sm"
-          noRecordsText="Không có dữ liệu"
-          columns={columns}
-          idAccessor="id"
+    <Stack className="flex h-0 w-full flex-1">
+      <Flex justify="space-between" align="center">
+        <TextInput
+          variant="filled"
+          icon={<IconSearch size={theme.fontSizes.md} />}
+          placeholder="Tìm kiếm"
         />
-        <Flex justify="space-between" align="center">
-          <Text size="sm">
-            <b>
-              {range[0]} đến {range[1]}
-            </b>{" "}
-            của {data?.totalPages}
-          </Text>
-          <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
-        </Flex>
-      </Stack>
-    </Container>
+        <RippleButton
+          onClick={onRedirectWithState("/admin/discount/create")}
+          leftIcon={<IconPlus size={theme.fontSizes.md} />}
+        >
+          Tạo discount
+        </RippleButton>
+      </Flex>
+      <DataTable
+        withBorder
+        borderRadius="md"
+        fontSize="md"
+        withColumnBorders
+        striped
+        highlightOnHover
+        records={data?.list.toArray() || []}
+        fetching={isFetching}
+        verticalSpacing="sm"
+        noRecordsText="Không có dữ liệu"
+        columns={columns}
+        idAccessor="id"
+      />
+      <Flex justify="space-between" align="center">
+        <Text size="sm">
+          <b>
+            {range[0]} đến {range[1]}
+          </b>{" "}
+          của {data?.totalPages}
+        </Text>
+        <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
+      </Flex>
+    </Stack>
   );
 }

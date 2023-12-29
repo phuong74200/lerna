@@ -34,7 +34,7 @@ export default function CreateUniversityPage() {
   } = useCreateInstitution(form);
 
   return (
-    <form onSubmit={form.onSubmit(submit)}>
+    <form onSubmit={form.onSubmit(submit)} className="flex-1">
       <Stack>
         <Group noWrap>
           <TextInputWithCustomError

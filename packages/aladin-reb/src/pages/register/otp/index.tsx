@@ -68,7 +68,6 @@ export default function RegisterOTPPage() {
               type="submit"
               loading={isLoading || isLoadingVerify}
               className="mx-auto w-36"
-              wrapperClassName="mx-auto"
             >
               Xác nhận
             </RippleButton>

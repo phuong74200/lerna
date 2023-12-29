@@ -10,7 +10,7 @@ export default function useGetAllMajorsOfInstitution(
 ) {
   const { pagination, range } = useQueryPagination({
     pageSizes: params.query?.size,
-    total: 50,
+    total: 10,
   });
 
   const query = useQuery({

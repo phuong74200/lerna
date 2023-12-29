@@ -22,10 +22,7 @@ export default function useGetAllSubjectOfMajor(
         sort: ["name"],
       },
     }),
-    select: (data) => ({
-      ...data?.data,
-      list: new SubjectList(data?.data?.list || []),
-    }),
+    select: (data) => new SubjectList(data),
   });
 
   return {

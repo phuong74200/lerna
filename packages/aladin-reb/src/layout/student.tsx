@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { AppShell, AppShellProps } from "@mantine/core";
 
+import Loading from "@/common/ui/loading";
 import { HeaderResponsive } from "@/layout/components/header-responsive";
 import { MantineStyles } from "@/types/mantine-styles";
 
@@ -21,7 +23,9 @@ const style: MantineStyles<AppShellProps> = (theme) => ({
 export default function StudentLayout() {
   return (
     <AppShell padding="md" styles={style} header={<HeaderResponsive links={links} />}>
-      <Outlet />
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
     </AppShell>
   );
 }

@@ -76,7 +76,6 @@ export default function RecoveryOTPPage() {
               type="submit"
               loading={resend.isLoading || verify.isLoading}
               className="mx-auto w-36"
-              wrapperClassName="mx-auto"
             >
               Xác nhận
             </RippleButton>

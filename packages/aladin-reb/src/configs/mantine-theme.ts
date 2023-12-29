@@ -41,7 +41,8 @@ export const customMantineTheme: MantineThemeOverride = {
 
   defaultRadius: "md",
   activeStyles: {
-    transform: "scale(0.97)",
+    // transform: "scale(0.97)",
+    transform: "none",
   },
 
   components: {

@@ -7,6 +7,7 @@ import { institutionKeys } from "@/api/institution";
 import { loginKeys } from "@/api/login";
 import { majorKeys } from "@/api/major";
 import { managerKeys } from "@/api/manager";
+import { roleKeys } from "@/api/role";
 import { studentKeys } from "@/api/student";
 import { subjectKeys } from "@/api/subject";
 import { taKeys } from "@/api/ta";
@@ -29,4 +30,5 @@ export const queryKeys = mergeQueryKeys(
   managerKeys,
   departmentKeys,
   discountKeys,
+  roleKeys,
 );

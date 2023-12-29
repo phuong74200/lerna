@@ -9,16 +9,9 @@ type Props = ActionIconProps &
   HTMLAttributes<Element> & {
     to?: Path;
     children: ReactNode;
-    label?: string;
   };
 
-export default function NavigateButton({
-  to,
-  children,
-  onClick,
-  label,
-  ...actionIconProps
-}: Props) {
+export default function NavigateButton({ to, children, onClick, ...actionIconProps }: Props) {
   const { redirectWithState } = useRedirect();
 
   const handleClick = (e: MouseEvent) => {
@@ -32,7 +25,7 @@ export default function NavigateButton({
 
   return (
     // <Tooltip label={label} disabled={!label}>
-    <RippleActionIcon title={label} variant="filled" {...actionIconProps} onClick={handleClick}>
+    <RippleActionIcon variant="filled" {...actionIconProps} onClick={handleClick}>
       {children}
     </RippleActionIcon>
     // </Tooltip>

@@ -59,7 +59,7 @@ export default function ModifyTAPrivateClass() {
           </TextWithIcon>
           <Group position="right" mt="1rem">
             <Button variant="outline">Huỷ chỉnh sửa</Button>
-            <Button onClick={onRedirectWithState("payment")}>Gửi yêu cầu</Button>
+            <Button onClick={onRedirectWithState("/payment")}>Gửi yêu cầu</Button>
           </Group>
         </Stack>
       </Paper>

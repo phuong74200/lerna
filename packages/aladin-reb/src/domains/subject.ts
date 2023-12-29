@@ -1,10 +1,17 @@
-import { components } from "@/api/v1";
+import { uid } from "uid";
 
-export class Subject {
+import { components } from "@/api/v1";
+import { Domain } from "@/interfaces/domain";
+
+export class Subject implements Domain {
   props: components["schemas"]["SubjectResponse"];
 
   constructor(props: components["schemas"]["SubjectResponse"]) {
     this.props = props;
+  }
+
+  get id() {
+    return this.props.subjectId ?? uid();
   }
 
   get institutionId() {

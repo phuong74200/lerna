@@ -5,7 +5,7 @@ import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
 
 export default function ImageViewPage() {
   const { open, goBack } = useModalRouteTrasition();
-  const { id } = useParams<{ id: string }>();
+  const { imageId } = useParams<{ imageId: string }>();
 
   return (
     <Modal.Root
@@ -17,7 +17,7 @@ export default function ImageViewPage() {
     >
       <Modal.Overlay blur={12} opacity={0.1} />
       <Modal.Content bg="transparent" shadow="none">
-        <Image src={id} />
+        <Image src={imageId} />
       </Modal.Content>
     </Modal.Root>
   );

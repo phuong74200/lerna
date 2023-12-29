@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react-swc";
 import * as path from "path";
 import { defineConfig } from "vite";
 import { checker } from "vite-plugin-checker";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +15,17 @@ export default defineConfig({
       },
       overlay: {
         initialIsOpen: false,
+      },
+    }),
+    ViteImageOptimizer({
+      png: {
+        quality: 80,
+      },
+      jpeg: {
+        quality: 80,
+      },
+      jpg: {
+        quality: 80,
       },
     }),
   ],

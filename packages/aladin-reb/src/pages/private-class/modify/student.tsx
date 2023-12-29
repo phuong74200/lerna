@@ -69,7 +69,7 @@ export default function ModifyStudentPrivateClass() {
               />
               <Group position="right" mt="1rem">
                 <Button variant="outline">Huỷ đăng ký</Button>
-                <Button onClick={onRedirectWithState("payment")}>Thanh toán</Button>
+                <Button onClick={onRedirectWithState("/payment")}>Thanh toán</Button>
               </Group>
             </Stack>
           </Paper>

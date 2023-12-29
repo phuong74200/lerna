@@ -19,6 +19,7 @@ import useRedirect from "@/common/hooks/use-redirect";
 import MoreInfo from "@/common/ui/more-info";
 import TextWithIcon from "@/common/ui/text-width-icon";
 import { toVND } from "@/utils/converter";
+import logger from "@/utils/dev-log";
 import { CourseModel } from "@/utils/entity-generator";
 import generateFilledArray from "@/utils/generate-filled-array";
 import { getClassHours } from "@/utils/get-class-time";
@@ -40,6 +41,8 @@ export default function ClassCardWithTable({
   time,
 }: Props) {
   const { onRedirectWithState } = useRedirect();
+
+  logger.log(id, "fix this file please");
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className="flex h-fit flex-col">
@@ -96,10 +99,7 @@ export default function ClassCardWithTable({
           </tbody>
         </Table>
 
-        <TextWithIcon
-          onClick={onRedirectWithState(`/lecture/${lecture.id}/rating`)}
-          leftIcon={<IconSchool size="1.125rem" />}
-        >
+        <TextWithIcon onClick={onRedirectWithState(`/`)} leftIcon={<IconSchool size="1.125rem" />}>
           {lecture.name}
           <Text span>
             {" "}
@@ -129,7 +129,7 @@ export default function ClassCardWithTable({
           >
             <IconBookmark size="1.125rem" />
           </ActionIcon>
-          <Button color="blue" fullWidth onClick={onRedirectWithState(`${id}/register`)}>
+          <Button color="blue" fullWidth onClick={onRedirectWithState(`/`)}>
             Đăng ký
           </Button>
         </Group>

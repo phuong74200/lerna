@@ -1,11 +1,9 @@
-import { Group, Paper, Popover, Select, Stack, TextInput } from "@mantine/core";
+import { Group, Popover, Select, Stack, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { IconLock } from "@tabler/icons-react";
 import { z } from "zod";
 
 import { components } from "@/api/v1";
-import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
-import CustomModal from "@/common/ui/custom-modal";
 import { PasswordStrength } from "@/features/auth/components/password-strength";
 import useGetAllDepartment from "@/features/department/services/use-get-all-department";
 import useCreateManager from "@/features/manager/services/use-create-manager";
@@ -49,8 +47,6 @@ type FormType = components["schemas"]["CreateManagerRequest"] & {
 };
 
 export default function CreateManagerPage() {
-  const { open, goBack } = useModalRouteTrasition();
-
   const form = useForm<FormType>({
     initialValues: {
       email: "",
@@ -72,75 +68,68 @@ export default function CreateManagerPage() {
   };
 
   return (
-    <CustomModal opened={open} onClose={goBack} title="Tạo tài khoản" size="30%">
-      <Paper p="md" shadow="sm">
-        <form onSubmit={form.onSubmit(submit)}>
-          <Stack>
-            <TextInput
-              withAsterisk
-              label="Email"
-              placeholder="you@email.com"
-              {...form.getInputProps("email")}
-            />
-            <Group noWrap className="items-start" classNames="w-full">
-              <Popover position="bottom" withArrow shadow="md">
-                <Popover.Target>
-                  <TextInput
-                    label="Mật khẩu"
-                    withAsterisk
-                    placeholder="Mật khẩu"
-                    icon={<IconLock size="1rem" />}
-                    type="password"
-                    className="w-full"
-                    {...form.getInputProps("password")}
-                  />
-                </Popover.Target>
-                <Popover.Dropdown>
-                  <PasswordStrength
-                    requirements={requirements}
-                    value={form.values.password || ""}
-                  />
-                </Popover.Dropdown>
-              </Popover>
+    <form onSubmit={form.onSubmit(submit)}>
+      <Stack>
+        <TextInput
+          withAsterisk
+          label="Email"
+          placeholder="you@email.com"
+          {...form.getInputProps("email")}
+        />
+        <Group noWrap className="items-start" classNames="w-full">
+          <Popover position="bottom" withArrow shadow="md">
+            <Popover.Target>
               <TextInput
-                label="Nhập lại mật khẩu"
+                label="Mật khẩu"
                 withAsterisk
-                className="w-full"
-                placeholder="Nhập lại mật khẩu"
+                placeholder="Mật khẩu"
                 icon={<IconLock size="1rem" />}
                 type="password"
-                {...form.getInputProps("confirmPassword")}
+                className="w-full"
+                {...form.getInputProps("password")}
               />
-            </Group>
-            <TextInput
-              withAsterisk
-              label="Link hợp đồng"
-              placeholder="https://example.com"
-              {...form.getInputProps("contractLink")}
-            />
-            <Select
-              data={department.data?.list.toSelectList() || []}
-              withAsterisk
-              label="Bộ phận"
-              placeholder="Chọn bộ phận"
-              {...form.getInputProps("departmentId")}
-            />
-            <TextInput
-              placeholder="CEO, manager, lead, staff,..."
-              withAsterisk
-              label="Chức vụ"
-              {...form.getInputProps("position")}
-            />
-            <Select data={[]} withAsterisk label="Phân quyền" {...form.getInputProps("roleId")} />
+            </Popover.Target>
+            <Popover.Dropdown>
+              <PasswordStrength requirements={requirements} value={form.values.password || ""} />
+            </Popover.Dropdown>
+          </Popover>
+          <TextInput
+            label="Nhập lại mật khẩu"
+            withAsterisk
+            className="w-full"
+            placeholder="Nhập lại mật khẩu"
+            icon={<IconLock size="1rem" />}
+            type="password"
+            {...form.getInputProps("confirmPassword")}
+          />
+        </Group>
+        <TextInput
+          withAsterisk
+          label="Link hợp đồng"
+          placeholder="https://example.com"
+          {...form.getInputProps("contractLink")}
+        />
+        <Select
+          data={department.data?.list.toSelectList() || []}
+          withAsterisk
+          label="Bộ phận"
+          placeholder="Chọn bộ phận"
+          {...form.getInputProps("departmentId")}
+        />
+        <TextInput
+          placeholder="CEO, manager, lead, staff,..."
+          withAsterisk
+          label="Chức vụ"
+          {...form.getInputProps("position")}
+        />
+        <Select data={[]} withAsterisk label="Phân quyền" {...form.getInputProps("roleId")} />
 
-            <Group position="right">
-              <RippleButton type="submit" fullWidth loading={isLoading}>
-                Tạo
-              </RippleButton>
-            </Group>
-          </Stack>
-        </form>
-      </Paper>
-    </CustomModal>
+        <Group position="right">
+          <RippleButton type="submit" fullWidth loading={isLoading}>
+            Tạo
+          </RippleButton>
+        </Group>
+      </Stack>
+    </form>
   );
 }

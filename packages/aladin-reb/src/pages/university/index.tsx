@@ -1,14 +1,5 @@
 import { generatePath } from "react-router-dom";
-import {
-  Container,
-  Flex,
-  Image,
-  Pagination,
-  Stack,
-  Text,
-  TextInput,
-  useMantineTheme,
-} from "@mantine/core";
+import { Flex, Image, Pagination, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
 import { IconPencil, IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
@@ -82,46 +73,50 @@ export default function ListUniversityPage() {
   const { data, pagination, isFetching, range } = useGetAllInstitution(INSITUTION_PAGE_SIZE);
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
-      <Stack className="flex-1">
-        <Flex justify="space-between" align="center">
-          <TextInput
-            variant="filled"
-            icon={<IconSearch size={theme.fontSizes.md} />}
-            placeholder="Tìm kiếm"
-          />
-          <RippleButton
-            onClick={onRedirectWithState("create")}
-            leftIcon={<IconPlus size={theme.fontSizes.md} />}
-          >
-            Thêm trường
-          </RippleButton>
-        </Flex>
-        <DataTable
-          withBorder
-          borderRadius="md"
-          fontSize="md"
-          withColumnBorders
-          striped
-          highlightOnHover
-          records={data?.list.toArray()}
-          fetching={isFetching}
-          verticalSpacing="sm"
-          noRecordsText="Không có dữ liệu"
-          columns={columns}
-          onRowClick={({ institutionId }) => redirect(institutionId)}
-          idAccessor="institutionId"
+    <Stack className="flex h-0 w-full flex-1">
+      <Flex justify="space-between" align="center">
+        <TextInput
+          variant="filled"
+          icon={<IconSearch size={theme.fontSizes.md} />}
+          placeholder="Tìm kiếm"
         />
-        <Flex justify="space-between" align="center">
-          <Text size="sm">
-            <b>
-              {range[0]} đến {range[1]}
-            </b>{" "}
-            của {data?.totalPages}
-          </Text>
-          <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
-        </Flex>
-      </Stack>
-    </Container>
+        <RippleButton
+          onClick={onRedirectWithState("/admin/institution/create")}
+          leftIcon={<IconPlus size={theme.fontSizes.md} />}
+        >
+          Thêm trường
+        </RippleButton>
+      </Flex>
+      <DataTable
+        withBorder
+        borderRadius="md"
+        fontSize="md"
+        withColumnBorders
+        striped
+        highlightOnHover
+        records={data?.list.toArray()}
+        fetching={isFetching}
+        verticalSpacing="sm"
+        noRecordsText="Không có dữ liệu"
+        columns={columns}
+        onRowClick={({ institutionId }) =>
+          redirect(
+            generatePath(`/admin/institution/:institutionId`, {
+              institutionId: `${institutionId}`,
+            }),
+          )
+        }
+        idAccessor="institutionId"
+      />
+      <Flex justify="space-between" align="center">
+        <Text size="sm">
+          <b>
+            {range[0]} đến {range[1]}
+          </b>{" "}
+          của {data?.totalPages}
+        </Text>
+        <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
+      </Flex>
+    </Stack>
   );
 }

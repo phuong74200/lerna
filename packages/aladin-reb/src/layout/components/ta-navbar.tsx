@@ -1,14 +1,16 @@
 import { forwardRef } from "react";
 import { createStyles, Menu, Navbar, rem, ScrollArea } from "@mantine/core";
 import {
-  IconBooks,
   IconBuildingCommunity,
   IconDiscountCheckFilled,
   IconKey,
+  IconSchool,
+  IconTrash,
+  IconUser,
   IconUsersGroup,
 } from "@tabler/icons-react";
-import { useQueryClient } from "@tanstack/react-query";
 
+import useLogout from "@/common/hooks/use-logout";
 import useGetCurrentUser from "@/common/services/use-get-current-user";
 import { LinksGroup, LinksGroupProps } from "@/layout/components/navbar-link-group";
 import { UserButton } from "@/layout/components/user-button";
@@ -42,9 +44,19 @@ const mockdata: LinksGroupProps[] = [
     link: "/admin/student",
   },
   {
-    label: "Quản lý TA",
-    icon: IconBooks,
-    link: "/admin/lecture",
+    label: "Teaching Assistant",
+    icon: IconSchool,
+    initiallyOpened: true,
+    links: [
+      {
+        label: "Quản lý",
+        link: "/admin/lecture",
+      },
+      {
+        label: "Đơn đăng ký",
+        link: "/admin/lecture/registration",
+      },
+    ],
   },
   // {
   //   label: "Quản lý đánh giá",
@@ -69,8 +81,13 @@ const mockdata: LinksGroupProps[] = [
   },
   {
     label: "Quản lý mods",
-    icon: IconKey,
+    icon: IconUser,
     link: "/admin/mod",
+  },
+  {
+    label: "Phân quyền",
+    icon: IconKey,
+    link: "/admin/role",
   },
 ];
 
@@ -107,7 +124,7 @@ const useStyles = createStyles((theme) => ({
 
 export const NavbarNested = forwardRef<HTMLDivElement, unknown>((_, ref) => {
   const { data } = useGetCurrentUser();
-  const queryClient = useQueryClient();
+  const logout = useLogout();
 
   const { classes } = useStyles();
   const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} />);
@@ -119,22 +136,23 @@ export const NavbarNested = forwardRef<HTMLDivElement, unknown>((_, ref) => {
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
-        <Menu withArrow>
+        <Menu shadow="md" position="right" width={200}>
           <Menu.Target>
             <UserButton
+              w="100%"
+              pt="md"
+              pl="md"
+              pr="md"
               image={data?.data?.avatar || generateAvatar(data?.data?.userId)}
               name={data?.data?.fullName || ""}
               email={data?.data?.email || ""}
             />
           </Menu.Target>
-          <Menu.Item
-            onClick={() => {
-              localStorage.removeItem("token");
-              queryClient.resetQueries();
-            }}
-          >
-            logout
-          </Menu.Item>
+          <Menu.Dropdown>
+            <Menu.Item onClick={logout} color="red" icon={<IconTrash size={14} />}>
+              Đăng xuất
+            </Menu.Item>
+          </Menu.Dropdown>
         </Menu>
       </Navbar.Section>
     </Navbar>

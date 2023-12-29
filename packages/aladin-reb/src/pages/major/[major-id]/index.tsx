@@ -1,7 +1,6 @@
-import { useParams } from "react-router-dom";
+import { generatePath, useParams } from "react-router-dom";
 import {
   ActionIcon,
-  Container,
   Flex,
   Group,
   Menu,
@@ -69,7 +68,13 @@ const columns: DataTableColumn<components["schemas"]["SubjectResponse"]>[] = [
     textAlignment: "center",
     render: (domain) => (
       <Group noWrap spacing="sm">
-        <NavigateButton variant="filled" color="blue" to={`/subject/${domain.subjectId}/update`}>
+        <NavigateButton
+          variant="filled"
+          color="blue"
+          to={generatePath("/admin/subject/:subjectId/update", {
+            subjectId: `${domain.subjectId}`,
+          })}
+        >
           <IconPencil size={ACTION_ICON_SIZE} fill="currentColor" />
         </NavigateButton>
         <HideButton domain={domain} />
@@ -102,7 +107,7 @@ export default function ViewMajor() {
   });
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
+    <Stack className="flex h-0 w-full flex-1">
       <div className="absolute right-2 top-2">
         <Menu width={200} shadow="md">
           <Menu.Target>
@@ -127,7 +132,7 @@ export default function ViewMajor() {
             <Flex gap="sm">
               <RippleButton
                 leftIcon={<IconPlus size={theme.fontSizes.md} />}
-                onClick={onRedirectWithState("/subject/create", {
+                onClick={onRedirectWithState("/admin/subject/create", {
                   state: {
                     majorId,
                   },
@@ -148,7 +153,7 @@ export default function ViewMajor() {
           withColumnBorders
           striped
           highlightOnHover
-          records={major?.list.toArray() || []}
+          records={major?.list || []}
           fetching={isFetching}
           verticalSpacing="sm"
           noRecordsText="Không có dữ liệu"
@@ -165,6 +170,6 @@ export default function ViewMajor() {
           <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
         </Flex>
       </Stack>
-    </Container>
+    </Stack>
   );
 }

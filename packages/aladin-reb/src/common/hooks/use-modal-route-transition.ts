@@ -11,7 +11,7 @@ export default function useModalRouteTrasition(duration = 300) {
     setOpen(false);
     setTimeout(() => {
       navigate(-1);
-    }, duration);
+    }, duration - 100);
   };
 
   return { open, goBack };

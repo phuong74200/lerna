@@ -1,28 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { Stepper } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useQuery } from "@tanstack/react-query";
 
-import { queryKeys } from "@/api";
 import { components } from "@/api/v1";
 import TAStep1 from "@/features/register/components/ta-step-1";
 import TAStep2 from "@/features/register/components/ta-step-2";
 import TAStep3 from "@/features/register/components/ta-step-3";
 import TAStepFail from "@/features/register/components/ta-step-fail";
 import { TAFormContext } from "@/features/register/contexts/ta-form";
+import { taReigsterLoader } from "@/pages/ta/register/loader";
 
 export default function TaRegister() {
-  const { data } = useQuery({
-    ...queryKeys.ta.register(),
-  });
+  const registerForm = useLoaderData() as Awaited<ReturnType<ReturnType<typeof taReigsterLoader>>>;
 
-  const [activeStep, setStep] = useState(0);
+  const [activeStep, setStep] = useState(registerForm ? 2 : 0);
 
   const generalForm = useForm<components["schemas"]["RegisterTARequest"]>();
-
-  useEffect(() => {
-    if (data) setStep(2);
-  }, [data]);
 
   const value = useMemo(
     () => ({

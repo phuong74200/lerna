@@ -16,7 +16,7 @@ fetchInstance.onRequest(async (request) => {
 });
 
 // exchange refresh token to access token
-fetchInstance.onResponse(async (response) => {
+fetchInstance.onResponse(async (response, request) => {
   const refreshToken = getToken().refreshToken;
 
   if (response.status === 401 && refreshToken) {
@@ -40,6 +40,14 @@ fetchInstance.onResponse(async (response) => {
           refreshToken: json.refreshToken,
         }),
       );
+
+      return fetchInstance.fetch(request.url, {
+        ...request.options,
+        headers: {
+          ...request.options.headers,
+          Authorization: `Bearer ${json.accessToken}`,
+        },
+      });
     } catch (e) {
       clsToken();
 

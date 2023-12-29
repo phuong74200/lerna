@@ -1,12 +1,5 @@
-import {
-  Container,
-  Flex,
-  Pagination,
-  Stack,
-  Text,
-  TextInput,
-  useMantineTheme,
-} from "@mantine/core";
+import { generatePath } from "react-router-dom";
+import { Flex, Pagination, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
 import { IconPencil, IconPlus, IconSearch } from "@tabler/icons-react";
 import { DataTable, DataTableColumn } from "mantine-datatable";
 
@@ -65,7 +58,13 @@ const columns: DataTableColumn<Voucher>[] = [
     width: "10%",
     textAlignment: "center",
     render: ({ voucherId }) => (
-      <NavigateButton color="blue" mx="auto" to={`update/${voucherId}`}>
+      <NavigateButton
+        color="blue"
+        mx="auto"
+        to={generatePath(`/admin/voucher/update/:voucherId`, {
+          voucherId: `${voucherId}`,
+        })}
+      >
         <IconPencil size={ACTION_ICON_SIZE} fill="currentColor" />
       </NavigateButton>
     ),
@@ -79,45 +78,43 @@ export default function ListVoucherPage() {
   const { data, pagination, isFetching, range } = useGetAllVoucher(VOUCHER_PAGE_SIZE);
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
-      <Stack className="flex-1">
-        <Flex justify="space-between" align="center">
-          <TextInput
-            variant="filled"
-            icon={<IconSearch size={theme.fontSizes.md} />}
-            placeholder="Tìm kiếm"
-          />
-          <RippleButton
-            onClick={onRedirectWithState("create")}
-            leftIcon={<IconPlus size={theme.fontSizes.md} />}
-          >
-            Tạo voucher
-          </RippleButton>
-        </Flex>
-        <DataTable
-          withBorder
-          borderRadius="md"
-          fontSize="md"
-          withColumnBorders
-          striped
-          highlightOnHover
-          records={data?.list.toArray() || []}
-          fetching={isFetching}
-          verticalSpacing="sm"
-          noRecordsText="Không có dữ liệu"
-          columns={columns}
-          idAccessor="voucherId"
+    <Stack className="flex h-0 w-full flex-1">
+      <Flex justify="space-between" align="center">
+        <TextInput
+          variant="filled"
+          icon={<IconSearch size={theme.fontSizes.md} />}
+          placeholder="Tìm kiếm"
         />
-        <Flex justify="space-between" align="center">
-          <Text size="sm">
-            <b>
-              {range[0]} đến {range[1]}
-            </b>{" "}
-            của {data?.totalPages}
-          </Text>
-          <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
-        </Flex>
-      </Stack>
-    </Container>
+        <RippleButton
+          onClick={onRedirectWithState("/admin/voucher/create")}
+          leftIcon={<IconPlus size={theme.fontSizes.md} />}
+        >
+          Tạo voucher
+        </RippleButton>
+      </Flex>
+      <DataTable
+        withBorder
+        borderRadius="md"
+        fontSize="md"
+        withColumnBorders
+        striped
+        highlightOnHover
+        records={data?.list.toArray() || []}
+        fetching={isFetching}
+        verticalSpacing="sm"
+        noRecordsText="Không có dữ liệu"
+        columns={columns}
+        idAccessor="voucherId"
+      />
+      <Flex justify="space-between" align="center">
+        <Text size="sm">
+          <b>
+            {range[0]} đến {range[1]}
+          </b>{" "}
+          của {data?.totalPages}
+        </Text>
+        <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
+      </Flex>
+    </Stack>
   );
 }

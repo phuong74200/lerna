@@ -1,3 +1,4 @@
+import ASSET_RED_CLIPBOARD from "@/assets/illustration/3d-render-red-paper-clipboard-with-cross-mark.png";
 import ASSET_CHECK_MARK from "@/assets/illustration/casual-life-3d-yellow-key-1.png";
 import ASSET_MALE_LAPTOP from "@/assets/landing/101.jpg";
 import ASSET_GIRL_LAPTOP from "@/assets/landing/5141092.jpg";
@@ -17,4 +18,5 @@ export {
   ASSET_NO_RESULT,
   ASSET_CHECK_MARK,
   ia_calendar_001,
+  ASSET_RED_CLIPBOARD,
 };

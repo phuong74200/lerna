@@ -27,7 +27,7 @@ export default function usePostLoginUser() {
         });
 
       if (data?.userResponse?.roleId === "SUPER_AD") return redirect("/admin", { replace: true });
-      if (data?.userResponse?.roleId === "STU") return redirect("/usr", { replace: true });
+      if (data?.userResponse?.roleId === "STU") return redirect("/student", { replace: true });
     },
   });
 

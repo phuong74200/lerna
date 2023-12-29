@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { AppShell, AppShellProps, Box } from "@mantine/core";
+import { AppShell, AppShellProps } from "@mantine/core";
 import { useResizeObserver } from "@mantine/hooks";
 
 import { SuperAdminHeader } from "@/layout/components/student-header";
@@ -32,7 +32,7 @@ export default function TA() {
     <AppShell
       padding="md"
       styles={style}
-      header={<SuperAdminHeader links={links} logo={<Box></Box>} />}
+      header={<SuperAdminHeader links={links} />}
       navbar={<NavbarNested ref={ref} />}
       // aside={
       //   <Aside width={{ sm: 300 }} className="invisible">

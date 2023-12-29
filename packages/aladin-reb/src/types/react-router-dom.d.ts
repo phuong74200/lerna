@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Location, RelativeRoutingType } from "react-router-dom";
 
 import { Path } from "@/router/path";

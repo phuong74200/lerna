@@ -48,7 +48,7 @@ export const UserButton = forwardRef<HTMLButtonElement, UserButtonProps>(
             </Text>
           </div>
 
-          {icon || <IconChevronRight size="0.9rem" stroke={1.5} />}
+          {icon || <IconChevronRight size="0.9rem" stroke={1.5} className="ml-auto" />}
         </Group>
       </UnstyledButton>
     );

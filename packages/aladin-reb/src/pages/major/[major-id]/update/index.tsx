@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Group, Stack } from "@mantine/core";
 
-import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
+import { useModalContext } from "@/common/ui/custom-modal/context";
 import TextInputWithCustomError from "@/common/ui/text-input-with-custom-error";
 import useMajor from "@/features/major/services/use-major";
 import RippleButton from "@/modules/mantine-ripple/components/ripple-button";
@@ -12,7 +12,7 @@ export default function MajorUpdatePage() {
     majorId: string;
   }>();
 
-  const { goBack } = useModalRouteTrasition();
+  const { onClose } = useModalContext();
 
   const {
     mutate: { mutation },
@@ -22,7 +22,7 @@ export default function MajorUpdatePage() {
 
   const handleSubmitted = async () => {
     await mutation.mutateAsync(form.values);
-    goBack();
+    onClose();
   };
 
   return (

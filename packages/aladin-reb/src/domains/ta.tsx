@@ -1,3 +1,5 @@
+import { MantineColor } from "@mantine/core";
+
 import { components } from "@/api/v1";
 
 export class TeachingAssistant {
@@ -46,23 +48,40 @@ export class TeachingAssistant {
   get createdAt() {
     return this.props.userResponse?.createdAt;
   }
+
   get updatedAt() {
     return this.props.userResponse?.updatedAt;
   }
+
   get status() {
-    return this.props.userResponse?.status;
+    return this.props.status;
   }
+
   get enabled() {
     return this.props.userResponse?.enabled;
   }
+
   get roleId() {
     return this.props.userResponse?.roleId;
   }
+
   get permissions() {
     return this.props.userResponse?.permissions;
   }
+
   get havingPassword() {
     return this.props.userResponse?.havingPassword;
+  }
+
+  get statusColor(): MantineColor {
+    const status = this.props.status;
+
+    if (status === "PENDING") return "yellow";
+    if (status === "SUCCEED") return "green";
+    if (status === "CANCEL") return "violet";
+    if (status === "FAIL") return "red";
+
+    return "gray";
   }
 
   toRaw() {

@@ -7,11 +7,28 @@ export const subjectKeys = createQueryKeys("subject", {
   getAllSubjectsOfMajor: (params: operations["getAllSubjectsOfMajor"]["parameters"]) => ({
     queryKey: [params],
     queryFn: async () => {
-      const response = await client.GET(`/v1/institution/major/{major_id}/subject`, {
+      const { data, error } = await client.GET(`/v1/institution/major/{major_id}/subject`, {
         params,
       });
-      if (!response.response.ok) throw response.error;
-      return response;
+
+      if (error) throw error;
+
+      return data;
+    },
+  }),
+
+  getAllSubjectsOfInstitution: (
+    params: operations["getAllSubjectsOfInstitution"]["parameters"],
+  ) => ({
+    queryKey: [params],
+    queryFn: async () => {
+      const { data, error } = await client.GET(`/v1/institution/{institution_id}/subject`, {
+        params,
+      });
+
+      if (error) throw error;
+
+      return data;
     },
   }),
 

@@ -24,7 +24,7 @@ export default function CourseCard() {
           </Title>
         </Group>
         <Text>Khoa/ngành: Công nghệ thông tin</Text>
-        <Button color="blue" fullWidth onClick={onRedirectWithState(`${course.id}/register`)}>
+        <Button color="blue" fullWidth onClick={onRedirectWithState(`/`)}>
           Thêm môn dạy
         </Button>
       </Stack>

@@ -1,6 +1,5 @@
+import { generatePath } from "react-router-dom";
 import {
-  ActionIcon,
-  Container,
   Flex,
   Group,
   Menu,
@@ -46,11 +45,21 @@ const columns: DataTableColumn<Student>[] = [
     textAlignment: "center",
     render: ({ userId }) => (
       <Group noWrap className="justify-center" spacing="sm">
-        <NavigateButton to={`ban/${userId}`} label="Cấm tài khoản" color="orange">
+        <NavigateButton
+          to={generatePath(`/admin/student/ban/:userId`, {
+            userId: `${userId}`,
+          })}
+          color="orange"
+        >
           <IconBan size={ACTION_ICON_SIZE} />
         </NavigateButton>
         <FeatureFlag feature={FLAGS.DANGEROUS_ACTION}>
-          <NavigateButton to={`delete/${userId}`} label="Xoá tài khoản" color="red">
+          <NavigateButton
+            to={generatePath("/admin/student/delete/:userId", {
+              userId: `${userId}`,
+            })}
+            color="red"
+          >
             <IconTrash size={ACTION_ICON_SIZE} />
           </NavigateButton>
         </FeatureFlag>
@@ -71,68 +80,61 @@ export default function StudentListPage() {
   const institutions = useGetAllInstitution();
 
   return (
-    <Container my="lg" size="xl" className="flex h-0 w-full flex-1">
-      <div className="absolute right-2 top-2">
-        <Menu width={200} shadow="md">
-          <Menu.Target>
-            <ActionIcon>
-              <IconDots size="1.125rem" />
-            </ActionIcon>
-          </Menu.Target>
+    <Stack className="flex h-0 w-full flex-1">
+      <Flex className="w-full items-start justify-between" gap="sm">
+        <Flex gap="sm" align="start" className="w-full">
+          <TextInput
+            variant="filled"
+            icon={<IconSearch size={theme.fontSizes.md} />}
+            placeholder="Tìm kiếm"
+          />
+          <MultiSelect
+            data={institutions.data?.list.toSelectList() || []}
+            className="min-w-[200px]"
+            placeholder="Tất cả trường"
+          />
+        </Flex>
+        <Flex gap="sm">
+          <Menu width={200} shadow="md" position="bottom-end">
+            <Menu.Target>
+              <RippleActionIcon variant="filled" color="blue">
+                <IconDots size={theme.fontSizes.lg} />
+              </RippleActionIcon>
+            </Menu.Target>
 
-          <Menu.Dropdown>
-            <Menu.Item icon={<IconEdit size={rem(14)} />}>Chỉnh sửa thông tin</Menu.Item>
-          </Menu.Dropdown>
-        </Menu>
-      </div>
-      <Stack className="flex-1">
-        <Flex className="w-full items-start justify-between" gap="sm">
-          <Flex gap="sm" align="start" className="w-full">
-            <TextInput
-              variant="filled"
-              icon={<IconSearch size={theme.fontSizes.md} />}
-              placeholder="Tìm kiếm"
-            />
-            <MultiSelect
-              data={institutions.data?.list.toSelectList() || []}
-              className="min-w-[200px]"
-              placeholder="Tất cả trường"
-            />
-          </Flex>
-          <Flex gap="sm">
-            <RippleActionIcon variant="filled" color="blue">
-              <IconDots size={theme.fontSizes.lg} />
-            </RippleActionIcon>
-          </Flex>
+            <Menu.Dropdown>
+              <Menu.Item icon={<IconEdit size={rem(14)} />}>Chỉnh sửa thông tin</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         </Flex>
-        <DataTable
-          withBorder
-          borderRadius="md"
-          fontSize="md"
-          withColumnBorders
-          striped
-          highlightOnHover
-          records={students?.list.toArray() || []}
-          fetching={isFetching}
-          verticalSpacing="sm"
-          noRecordsText="Không có dữ liệu"
-          columns={columns}
-          rowExpansion={{
-            allowMultiple: true,
-            content: ({ record }) => record.userId && <StudentDetail user_id={record.userId} />,
-          }}
-          idAccessor="userId"
-        />
-        <Flex justify="space-between" align="center">
-          <Text size="sm">
-            <b>
-              {range[0]} đến {range[1]}
-            </b>{" "}
-            của {students?.pageNumber}
-          </Text>
-          <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
-        </Flex>
-      </Stack>
-    </Container>
+      </Flex>
+      <DataTable
+        withBorder
+        borderRadius="md"
+        fontSize="md"
+        withColumnBorders
+        striped
+        highlightOnHover
+        records={students?.list.toArray() || []}
+        fetching={isFetching}
+        verticalSpacing="sm"
+        noRecordsText="Không có dữ liệu"
+        columns={columns}
+        rowExpansion={{
+          allowMultiple: true,
+          content: ({ record }) => record.userId && <StudentDetail user_id={record.userId} />,
+        }}
+        idAccessor="userId"
+      />
+      <Flex justify="space-between" align="center">
+        <Text size="sm">
+          <b>
+            {range[0]} đến {range[1]}
+          </b>{" "}
+          của {students?.pageNumber}
+        </Text>
+        <Pagination total={50} onChange={pagination.setPage} value={pagination.active} />
+      </Flex>
+    </Stack>
   );
 }

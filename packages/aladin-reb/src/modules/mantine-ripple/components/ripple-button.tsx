@@ -1,29 +1,26 @@
 import { HTMLAttributes } from "react";
-import { Button, ButtonProps, clsx } from "@mantine/core";
+import { Button, ButtonProps } from "@mantine/core";
 
 import Ripple from "@/modules/mantine-ripple/components/ripple";
 import { useRipple } from "@/modules/mantine-ripple/hooks/use-ripple";
-import emptyFn from "@/utils/empty-fn";
 
-type Props = HTMLAttributes<HTMLButtonElement> &
-  ButtonProps & {
-    wrapperClassName?: string;
-  };
+type Props = HTMLAttributes<HTMLButtonElement> & ButtonProps;
 
-export default function RippleButton({ children, wrapperClassName, ...others }: Props) {
+export default function RippleButton({ children, onClick, ...others }: Props) {
   const { onClick: onRippleClickHandler, onClear: onClearRipple, ripples } = useRipple();
 
   return (
-    <div
-      className={clsx("relative overflow-hidden", wrapperClassName)}
-      onClick={onRippleClickHandler}
-      onKeyDown={emptyFn}
-      tabIndex={0}
-      role="button"
+    <Button
+      pos="relative"
+      className="overflow-hidden"
+      {...others}
+      onClick={(e) => {
+        onClick?.(e);
+        onRippleClickHandler(e);
+      }}
     >
-      <Ripple onClear={onClearRipple} ripples={ripples}></Ripple>
-
-      <Button {...others}>{children}</Button>
-    </div>
+      {children}
+      <Ripple onClear={onClearRipple} ripples={ripples} />
+    </Button>
   );
 }

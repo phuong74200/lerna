@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+import { generatePath } from "react-router-dom";
 import { Anchor, AnchorProps } from "@mantine/core";
 
 import useRedirect from "@/common/hooks/use-redirect";
@@ -17,7 +18,12 @@ export default function ImageView({ src, label, anchorProps }: Props) {
     e.preventDefault();
     e.stopPropagation();
 
-    redirectWithState(`/image/${src}`);
+    if (src)
+      redirectWithState(
+        generatePath(`/image/:imageId`, {
+          imageId: src,
+        }),
+      );
   };
 
   if (!src) return "Chưa có hình";

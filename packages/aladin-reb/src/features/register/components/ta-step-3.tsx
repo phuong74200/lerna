@@ -20,7 +20,11 @@ export default function TAStep3() {
         </Text>
       </Text>
       <Center mt="lg">
-        <Button onClick={onRedirect("revise")} variant="light" rightIcon={<IconArrowNarrowRight />}>
+        <Button
+          onClick={onRedirect("/student/ta/revise")}
+          variant="light"
+          rightIcon={<IconArrowNarrowRight />}
+        >
           Xem lại đơn đăng ký
         </Button>
       </Center>
