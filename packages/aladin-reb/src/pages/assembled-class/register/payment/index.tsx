@@ -8,17 +8,11 @@ import CourseStep3 from "@/features/register/components/course-step-3";
 import CourseStepComplete from "@/features/register/components/course-step-complete";
 
 export default function ProgressGroupRegisterPayment() {
-  const { open, goBack } = useModalRouteTrasition();
+  const { controller } = useModalRouteTrasition();
   const step = useStep(0);
 
   return (
-    <Modal.Root
-      opened={open}
-      onClose={goBack}
-      size="55%"
-      centered
-      transitionProps={{ transition: "slide-up" }}
-    >
+    <Modal.Root size="55%" centered {...controller}>
       <Modal.Overlay blur={3} opacity={0.55} />
       <Modal.Content maw={720}>
         <Modal.Body p="xl">

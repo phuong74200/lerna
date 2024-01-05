@@ -11,14 +11,12 @@ export default function BanStudentModalLayout() {
     userId: string;
   }>();
 
-  const { open, goBack } = useModalRouteTrasition();
+  const { controller } = useModalRouteTrasition();
 
   const student = useGetStudentById(userId || "");
 
   return (
     <CustomModal
-      opened={open}
-      onClose={goBack}
       title={
         <Text>
           Khoá tài khoản sinh viên{" "}
@@ -28,6 +26,7 @@ export default function BanStudentModalLayout() {
         </Text>
       }
       size="30%"
+      {...controller}
     >
       <Paper p="md" shadow="sm">
         <Suspense

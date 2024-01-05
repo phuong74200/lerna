@@ -54,7 +54,7 @@ export class TeachingAssistant {
   }
 
   get status() {
-    return this.props.status;
+    return this.props.status as any;
   }
 
   get enabled() {

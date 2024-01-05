@@ -6,10 +6,10 @@ import useModalRouteTrasition from "@/common/hooks/use-modal-route-transition";
 import CustomModal from "@/common/ui/custom-modal";
 
 export default function CreateManagerLayout() {
-  const { open, goBack } = useModalRouteTrasition();
+  const { controller } = useModalRouteTrasition();
 
   return (
-    <CustomModal opened={open} onClose={goBack} title="Tạo tài khoản">
+    <CustomModal title="Tạo tài khoản" {...controller}>
       <Paper p="md" shadow="sm">
         <Suspense
           fallback={

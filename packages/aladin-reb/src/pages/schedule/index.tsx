@@ -31,7 +31,7 @@ export default function Schedule() {
       <Paper p="lg">
         <div className="grid grid-flow-row-dense grid-cols-[auto,1fr] gap-16">
           <Stack>
-            <Calendar w="fit-content" />
+            <Calendar placeholder="" w="fit-content" />
             <Text weight="bold">Nhãn dán</Text>
             <List
               spacing="xs"

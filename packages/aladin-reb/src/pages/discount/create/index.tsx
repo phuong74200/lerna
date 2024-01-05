@@ -47,12 +47,14 @@ export default function CreateDiscountPage() {
       <Stack>
         <Group noWrap className="items-start">
           <DateTimePicker
+            placeholder=""
             withAsterisk
             label="Thời gian mở"
             className="w-full"
             {...form.getInputProps("validFrom")}
           />
           <DateTimePicker
+            placeholder=""
             withAsterisk
             label="Thời gian hết hạn"
             className="w-full"

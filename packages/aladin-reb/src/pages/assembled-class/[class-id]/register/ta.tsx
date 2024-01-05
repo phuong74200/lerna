@@ -36,16 +36,10 @@ const stepperStyles: MantineStyles<StepperProps, StepperStylesParams> = () => ({
 export default function RegiserTAAssembledClass() {
   const step = useStep(0);
 
-  const { open, goBack } = useModalRouteTrasition();
+  const { goBack, controller } = useModalRouteTrasition();
 
   return (
-    <Modal.Root
-      opened={open}
-      onClose={goBack}
-      size="55%"
-      centered
-      transitionProps={{ transition: "slide-up" }}
-    >
+    <Modal.Root size="55%" centered {...controller}>
       <Modal.Overlay blur={3} opacity={0.55} />
       <Modal.Content maw={720}>
         <Modal.Header>

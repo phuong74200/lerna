@@ -19,7 +19,7 @@ const SubjectSelect = ({
       withinPortal
       variant="filled"
       placeholder="Môn học"
-      data={subjects.data?.list.toSelectList() || []}
+      data={subjects.data?.toSelectList() || []}
       {...props}
     />
   );

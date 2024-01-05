@@ -38,7 +38,7 @@ export class DomainList<T extends Domain> {
     return this.props.list.map((item) => ({
       searchString: toNonAccentVietnamese(JSON.stringify(item)),
       description: item.description,
-      value: item.id,
+      value: item.id.toString(),
       label: item.name,
     }));
   }

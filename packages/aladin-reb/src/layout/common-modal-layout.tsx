@@ -12,10 +12,10 @@ type Props = {
 };
 
 export default function CommonModalLayout({ title, w, h }: Props) {
-  const { open, goBack } = useModalRouteTrasition();
+  const { controller } = useModalRouteTrasition();
 
   return (
-    <CustomModal opened={open} onClose={goBack} title={title}>
+    <CustomModal title={title} {...controller}>
       <Paper p="md" shadow="sm">
         <Suspense
           fallback={

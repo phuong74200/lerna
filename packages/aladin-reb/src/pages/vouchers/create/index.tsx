@@ -129,12 +129,14 @@ export default function CreateVoucherPage() {
 
         <Group noWrap>
           <DateTimePicker
+            placeholder=""
             withAsterisk
             label="Thời gian mở"
             className="w-full"
             {...form.getInputProps("validFrom")}
           />
           <DateTimePicker
+            placeholder=""
             withAsterisk
             label="Thời gian hết hạn"
             className="w-full"

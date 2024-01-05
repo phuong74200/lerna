@@ -66,7 +66,7 @@ export default function PublicLayout() {
             ]}
           />
         </Box>
-        <Flex h="100%" justify="center" align="center" className="w-1/2 md:w-auto lg:max-w-[500px]">
+        <Flex h="100%" justify="center" align="center" className="w-1/2 xs:w-auto lg:max-w-[500px]">
           <Outlet />
         </Flex>
       </Flex>
