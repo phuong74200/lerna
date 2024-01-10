@@ -9,6 +9,5 @@
     "ngClass",
     "wrapperClassName"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "prettier.printWidth": 2280
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

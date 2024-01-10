@@ -1,5 +1,5 @@
 type ReqInterceptor = (request: { url: string; options: RequestInit }) => void;
-type ResInterceptor = (response: Response, request: { url: string; options: RequestInit }) => void;
+type ResInterceptor = (response: Response, request: { url: string; options: RequestInit }) => any;
 
 export class FetchInstance {
   req_interceptors: ReqInterceptor[] = [];
@@ -15,10 +15,14 @@ export class FetchInstance {
     await Promise.all(this.req_interceptors.map((interceptor) => interceptor(request)));
 
     // Make the actual fetch request
-    const response = await window.fetch(request.url, request.options);
+    let response: any = await window.fetch(request.url, request.options);
+
+    // await Promise.all(this.res_interceptors.map((interceptor) => interceptor(response, request)));
 
     // Apply response interceptors
-    await Promise.all(this.res_interceptors.map((interceptor) => interceptor(response, request)));
+    for (let interceptor of this.res_interceptors) {
+      response = await interceptor(response, request) ?? response;
+    }
 
     return response;
   };

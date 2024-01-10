@@ -39,7 +39,6 @@ export type LoaderFunctionArgs = Omit<
   id: string | undefined;
 };
 
-export interface Response extends NodeJS.fetch._Response {}
 export type DataFunctionValue = Response | NonNullable<unknown> | null;
 
 export interface LoaderFunction {
